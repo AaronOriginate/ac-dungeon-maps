@@ -129,3 +129,9 @@ python3 mapgen/tools/export_all.py                            # plugin data for 
 ```
 
 To install the plugin in OpenAC, copy the built files into OpenAC's plugins folder as `ac.dungeon-maps`. See `plugin/README.md` for details.
+
+## License
+
+The code, maps and guide are under the [MIT License](LICENSE).
+
+`mapgen/weenies.json` is extracted from the ACE-World-16PY database, which is under the AGPL-3.0, so that file keeps its terms. Asheron's Call and its game content belong to their owners; this project is not affiliated with them.
