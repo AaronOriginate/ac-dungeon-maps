@@ -86,6 +86,8 @@ Step through a dungeon's routes, or switch to the flat map of one level.
 
 Each dungeon is set up by a small config in `mapgen/configs/` that names the targets, goals and entrances.
 
+**To make a new map**, see [GUIDE.md](GUIDE.md): where the raw data is, how to find a dungeon and read what is inside it, how to research its quest, and how to write, build and test its config.
+
 ## What it uses
 
 | Part | Uses |
@@ -118,6 +120,8 @@ workspace/
 ```
 
 ```sh
+python3 mapgen/tools/weenie_index.py                          # refresh mapgen/weenies.json from the world data
+python3 mapgen/tools/find_dungeon.py "mite maze"               # find a dungeon's landblock and entrances
 python3 mapgen/tools/dunmap.py mapgen/configs/mite-maze.json   # one web map, written to workspace/maps
 python3 mapgen/tools/dunmap_index.py                          # the index page and nav.js
 python3 mapgen/tools/export_all.py                            # plugin data for every config

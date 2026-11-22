@@ -34,6 +34,10 @@ OpenAC's own Map tab can't show plugin maps yet (its map registry is a stub in 0
 
 The build runs the .NET 10 SDK in Docker against `../clients/OpenAC`. The sandbox mounts `../sandbox/openac-data` as the client's data folder, so `openac-data/plugins` is its plugins folder, and the client reloads the plugin about a second after the files change. To install it in a desktop OpenAC, copy `build/out` into the plugins folder as `ac.dungeon-maps` (`~/Library/Application Support/OpenAC/plugins` on macOS).
 
+## Making a map
+
+See `GUIDE.md` for how a dungeon goes from raw game data to a map: finding it, reading what is inside, writing its config, and building and testing it.
+
 ## Folders
 
 | Folder | Contents |
