@@ -1,0 +1,54 @@
+{
+ "landblock": "5B47",
+ "slug": "tusker-habitat",
+ "group": "Facility Hub 20-25",
+ "title": "Tusker Habitat",
+ "subtitle": "Tusker Liberators, no quest",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Tusker Habitat"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the far Surface Exit",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Surface"
+    }
+   ]
+  }
+ ],
+ "sweeps": [
+  {
+   "name": "Liberator sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Tusker Liberator"
+   ]
+  }
+ ],
+ "targets": [
+  "Tusker Liberator"
+ ],
+ "notes": [
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Tuskers take 0.25 lightning and 0.5 slash. Pierce and fire do full damage."
+  },
+  {
+   "kind": "warn",
+   "title": "Numbers",
+   "body": "57 Tusker Liberators at level 60."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 25+"
+  ]
+ ]
+}

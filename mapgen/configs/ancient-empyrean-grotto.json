@@ -1,0 +1,50 @@
+{
+  "landblock": "027C",
+  "title": "Ancient Empyrean Grotto",
+  "subtitle": "Olthoi Legionary hunting ground, no quest",
+  "group": "Facility Hub 30-45",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Ancient Empyrean Grotto"
+    }
+  ],
+  "sweeps": [
+    {
+      "name": "Olthoi Legionary sweep",
+      "from": "Entrance",
+      "creatures": [
+        "Olthoi Legionary"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the far Surface Exit",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Surface Exit",
+          "pick": "south"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    "Olthoi Legionary"
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 40+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "tip",
+      "title": "Best damage",
+      "body": "Olthoi Legionaries (level 60) take acid best (0.25), then electric (0.4). Pierce is 0.7 on some and 1.0 on others."
+    }
+  ],
+  "slug": "ancient-empyrean-grotto"
+}

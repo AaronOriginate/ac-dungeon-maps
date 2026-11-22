@@ -1,0 +1,55 @@
+{
+ "landblock": "5C45",
+ "slug": "tusker-abode",
+ "group": "Facility Hub 20-25",
+ "title": "Tusker Abode",
+ "subtitle": "Tusker Redeemers, no quest",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Tusker Abode"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the far Surface Exit",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Surface"
+    }
+   ]
+  }
+ ],
+ "sweeps": [
+  {
+   "name": "Redeemer sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Tusker Redeemer"
+   ]
+  }
+ ],
+ "targets": [
+  "Tusker Redeemer"
+ ],
+ "notes": [
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Tuskers take 0.25 lightning and 0.5 slash. Pierce and fire do full damage, cold, acid and bludgeon 0.75."
+  },
+  {
+   "kind": "warn",
+   "title": "Numbers",
+   "body": "121 Tusker Redeemers at level 60, so this is a dense, hard dungeon for the hub level."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 20+"
+  ]
+ ],
+ "climb_up": true
+}

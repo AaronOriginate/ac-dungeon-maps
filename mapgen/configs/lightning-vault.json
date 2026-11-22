@@ -1,0 +1,41 @@
+{
+ "landblock": "0119",
+ "slug": "lightning-vault",
+ "group": "Elemental vaults",
+ "title": "Lightning Vault",
+ "subtitle": "Amperehelion Vault, entrance to the Major Sparking Stone",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Amperehelion Vault Portal"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the stone",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Major Sparking Stone"
+    }
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "kind": "warn",
+   "title": "Don't fall into the centre shaft",
+   "body": "Two drops in the centre shaft land on a Surface Portal (marked in red) and you're out. The route uses the three safe drops instead."
+  },
+  {
+   "kind": "tip",
+   "title": "Use acid, not lightning",
+   "body": "Everything here is immune to lightning. Amethyst Gromnies take full acid damage and the elementals take 65%."
+  },
+  {
+   "kind": "info",
+   "title": "What the stone is for",
+   "body": "Give the Major Sparking Stone to Zahir in Stonehold (68.7N 21.5W) for a Writ of Refuge. The stone respawns 25 seconds after it's taken."
+  }
+ ]
+}

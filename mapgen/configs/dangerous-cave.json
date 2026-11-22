@@ -1,0 +1,66 @@
+{
+ "landblock": "018B",
+ "slug": "dangerous-cave",
+ "group": "Facility Hub 20-25",
+ "title": "Dangerous Cave",
+ "subtitle": "Quest: find Tibri's Fire Spear at the bottom of the cave",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "A Cave"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To Tibri's Fire Spear",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Tibri's Fire Spear"
+    }
+   ]
+  },
+  {
+   "name": "To Tibri",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Tibri the Cavedweller"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Tibri the Cavedweller",
+  "Banderling Chief"
+ ],
+ "steps": [
+  "In the Facility Hub, talk to the Warden who sends you to Tibri's cave (the one with broken speech).",
+  "Take the level 20 portal to the Dangerous Cave.",
+  "Find Tibri's Fire Spear in the deep levels.",
+  "Take the spear back to that Warden for the reward."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Quest item",
+   "body": "The spear is placed in the data, so the route goes straight to it. Tibri the Cavedweller (level 40) is near it."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Banderlings take 0.5 bludgeon, 0.65 pierce and acid, 0.76 slash and cold. Blades and Ogres take 1.32 lightning and 1.08 fire, so lightning is best."
+  },
+  {
+   "kind": "warn",
+   "title": "Hazards",
+   "body": "Mostly banderlings of level 15-20, plus Banderling Bandit (level 50) and Tibri (level 40). Four chests sit on the lowest levels."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 20+"
+  ]
+ ]
+}

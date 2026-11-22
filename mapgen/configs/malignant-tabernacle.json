@@ -1,0 +1,51 @@
+{
+ "landblock": "536C",
+ "slug": "malignant-tabernacle",
+ "group": "Elemental task",
+ "title": "Malignant Tabernacle",
+ "subtitle": "Elemental kill task: Caustics, Hyems and Infernos",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Malignant Tabernacle"
+  }
+ ],
+ "targets": [
+  "Caustic",
+  "Hyem",
+  "Inferno"
+ ],
+ "sweeps": [
+  {
+   "name": "Elemental sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Caustic",
+    "Hyem",
+    "Inferno"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "kind": "warn",
+   "title": "Only three kinds count",
+   "body": "Caustics, Hyems and Infernos count for Zahir. Scathisa (it looks like a Synnast), Sirrocco, Tsuric, Theral and Maelstrom do not. There are no Synnasts in here."
+  },
+  {
+   "kind": "tip",
+   "title": "Match the element",
+   "body": "Caustics are immune to acid and take 65% from lightning. Hyems are immune to cold and take 65% from fire. Infernos are immune to fire and take 65% from cold."
+  },
+  {
+   "kind": "info",
+   "title": "Numbers",
+   "body": "6 each of Caustic, Hyem and Inferno, so 18 counting kills per clear. You need 25, so wait for the respawn (set to 60 seconds in the data)."
+  },
+  {
+   "kind": "info",
+   "title": "Essence crystals",
+   "body": "Caustics, Hyems and Infernos have a 5% chance to drop an elemental essence crystal. Hand them to Zahir for extra XP."
+  }
+ ]
+}

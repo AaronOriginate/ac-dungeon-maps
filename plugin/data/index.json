@@ -1,0 +1,416 @@
+[
+{
+"lb": "5649",
+"slug": "dark-tree-crystal-mine",
+"title": "Dark Tree Crystal Mine",
+"group": "Crystal Minds",
+"bands": 1,
+"w": 913,
+"h": 753
+},
+{
+"lb": "5648",
+"slug": "misty-mine",
+"title": "Misty Mine",
+"group": "Crystal Minds",
+"bands": 2,
+"w": 848,
+"h": 648
+},
+{
+"lb": "574C",
+"slug": "warehouse-annex-mine",
+"title": "Warehouse Annex Mine",
+"group": "Crystal Minds",
+"bands": 9,
+"w": 1073,
+"h": 1995
+},
+{
+"lb": "536C",
+"slug": "malignant-tabernacle",
+"title": "Malignant Tabernacle",
+"group": "Elemental task",
+"bands": 9,
+"w": 566,
+"h": 564
+},
+{
+"lb": "011A",
+"slug": "acid-vault",
+"title": "Acid Vault",
+"group": "Elemental vaults",
+"bands": 5,
+"w": 840,
+"h": 1534
+},
+{
+"lb": "011B",
+"slug": "fire-vault",
+"title": "Fire Vault",
+"group": "Elemental vaults",
+"bands": 16,
+"w": 515,
+"h": 368
+},
+{
+"lb": "0117",
+"slug": "frost-vault",
+"title": "Frost Vault",
+"group": "Elemental vaults",
+"bands": 8,
+"w": 1008,
+"h": 768
+},
+{
+"lb": "0119",
+"slug": "lightning-vault",
+"title": "Lightning Vault",
+"group": "Elemental vaults",
+"bands": 21,
+"w": 582,
+"h": 702
+},
+{
+"lb": "0284",
+"slug": "abandoned-tumerok-site",
+"title": "Abandoned Tumerok Site",
+"group": "Facility Hub 10-15",
+"bands": 5,
+"w": 1126,
+"h": 702
+},
+{
+"lb": "01AE",
+"slug": "colier-mine",
+"title": "Colier Mine",
+"group": "Facility Hub 10-15",
+"bands": 9,
+"w": 806,
+"h": 648
+},
+{
+"lb": "013B",
+"slug": "folthid-cellar",
+"title": "Folthid Cellar",
+"group": "Facility Hub 10-15",
+"bands": 15,
+"w": 728,
+"h": 516
+},
+{
+"lb": "01E3",
+"slug": "glenden-wood-dungeon",
+"title": "Glenden Wood Dungeon",
+"group": "Facility Hub 10-15",
+"bands": 8,
+"w": 808,
+"h": 753
+},
+{
+"lb": "01E5",
+"slug": "green-mire-grave",
+"title": "Green Mire Grave",
+"group": "Facility Hub 10-15",
+"bands": 11,
+"w": 982,
+"h": 648
+},
+{
+"lb": "01CC",
+"slug": "halls-of-helm",
+"title": "Halls of the Helm",
+"group": "Facility Hub 10-15",
+"bands": 11,
+"w": 488,
+"h": 608
+},
+{
+"lb": "5748",
+"slug": "tusker-burrow",
+"title": "Tusker Burrow",
+"group": "Facility Hub 10-15",
+"bands": 6,
+"w": 1048,
+"h": 728
+},
+{
+"lb": "5B46",
+"slug": "tusker-cave",
+"title": "Tusker Cave",
+"group": "Facility Hub 10-15",
+"bands": 8,
+"w": 648,
+"h": 568
+},
+{
+"lb": "5C43",
+"slug": "tusker-cavern",
+"title": "Tusker Cavern",
+"group": "Facility Hub 10-15",
+"bands": 7,
+"w": 760,
+"h": 808
+},
+{
+"lb": "5749",
+"slug": "tusker-lodge",
+"title": "Tusker Lodge",
+"group": "Facility Hub 10-15",
+"bands": 6,
+"w": 472,
+"h": 686
+},
+{
+"lb": "02C8",
+"slug": "banderling-conquest-dungeon",
+"title": "Banderling Conquest Dungeon",
+"group": "Facility Hub 20-25",
+"bands": 3,
+"w": 1448,
+"h": 1128
+},
+{
+"lb": "02E6",
+"slug": "catacombs-of-the-forgotten",
+"title": "Catacombs of the Forgotten",
+"group": "Facility Hub 20-25",
+"bands": 5,
+"w": 595,
+"h": 1915
+},
+{
+"lb": "018B",
+"slug": "dangerous-cave",
+"title": "Dangerous Cave",
+"group": "Facility Hub 20-25",
+"bands": 4,
+"w": 728,
+"h": 568
+},
+{
+"lb": "01C6",
+"slug": "hunters-leap",
+"title": "Hunter's Leap",
+"group": "Facility Hub 20-25",
+"bands": 3,
+"w": 433,
+"h": 393
+},
+{
+"lb": "02CA",
+"slug": "mosswart-maze",
+"title": "Mosswart Maze",
+"group": "Facility Hub 20-25",
+"bands": 2,
+"w": 1193,
+"h": 966
+},
+{
+"lb": "0283",
+"slug": "the-dark-lair",
+"title": "The Dark Lair",
+"group": "Facility Hub 20-25",
+"bands": 4,
+"w": 584,
+"h": 640
+},
+{
+"lb": "01FD",
+"slug": "trothyrs-rest",
+"title": "Trothyr's Rest",
+"group": "Facility Hub 20-25",
+"bands": 7,
+"w": 740,
+"h": 582
+},
+{
+"lb": "5C45",
+"slug": "tusker-abode",
+"title": "Tusker Abode",
+"group": "Facility Hub 20-25",
+"bands": 3,
+"w": 1427,
+"h": 728
+},
+{
+"lb": "5B47",
+"slug": "tusker-habitat",
+"title": "Tusker Habitat",
+"group": "Facility Hub 20-25",
+"bands": 4,
+"w": 448,
+"h": 608
+},
+{
+"lb": "0282",
+"slug": "olthoi-soldier-nest",
+"title": "An Olthoi Soldier Nest",
+"group": "Facility Hub 30-45",
+"bands": 3,
+"w": 608,
+"h": 614
+},
+{
+"lb": "027C",
+"slug": "ancient-empyrean-grotto",
+"title": "Ancient Empyrean Grotto",
+"group": "Facility Hub 30-45",
+"bands": 3,
+"w": 1008,
+"h": 1238
+},
+{
+"lb": "01D4",
+"slug": "bellig-tower-base",
+"title": "Bellig Tower Base",
+"group": "Facility Hub 30-45",
+"bands": 20,
+"w": 382,
+"h": 433
+},
+{
+"lb": "01A2",
+"slug": "swamp-temple",
+"title": "Blackmire Swamp Temple",
+"group": "Facility Hub 30-45",
+"bands": 12,
+"w": 1326,
+"h": 608
+},
+{
+"lb": "6679",
+"slug": "crumbling-empyrean-mansion",
+"title": "Crumbling Empyrean Mansion",
+"group": "Facility Hub 30-45",
+"bands": 7,
+"w": 693,
+"h": 2000
+},
+{
+"lb": "5651",
+"slug": "haunted-mansion-dungeon",
+"title": "Haunted Mansion Dungeon",
+"group": "Facility Hub 30-45",
+"bands": 12,
+"w": 848,
+"h": 838
+},
+{
+"lb": "01F8",
+"slug": "mite-maze",
+"title": "Mite Maze",
+"group": "Facility Hub 30-45",
+"bands": 4,
+"w": 1008,
+"h": 716
+},
+{
+"lb": "0191",
+"slug": "mountain-sewer",
+"title": "Mountain Sewer",
+"group": "Facility Hub 30-45",
+"bands": 13,
+"w": 606,
+"h": 1153
+},
+{
+"lb": "5A48",
+"slug": "tusker-barracks",
+"title": "Tusker Barracks",
+"group": "Facility Hub 30-45",
+"bands": 5,
+"w": 648,
+"h": 760
+},
+{
+"lb": "5B4A",
+"slug": "tusker-quarters",
+"title": "Tusker Quarters",
+"group": "Facility Hub 30-45",
+"bands": 6,
+"w": 1048,
+"h": 728
+},
+{
+"lb": "0278",
+"slug": "cragstone-middle-guard-camp",
+"title": "Cragstone Middle Guard Camp",
+"group": "Guruk task",
+"bands": 10,
+"w": 1128,
+"h": 1008
+},
+{
+"lb": "0275",
+"slug": "cragstone-reinforcements-camp",
+"title": "Cragstone Reinforcements Camp",
+"group": "Guruk task",
+"bands": 7,
+"w": 638,
+"h": 704
+},
+{
+"lb": "0279",
+"slug": "hebian-to-advance-camp",
+"title": "Hebian-To Advance Camp",
+"group": "Guruk task",
+"bands": 10,
+"w": 808,
+"h": 528
+},
+{
+"lb": "027A",
+"slug": "zaikhal-advance-camp",
+"title": "Zaikhal Advance Camp",
+"group": "Guruk task",
+"bands": 9,
+"w": 888,
+"h": 688
+},
+{
+"lb": "0274",
+"slug": "zaikhal-reinforcements-camp",
+"title": "Zaikhal Reinforcements Camp",
+"group": "Guruk task",
+"bands": 7,
+"w": 638,
+"h": 704
+},
+{
+"lb": "0018",
+"slug": "copper-legion-keep",
+"title": "Copper Legion Keep",
+"group": "Man-at-Arms task",
+"bands": 8,
+"w": 1336,
+"h": 2000
+},
+{
+"lb": "001B",
+"slug": "silver-legion-keep",
+"title": "Silver Legion Keep",
+"group": "Man-at-Arms task",
+"bands": 6,
+"w": 1498,
+"h": 2000
+},
+{
+"lb": "B070",
+"slug": "granite-quarry",
+"title": "Granite Quarry",
+"group": "Repugnant Eater task",
+"bands": 5,
+"w": 512,
+"h": 267
+},
+{
+"lb": "0046",
+"slug": "yanshi-undermine",
+"title": "Yanshi Undermine",
+"group": "Repugnant Eater task",
+"bands": 9,
+"w": 2000,
+"h": 1226
+}
+]

@@ -1,0 +1,54 @@
+{
+  "landblock": "5A48",
+  "title": "Tusker Barracks",
+  "subtitle": "Tusker Guard hunting ground, no quest",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Tusker Barracks"
+    }
+  ],
+  "sweeps": [
+    {
+      "name": "Tusker Guard sweep",
+      "from": "Entrance",
+      "creatures": [
+        "Tusker Guard"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the Surface Exit",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Surface"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    "Tusker Guard"
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 40+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "tip",
+      "title": "Best damage",
+      "body": "Tusker Guards (level 80) take electric best (0.25), then slash (0.5)."
+    },
+    {
+      "kind": "warn",
+      "title": "Magic traps",
+      "body": "Ten magic trap switches sit in the middle corridors."
+    }
+  ],
+  "slug": "tusker-barracks",
+  "group": "Facility Hub 30-45"
+}

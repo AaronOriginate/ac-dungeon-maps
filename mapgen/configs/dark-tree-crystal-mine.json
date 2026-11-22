@@ -1,0 +1,18 @@
+{
+  "landblock": "5649", "slug": "dark-tree-crystal-mine", "group": "Crystal Minds",
+  "title": "Dark Tree Crystal Mine", "subtitle": "Crystal Minds and Shattered Souls, Mining Storage Chest in the south-east corner",
+  "entrances": [{"name": "Entrance", "portal": "Dark Tree Crystal Mine"}],
+  "routes": [{"name": "To the south-east chest", "from": "Entrance", "to": [{"instance": "Mining Storage Chest", "pick": "southeast"}]}],
+  "steps": [
+    "Talk to the Student in Glenden Wood (29.9N 27.1E).",
+    "Go to the Dark Tree Crystal Mine (24.8N 31.3W, near Danby's Outpost on the Town Network).",
+    "In the south-east corner, take a Dark Tree Crystal from a Mining Storage Chest.",
+    "Take it to Arwic, then on to Lartorus (42.6N 62.4E)."
+  ],
+  "notes": [
+    {"kind": "info", "title": "Which chest", "body": "All six Mining Storage Chests hold a Dark Tree Crystal, so any of them works. The route goes to the south-east pair, as the quest guide says. Each one refills 30 seconds after it is emptied."},
+    {"kind": "warn", "title": "Skip the holes", "body": "Some drops here land on a Surface portal that sends you out. Follow the route rather than jumping down."},
+    {"kind": "tip", "title": "Best damage", "body": "Hardened Obsidian Golems take full bludgeon and 0.9 pierce, but only 0.1 cold. Frost Golems take most from fire (0.7). Molten Golems take full cold and are immune to fire. Iron Golems take full acid and electric."},
+    {"kind": "info", "title": "Entry", "body": "You need to be level 40 to use the entrance portal. The golems here are level 160 to 200."}
+  ]
+}

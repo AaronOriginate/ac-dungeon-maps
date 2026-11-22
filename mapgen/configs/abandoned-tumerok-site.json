@@ -1,0 +1,63 @@
+{
+ "landblock": "0284",
+ "slug": "abandoned-tumerok-site",
+ "title": "Abandoned Tumerok Site",
+ "group": "Facility Hub 10-15",
+ "subtitle": "Olthoi Harvester grind, level 20, no quest",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Abandoned Tumerok Site"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the far Surface Exit",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Surface Exit",
+     "pick": "south"
+    }
+   ]
+  }
+ ],
+ "sweeps": [
+  {
+   "name": "Olthoi Harvester sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Olthoi Harvester"
+   ]
+  }
+ ],
+ "targets": [
+  "Olthoi Harvester"
+ ],
+ "steps": [
+  "In the Facility Hub, take the level 15 portal to the Abandoned Tumerok Site.",
+  "Kill Olthoi Harvesters."
+ ],
+ "notes": [
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Olthoi Harvesters take only 0.25 acid and 0.4 electric, and 0.75 slash, fire and cold. Pierce and bludgeon do full damage, so use those."
+  },
+  {
+   "kind": "info",
+   "title": "Exits",
+   "body": "One Surface Exit is beside the entrance. The other is at the far south-east end, deeper down."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 15+"
+  ],
+  [
+   "Harvesters",
+   "32"
+  ]
+ ]
+}

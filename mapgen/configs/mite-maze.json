@@ -1,0 +1,91 @@
+{
+  "landblock": "01F8",
+  "title": "Mite Maze",
+  "subtitle": "Branith's Staff and Shirt, Mite Warrior Queen",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Mite Maze Portal"
+    }
+  ],
+  "routes": [
+    {
+      "name": "To Branith's Staff",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Branith's Staff"
+        }
+      ]
+    },
+    {
+      "name": "To Branith's Shirt",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Branith's Shirt"
+        }
+      ]
+    },
+    {
+      "name": "To the Mite Warrior Queen",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Mite Warrior Queen"
+        }
+      ]
+    }
+  ],
+  "sweeps": [
+    {
+      "name": "Royal Mite sweep",
+      "from": "Entrance",
+      "creatures": [
+        "Royal Mite Squire",
+        "Royal Mite Matron"
+      ]
+    }
+  ],
+  "targets": [
+    "Mite Warrior Queen",
+    "Royal Mite Matron",
+    "Royal Mite Squire"
+  ],
+  "steps": [
+    "In the Facility Hub, ask the Warden about the Mite Maze (level 30+).",
+    "Take the Mite Maze portal.",
+    "Find one of Branith's possessions (Staff or Shirt).",
+    "Show it to the Warden for the reward."
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 30+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "info",
+      "title": "Quest items",
+      "body": "Branith's Staff and Branith's Shirt are placed in the maze. Either one counts. The Warden also lists a Mite Queen's Staff, which the data does not place and probably drops from the Mite Warrior Queen (inferred)."
+    },
+    {
+      "kind": "tip",
+      "title": "Best damage",
+      "body": "Mites resist everything a little: cold 0.75, slash 0.7, electric 0.8. Fire and acid are 1.0, so avoid them."
+    },
+    {
+      "kind": "info",
+      "title": "Locked door",
+      "body": "One door near the upper portal room needs a master key."
+    },
+    {
+      "kind": "warn",
+      "title": "Trap drops",
+      "body": "Both Surface portals drop you outdoors at the Lost Wish Mountains."
+    }
+  ],
+  "slug": "mite-maze",
+  "group": "Facility Hub 30-45"
+}

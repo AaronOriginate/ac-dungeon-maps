@@ -1,0 +1,54 @@
+{
+  "landblock": "5B4A",
+  "title": "Tusker Quarters",
+  "subtitle": "Tusker Slave hunting ground, no quest",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Tusker Quarters"
+    }
+  ],
+  "sweeps": [
+    {
+      "name": "Tusker Slave sweep",
+      "from": "Entrance",
+      "creatures": [
+        "Tusker Slave"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the Surface Exit",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Surface"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    "Tusker Slave"
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 30+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "tip",
+      "title": "Best damage",
+      "body": "Tusker Slaves (level 80) take electric best (0.25), then slash (0.5). Pierce and fire are 1.0."
+    },
+    {
+      "kind": "info",
+      "title": "Layout",
+      "body": "79 Tusker Slaves over seven levels."
+    }
+  ],
+  "slug": "tusker-quarters",
+  "group": "Facility Hub 30-45"
+}

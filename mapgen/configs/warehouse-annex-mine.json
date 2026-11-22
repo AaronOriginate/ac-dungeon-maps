@@ -1,0 +1,19 @@
+{
+  "landblock": "574C", "slug": "warehouse-annex-mine", "group": "Crystal Minds",
+  "title": "Warehouse Annex Mine", "subtitle": "Crystal Minds and Shattered Souls, Obsidian Excavation Golems at the bottom",
+  "entrances": [{"name": "Entrance", "portal": "Warehouse Annex Mine"}],
+  "routes": [{"name": "To the deepest golem and portal", "from": "Entrance", "to": [{"instance": "Obsidian Excavation Golem", "pick": "down"}, {"instance": "Warehouse", "pick": "down"}]}],
+  "targets": ["Obsidian Excavation Golem"],
+  "steps": [
+    "Enter the Warehouse Annex Mine and keep to the left wall to reach the bottom.",
+    "Kill Obsidian Excavation Golems until one drops a Valara Crystal.",
+    "Take the portal near the golems back to the Warehouse.",
+    "Give Aun Talamura the Valara Crystal."
+  ],
+  "notes": [
+    {"kind": "info", "title": "Valara Crystal drop", "body": "The game data gives each Obsidian Excavation Golem a 40% chance to drop a Valara Crystal. The quest guide says about 1 in 4 in practice, so expect a handful of kills."},
+    {"kind": "tip", "title": "Best damage", "body": "Obsidian Excavation Golems take full bludgeon (1.0) and 0.9 pierce, 0.53 slash. Fire and electric are 0.4, acid 0.2 and cold only 0.1."},
+    {"kind": "warn", "title": "Pull one at a time", "body": "Golems here go up to level 200 and there are about 80 of them. Pull them singly."},
+    {"kind": "info", "title": "Entry", "body": "You need to be level 40 to use the entrance portal."}
+  ]
+}

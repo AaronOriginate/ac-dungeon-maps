@@ -1,0 +1,46 @@
+{
+  "landblock": "011B",
+  "slug": "fire-vault",
+  "group": "Elemental vaults",
+  "title": "Fire Vault",
+  "subtitle": "Jahannan Vault, entrance to the Major Smoldering Stone",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Jahannan Vault Portal"
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the stone",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Major Smoldering Stone"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "kind": "warn",
+      "title": "Pressure plate trap",
+      "body": "The pressure plate by the chest sets off a Magic trap that casts Nullify All Magic Other, which strips your buffs. The chest is unlocked and holds one random tier 3 item."
+    },
+    {
+      "kind": "warn",
+      "title": "Magma",
+      "body": "Magma on the floor of the level below the stone room burns for fire damage. Stay on the route."
+    },
+    {
+      "kind": "tip",
+      "title": "Use frost",
+      "body": "Cold hits everything here: Flamma, Ember and Inferno take 65-100%, Enku Zefir 75% and Direland Rats 58%. Fire does almost nothing (0-1%, rats 25%)."
+    },
+    {
+      "kind": "info",
+      "title": "Stone and note",
+      "body": "Give the Major Smoldering Stone to Zahir in Stonehold (68.7N 21.5W) for a Writ of Refuge. The Carefully Printed Note is in High Empyrean and can't be read without a translator."
+    }
+  ]
+}

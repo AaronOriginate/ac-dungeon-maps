@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Dark Lair Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Remaster UI theme (from Asheron's Call Remaster src/style.css): dark leather panels, gilt edging, engraved headings. */
+:root {
+  --ink: #0d0805; --panel: #1b130d; --bg: #0c1118;
+  --text: #eadfc6; --fg: #eadfc6; --dim: #a8997c; --muted: #a8997c;
+  --accent: #e6bd6c; --gold: #c9a25a; --gold-hi: #f4dc9c; --gold-lo: #6b4f24;
+  --line: rgba(201, 162, 90, 0.26); --warn: #ff8f7d;
+  --display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --frame: radial-gradient(120% 70% at 50% 0%, rgba(150, 104, 48, 0.2), transparent 62%), linear-gradient(180deg, rgba(43, 31, 21, 0.96), rgba(21, 15, 10, 0.96));
+  --edge: inset 0 0 0 1px var(--gold-lo), inset 0 0 0 2px rgba(0, 0, 0, 0.65), inset 0 0 0 3px rgba(201, 162, 90, 0.2), 0 8px 26px rgba(0, 0, 0, 0.55);
+  --c1: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/svg%3E");
+  --c2: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(90 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --c3: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(180 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --c4: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(270 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --corners: var(--c1) top left no-repeat, var(--c2) top right no-repeat, var(--c3) bottom right no-repeat, var(--c4) bottom left no-repeat;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgba(201, 162, 90, 0.45) transparent; }
+body { margin: 0; background: radial-gradient(ellipse at top, #1f2a38, #0c1118 70%) fixed, #0c1118; color: var(--text); font-family: var(--body); font-size: 15px; line-height: 1.4; }
+a { color: var(--gold-hi); }
+[hidden] { display: none !important; }
+.gilt { font-family: var(--display); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold) 60%, #9a7434); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rule { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px; }
+.rule::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-lo), transparent); }
+.btn, .leather {
+  font-family: var(--display); font-size: 11.5px; font-weight: 500; letter-spacing: 0.04em; color: #f1e2bd; text-decoration: none;
+  background: linear-gradient(180deg, #4d3923, #2a1e12); border: 1px solid #8c6c38; border-radius: 3px; padding: 5px 10px; cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 230, 170, 0.16), 0 1px 2px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 1px #000;
+}
+.btn:hover, .leather:hover { background: linear-gradient(180deg, #634a2c, #37281a); border-color: var(--gold-hi); }
+.btn:active, .leather:active { transform: translateY(1px); }
+.btn.on, .leather.on, .leather[aria-selected="true"] { background: linear-gradient(180deg, #f3d48b, #b98a3c); border-color: #f6e2ac; color: #24170a; text-shadow: 0 1px 0 rgba(255, 240, 200, 0.5); }
+kbd { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; color: var(--dim); border: 1px solid rgba(201, 162, 90, 0.35); background: rgba(0, 0, 0, 0.3); border-radius: 3px; padding: 0 4px; }
+.field { font: inherit; font-size: 15px; color: var(--text); background: rgba(18, 13, 9, 0.88); border: 1px solid var(--gold-lo); border-radius: 3px; padding: 6px 10px; outline: none; }
+.field:focus { border-color: var(--accent); }
+.field::placeholder { color: rgba(234, 223, 198, 0.4); font-style: italic; }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+/* Map page: 3D viewport left, leather route panel right (stacks below on phones). */
+:root {
+  --scene: #0a0e16;
+  --route: #ffc24a; --route-ink: #ffd98a; --alt: #3fe0c5; --r3: #ff7ac6; --r4: #6aa8ff;
+  --spawn: #ff6369; --target: #ff5fbf; --exit: #a98bff; --tele: #6aa8ff; --trap: #ff5a3d; --start: #3fe0c5;
+  --door: #c49a6c; --locked: #ff6b6b; --lever: #a3d955; --chest: #e8b84a; --high: #6fd3ff; --deep: #6a52ff;
+}
+html, body { height: 100%; }
+body { background: var(--bg); }
+.app { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 400px; }
+.view { position: relative; min-width: 0; background: var(--scene); overflow: hidden; }
+#gl { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+#gl:active { cursor: grabbing; }
+.panel { background: var(--corners), var(--frame); background-attachment: local; border-left: 1px solid var(--ink); box-shadow: var(--edge);
+  overflow-y: auto; min-width: 0; padding-block: 20px 28px; padding-left: 22px; padding-right: max(22px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 20px; }
+.crumb { font-family: var(--display); font-size: 11px; letter-spacing: 0.06em; color: var(--gold); text-decoration: none; }
+h1 { font-family: var(--display); font-weight: 700; font-size: 25px; line-height: 1.15; letter-spacing: 0.05em; margin: 12px 0 0; text-wrap: balance;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold) 60%, #9a7434); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { color: var(--dim); margin: 6px 0 0; font-style: italic; }
+.panel h2 { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px; }
+.panel h2::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-lo), transparent); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.stat { padding: 8px 10px 7px; min-width: 0; border: 1px solid #5a4424; border-radius: 3px; background: radial-gradient(circle at 50% 30%, #2e2319, #140e09 80%); box-shadow: inset 0 0 0 1px #0b0704, inset 0 2px 6px rgba(0, 0, 0, 0.7); }
+.stat b { display: block; font-weight: 600; font-size: 21px; line-height: 1.15; color: var(--gold-hi); font-variant-numeric: lining-nums tabular-nums; overflow-wrap: anywhere; }
+.stat span { color: var(--dim); font-size: 13px; line-height: 1.2; display: block; }
+.notes { display: flex; flex-direction: column; gap: 8px; }
+.note { margin: 0; padding: 9px 12px 10px; border: 1px solid rgba(0, 0, 0, 0.55); border-left: 3px solid var(--gold-lo); border-radius: 2px; background: linear-gradient(90deg, rgba(201, 162, 90, 0.08), rgba(0, 0, 0, 0.2)); }
+.note.warn { border-left-color: var(--trap); background: linear-gradient(90deg, rgba(255, 90, 61, 0.12), rgba(0, 0, 0, 0.2)); }
+.note.tip { border-left-color: var(--accent); background: linear-gradient(90deg, rgba(230, 189, 108, 0.14), rgba(0, 0, 0, 0.2)); }
+.note strong { display: block; margin-bottom: 3px; font-family: var(--display); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--gold-hi); }
+.note.warn strong { color: #ffb4a3; }
+ol.qsteps { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; }
+ol.qsteps li::marker { font-family: var(--display); font-size: 12px; color: var(--gold); }
+table.mon { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.mon th, table.mon td { text-align: left; padding: 5px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.mon th { font-family: var(--display); font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+table.mon td.n { font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+table.mon tr:hover td { background: rgba(201, 162, 90, 0.08); }
+table.mon tr.tgt td:first-child { font-weight: 600; color: var(--target); }
+.monwrap { overflow-x: auto; }
+.toggles { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip, .tabs button { font-family: var(--display); font-size: 11px; font-weight: 500; letter-spacing: 0.04em; color: #f1e2bd; cursor: pointer;
+  background: linear-gradient(180deg, #4d3923, #2a1e12); border: 1px solid #8c6c38; border-radius: 3px; padding: 5px 9px;
+  box-shadow: inset 0 1px 0 rgba(255, 230, 170, 0.16), 0 1px 2px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 1px #000; }
+.chip { display: inline-flex; align-items: center; gap: 7px; }
+.chip:hover, .tabs button:hover { background: linear-gradient(180deg, #634a2c, #37281a); border-color: var(--gold-hi); }
+.chip[aria-pressed="false"] { opacity: 0.45; filter: saturate(0.6); }
+.chip i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6); }
+.row { display: flex; align-items: center; gap: 10px; }
+.row label { color: var(--dim); font-size: 14px; white-space: nowrap; }
+.row input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.tabs button { flex: 1 1 auto; }
+.tabs button[aria-selected="true"] { background: linear-gradient(180deg, #f3d48b, #b98a3c); border-color: #f6e2ac; color: #24170a; text-shadow: 0 1px 0 rgba(255, 240, 200, 0.5); }
+.levels { display: flex; flex-direction: column; }
+.lvl { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; gap: 10px; align-items: baseline; text-align: left; font: inherit;
+  background: none; border: 0; border-bottom: 1px solid var(--line); color: var(--text); padding: 7px 6px; cursor: pointer; border-radius: 2px; }
+.lvl:hover { background: linear-gradient(90deg, rgba(201, 162, 90, 0.2), rgba(201, 162, 90, 0.04)); }
+.lvl[aria-current="true"] { background: linear-gradient(90deg, rgba(230, 189, 108, 0.3), rgba(230, 189, 108, 0.06)); }
+.lvl .z { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--gold-hi); font-variant-numeric: lining-nums tabular-nums; }
+.lvl .d { font-size: 14.5px; }
+.lvl .m { font-size: 13px; color: var(--dim); font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+.lvl.drop .d { color: var(--route-ink); font-weight: 600; }
+.hud { position: absolute; left: max(12px, env(safe-area-inset-left, 0px)); top: 12px; right: 76px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; pointer-events: none; }
+.hud > * { pointer-events: auto; }
+.pill { background: var(--frame); border: 1px solid var(--ink); border-radius: 3px; box-shadow: var(--edge); padding: 5px 11px; font-size: 14px; color: var(--dim); }
+.pill b { color: var(--gold-hi); font-weight: 600; }
+.compass { position: absolute; right: 14px; top: 14px; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
+  border: 2px solid var(--gold-lo); box-shadow: 0 0 0 2px var(--ink), 0 0 0 3px var(--gold), 0 6px 18px rgba(0, 0, 0, 0.6); background: radial-gradient(circle, rgba(34, 26, 18, 0.85), rgba(10, 8, 6, 0.92)); }
+.compass div { font-family: var(--display); font-weight: 700; font-size: 12px; color: #ff9b78; line-height: 1; display: flex; flex-direction: column; align-items: center; }
+.compass div::before { content: ""; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid #ff7a52; margin-bottom: 1px; }
+.hint { position: absolute; left: max(12px, env(safe-area-inset-left, 0px)); bottom: 12px; font-size: 13.5px; font-style: italic; color: var(--dim); text-shadow: 0 1px 2px #000; pointer-events: none; }
+.lab { position: absolute; left: 0; top: 0; white-space: nowrap; pointer-events: none; font-size: 13.5px; font-weight: 600; line-height: 1.3; padding: 1px 8px; border-radius: 3px;
+  background: rgba(13, 8, 5, 0.84); color: #f3efe2; border: 1px solid var(--gold-lo); text-shadow: 0 1px 2px #000; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
+.lab.goal { border-color: var(--route); color: var(--gold-hi); }
+.lab.trap { border-color: var(--trap); color: #ffb4a3; }
+.lab.exit { border-color: var(--exit); }
+.lab.tele { border-color: var(--tele); }
+.lab.start { border-color: var(--start); }
+.lab.drop { border-color: var(--route); }
+.src { color: var(--dim); font-size: 13px; font-style: italic; margin: 0; }
+/* Map switcher (nav.js) */
+.mnav { display: flex; align-items: center; gap: 5px; }
+.mnav .btn { display: inline-flex; align-items: center; gap: 7px; }
+.mnav .btn kbd { margin-left: 2px; }
+.mnav .where { flex: 1; min-width: 0; font-family: var(--display); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 4px; }
+.mnav .sq { width: 30px; height: 28px; padding: 0; justify-content: center; font-family: Georgia, serif; font-size: 17px; line-height: 1; }
+.mnav .sq[aria-disabled="true"] { opacity: 0.3; pointer-events: none; }
+.mpager { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.mpager a { display: flex; flex-direction: column; gap: 1px; padding: 8px 11px; text-decoration: none; color: var(--text); border-radius: 3px; background: var(--frame); border: 1px solid var(--ink); box-shadow: var(--edge); min-width: 0; }
+.mpager a:hover { box-shadow: inset 0 0 0 1px var(--gold-hi), inset 0 0 12px rgba(244, 220, 156, 0.15), 0 6px 18px rgba(0, 0, 0, 0.5); }
+.mpager a.next { text-align: right; grid-column: 2; }
+.mpager small { font-family: var(--display); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+.mpager b { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mdlg-back { position: fixed; inset: 0; z-index: 40; background: rgba(5, 3, 2, 0.62); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); display: flex; justify-content: center; align-items: flex-start; padding: 6vh 16px 16px; }
+.mdlg { width: min(580px, 100%); max-height: 86vh; display: flex; flex-direction: column; background: var(--corners), var(--frame); border: 1px solid var(--ink); border-radius: 3px; box-shadow: var(--edge); padding: 18px 22px 14px; }
+.mdlg .head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: -2px 0 12px; padding-bottom: 9px; border-bottom: 1px solid transparent; border-image: linear-gradient(90deg, transparent, var(--gold) 18%, var(--gold) 82%, transparent) 1; }
+.mdlg .head h2 { margin: 0; font-size: 17px; }
+.mdlg .head h2::after { display: none; }
+.mdlg .x { width: 26px; height: 26px; padding: 0; border-radius: 50%; font: 700 17px/1 Georgia, serif; display: grid; place-items: center; }
+.mdlg .field { width: 100%; margin-bottom: 6px; }
+.mdlg .list { overflow-y: auto; min-height: 0; padding-right: 4px; }
+.mdlg .grp { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin: 12px 0 4px; }
+.mdlg .grp::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-lo), transparent); }
+.mdlg a.it { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 4px 8px; border-radius: 2px; color: var(--text); text-decoration: none; }
+.mdlg a.it span { color: var(--dim); font-size: 13px; font-style: italic; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.mdlg a.it b { font-weight: 400; white-space: nowrap; }
+.mdlg a.it:hover, .mdlg a.it.kb { background: linear-gradient(90deg, rgba(201, 162, 90, 0.22), rgba(201, 162, 90, 0.04)); }
+.mdlg a.it[aria-current="page"] b { color: var(--gold-hi); font-weight: 600; }
+.mdlg a.it[aria-current="page"] b::before { content: '\25C6'; color: var(--gold); font-size: 10px; margin-right: 6px; vertical-align: 2px; }
+.mdlg .none { color: var(--dim); font-style: italic; padding: 10px 8px; }
+.mdlg .foot { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--dim); font-size: 13px; }
+.mdlg .foot a { font-family: var(--display); font-size: 11px; letter-spacing: 0.06em; color: var(--gold-hi); text-decoration: none; }
+@media (max-width: 820px) {
+  .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: 60svh auto; height: auto; }
+  html, body { height: auto; }
+  .panel { border-left: 0; border-top: 1px solid var(--ink); overflow: visible; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .mnav .btn kbd, .mdlg .foot .keys { display: none; }
+}
+
+</style>
+</head><body>
+
+<div class="app">
+  <div class="view" id="view">
+    <canvas id="gl" aria-label="3D dungeon map. Drag to rotate, scroll or pinch to zoom, right-drag or two-finger drag to pan."></canvas>
+    <div class="hud">
+      <div class="pill" id="focusPill">Showing <b>all levels</b></div>
+      <button class="btn" id="allBtn" type="button">All levels</button>
+      <button class="btn" id="resetBtn" type="button">Reset view</button>
+    </div>
+    <div class="compass" aria-hidden="true"><div id="needle">N</div></div>
+    <div class="hint">Drag to rotate · scroll to zoom · right-drag to pan</div>
+    <div id="labels"></div>
+  </div>
+
+  <aside class="panel">
+    <header>
+      <a class="crumb" href="index.html">All maps</a>
+      <h1 id="title"></h1>
+      <p class="sub" id="subtitle"></p>
+    </header>
+    <div class="stats" id="stats"></div>
+    <div class="notes" id="notes"></div>
+    <section id="qwrap" hidden>
+      <h2>Quest steps</h2>
+      <ol class="qsteps" id="qsteps"></ol>
+    </section>
+    <section>
+      <h2>Show</h2>
+      <div class="toggles" id="toggles"></div>
+    </section>
+    <section>
+      <div class="row"><label for="spread">Level spacing</label><input id="spread" type="range" min="1" max="4" step="0.1" value="1.6"></div>
+    </section>
+    <section id="rwrap">
+      <h2>Route</h2>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="levels" id="levels"></div>
+      <p class="src" style="margin-top:8px">Tap a row to show only that floor. The level number is the z value from /loc.</p>
+    </section>
+    <section>
+      <h2>Monsters</h2>
+      <div class="monwrap"><table class="mon" id="mon"></table></div>
+      <p class="src" style="margin-top:6px">Damage taken by element, from the monster data. Highlighted rows are task targets.</p>
+    </section>
+    <p class="src" id="srcline"></p>
+  </aside>
+</div>
+
+<script type="application/json" id="data">{"meta":{"title":"The Dark Lair","subtitle":"Olthoi Gardeners and Harvesters, no quest","lb":"0283","notes":[{"kind":"tip","title":"Best damage","body":"Olthoi take 0.25 acid, 0.4 lightning and 0.75 fire, cold and slash. Pierce and bludgeon do full damage."},{"kind":"info","title":"Numbers","body":"17 Gardeners (level 30) and 6 Harvesters (level 20)."},{"kind":"info","title":"Exits","body":"A second Surface Exit sits at the bottom, with a trap drop near it."}],"steps":[],"facts":[["Hub portal","level 20+"]],"group":"Facility Hub 20-25"},"levels":[6.0,-0.0,-2.9,-6.0,-12.0,-18.0],"zmin":-18.0,"zmax":12.0,"ext":[150,170],"floor":"PPb4+IgTMPgk+ogTMPj4+JQRMPj4+JQRPPb4+JQRPPb4+IgTPPb4+JQRPPYk+qAPSPQk+qAPSPQk+qAPSPQk+pQRPPb4+JQRPPYk+qAPPPb4+JQRMPj4+JQRPPYk+qAPMPj4+JQRMPgk+qAPPPb4+IgTPPb4+JQRSPQk+pQRPPb4+IgTSPQk+pQRSPQk+ogTMPj4+HwVMPgk+ogTPPb4+IgTPPb4+IgTPPb4+HwVMPj4+HwVPPb4+HwVSPQk+nwVSPQk+nAXSPQk+nAXPPYk+nAXPPb4+HwVSPQk+nwVPPb4+HwVPPb4+IgTSPQk+nwVPPb4+IgTSPQk+ogTMPj4+HwVPPb4+HwVPPYk+nAXMPj4+HwVPPYk+nAXMPgk+nAXJPr4+MQJJPok+tAH+Pgk+pgI+Pgk+pgIMPgk+sQJJPr4+MQJJPok+tAHJPr4+MQJGPz4+MQJJPok+tAHGPz4+MQJGPwk+tAHGPz4+MQJJPr4+MQJJPr4+LgLGPz4+MQJJPr4+LgLGPz4+LgLJPr4+LgLJPr4+MQJMPgk+sQJJPr4+LgLMPgk+sQJMPgk+rgLevn4+KwNJPr4+LgLMPgk+rgLevn4+KwNGPz4+KwNGPz4+LgLevn4+KwNGPz4+LgLJPr4+LgLGPz4+KwNevn4+KwNevkk+qAPGPz4+KwNevkk+qAPGPwk+qAPMPgk+rgLMPgk+qAPevn4+KwNMPgk+qAPevkk+qAPevn4+KwNGPwk+qAPMPgk+qAPJPr4+K4QMPj4+JQRMPgk+ogTJPr4+IgTJPr4+IgTJPr4+K4QMPj4+JQRMPj4+JQRJPr4+K4QMPgk+qAPJPr4+K4QgvvK+YkQGPwk+qAPgvvK+YkQGPwk+qoQGPwk+qAPGPwk+ogTGPwk+n4SgvvK+Z8SGPwk+ogTgvvK+Z8SJPr4+IgTgvvK+Z8SJPr4+HoSJPr4+IgTGPz4+K4Qdvv4+K4Qdvv4+HoSGPz4+K4Qdvv4+HoSGPz4+HoSdvv4+HoSdvv4+K4QJPr4+K4Qdvv4+HoSJPr4+K4QJPr4+HoSJPr4+IgTMPgk+ogTMPj4+HwVMPj4+HwVJPr4+HwVJPr4+IgTJPr4+HwVJPok+nAXGPwk+nAXGPwk+nAXGPwk+nwVJPr4+HwVJPok+nAXJPr4+HwVMPj4+HwVJPok+nAXMPj4+HwVMPgk+nAX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mhDm+8IGmhDm+/YEoA9Q+/YEmhDm+8IGoA9Q+/YEoA9Q+8IGoucAALblAOfIAJzmoucAAILnkOgAALbloucAALbloucAAILnkOgAALbloucAAILnkOgAAILnausAALrjhOrIABjjnukAALrjausAAKjkausAALrjnukAALrjausAAKjknukAALrjnukAAKjkNuwAAILn0ugAAILnnukAAE7oNuwAAILnnukAAE7oausAAE7o0ugAALblNuwAALblausAAOrk0ugAALblausAAOrknukAAOrkNuwAALblhOoAALblhOoAAILnNuwAALblhOoAAILnNuwAAILn0ugAAILnhOoAAILnhOoAALbl0ugAAILnhOoAALbl0ugAALblnukAAJDoausAAJDoausAAE7onukAAJDoausAAE7onukAAE7oeOwAAILneOwAALblNuwAALbleOwAAILnNuwAALblNuwAAILnausAAKjknukAAKjknukAAOrkausAAKjknukAAOrkausAAOrk0ugAALblkOgAALblkOgAAILn0ugAALblkOgAAILn0ugAAILnnukAAH7phOrIACDqausAAH7pnukAAJDonukAAH7pausAAH7pnukAAJDoausAAH7pausAAJDouuwAAILnhu0AAE7oUu8AAE7ouuwAAILnUu8AAE7oHvAAAILnuuwAAILnHvAAAILnHvAAALbluuwAAILnHvAAALbluuwAALblHvAAAILnYPAAAILnYPAAALblHvAAAILnYPAAALblHvAAALbleOwAALbleOwAAILnuuwAAILneOwAALbluuwAAILnuuwAALblhu0AAJDoUu8AAJDoUu8AAE7ohu0AAJDoUu8AAE7ohu0AAE7oIe4AAM/qmu8AAGrrmu8AAJ7pIe4AAM/qmu8AAJ7pUu8AAFbpIe4AAM/qUu8AAFbphu0AAFbpmu8AAJ7pmu8AAGrrYPAAAGrrmu8AAJ7pYPAAAGrrYPAAAJ7phu0AAJDohu0AAFbpUu8AAFbphu0AAJDoUu8AAFbpUu8AAJDon/IAAFHmJvEAALblJvEAAILnn/IAAFHmJvEAAILnbvEAAMrnn/IAAFHmbvEAAMrnOvMAAMrnJvEAAILnJvEAALblYPAAALblJvEAAILnYPAAALblYPAAAILnOvMAAJDoOvMAAMrnbvEAAMrn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PwIAAAnyDgEAAILz2gIAAILzxgAAADrzxgAAAG7xAAAAAG7xxgAAADrzAAAAAG7xAAAAADrz2gIAAEj02gIAAILzDgEAAILz2gIAAEj0DgEAAILzDgEAAEj02gIAAO73pgMAACL3pgMAAFb12gIAAO73pgMAAFb12gIAAIr02gIAAO732gIAAIr0DgEAAIr02gIAAO73DgEAAIr0DgEAAO732gIAAIr02gIAAEj0DgEAAEj02gIAAIr0DgEAAEj0DgEAAIr0DgEAADD42gIAADD42gIAAO73DgEAADD42gIAAO73DgEAAO736AMAACL36AMAAFb1pgMAAFb16AMAACL3pgMAAFb1pgMAACL3pgMAAAr7QgAAAAr7DgEAANb7pgMAAAr7DgEAANb72gIAANb7QgAAAD75pgMAAD752gIAAHL4QgAAAD752gIAAHL4DgEAAHL4pgMAAD759AEAAD759AEAAAr7pgMAAD759AEAAAr7pgMAAAr7QgAAAAr79AEAAAr79AEAAD75QgAAAAr79AEAAD75QgAAAD75DgEAABj82gIAABj82gIAANb7DgEAABj82gIAANb7DgEAANb76AMAAAr76AMAAD75pgMAAD756AMAAAr7pgMAAD75pgMAAAr72gIAADD4DgEAADD4DgEAAHL42gIAADD4DgEAAHL42gIAAHL4QgAAAD75AAAAAD75AAAAAAr7QgAAAD75AAAAAAr7QgAAAAr7qQEAAFf+IgMAAPL+IgMAACb9qQEAAFf+IgMAACb92gIAAN78qQEAAFf+2gIAAN78DgEAAN78IgMAACb9IgMAAPL+6AMAAPL+IgMAACb96AMAAPL+6AMAACb9DgEAABj8DgEAAN782gIAAN78DgEAABj82gIAAN782gIAABj8JwYAAPH1rgQAAFb1rgQAACL3JwYAAPH1rgQAACL39gQAAGr3JwYAAPH19gQAAGr3wgYAAGr3rgQAACL3rgQAAFb16AMAAFb1rgQAACL36AMAAFb16AMAACL3wgYAADD4wgYAAGr39gQAAGr3wgYAADD49gQAAGr39gQAADD4jgcAAAr7KgQAAAr79gQAANb7jgcAAAr79gQAANb7wgYAANb7KgQAAD75jgcAAD75wgYAAHL4KgQAAD75wgYAAHL49gQAAHL4jgcAAD753AUAAD753AUAAAr7jgcAAD753AUAAAr7jgcAAAr7KgQAAAr73AUAAAr73AUAAD75KgQAAAr73AUAAD75KgQAAD759gQAABj8wgYAABj8wgYAANb79gQAABj8wgYAANb79gQAANb70AcAAAr70AcAAD75jgcAAD750AcAAAr7jgcAAD75jgcAAAr7wgYAADD49gQAADD49gQAAHL4wgYAADD49gQAAHL4wgYAAHL4KgQAAD756AMAAD756AMAAAr7KgQAAD756AMAAAr7KgQAAAr7JwYAAFf+wgYAAN789gQAAN78JwYAAFf+9gQAAN78rgQAACb9JwYAAFf+rgQAACb9rgQAAPL+9gQAAN78wgYAAN78wgYAABj89gQAAN78wgYAABj89gQAABj86AMAAPL+rgQAAPL+rgQAACb96AMAAPL+rgQAACb96AMAACb9cggAAAr7cggAAD750AcAAD75cggAAAr70AcAAD750AcAAAr7xAkAAD75cggAAD75cggAAAr7xAkAAD75cggAAAr7xAkAAAr70AcsATD4xAkAAD75xAksATD4xAkAAD75uAsAACT6uAssATD4xAksATD4xAkAAD75uAssATD4xAkAAD75xAkAABj8uAsAABj8xAkAAD75uAsAABj8uAsAACT60AcsATr5ZgjSABn50AcsATD4ZgjSABn5xAkAAD750AcsATD4xAkAAAr7ZgjSAC/7xAkAABj8ZgjSAC/70AcsAQ770AcsARj8ZgjSAC/70AcsARj8xAkAABj8GgkAAAz+xAkAABj80AcsARj8GgkAAAz+uAsAAAz+uAsAABj8GgkAAAz+uAsAABj8xAkAABj8uAsAAAz+GgkAAAz+GgksAQAAuAsAAAz+GgksAQAAuAssAQAA0AcsARj80AcsAQAAGgkAAAz+0AcsAQAAGgksAQAAGgkAAAz+rA0AACT6oA8sAST62A4sAfj42A4sAfj4rA0sATD4rA0AACT6oA8sAST6rA0AACT6rA0AABj8oA8sAST6rA0AABj8oA8sARj8rA0AABj8rA0AACT6uAsAACT6rA0AABj8uAsAACT6uAsAABj8uAsAACT6rA0AACT6rA0sATD4uAsAACT6rA0sATD4uAssATD4uAsAAAz+uAssAQAArA0AAAAArA0AAAAArA0AAAz+uAsAAAz+uAsAABj8uAsAAAz+rA0AAAz+uAsAABj8rA0AAAz+rA0AABj8oA8sAQAAoA8sAQz+rA0AAAz+oA8sAQAArA0AAAz+rA0AAAAArA0AAAz+oA8sAQz+oA8sARj8rA0AAAz+oA8sARj8rA0AABj8oA8AAPQBoA8sAQAArA0AAAAArA0AAAAArA0AAPQBoA8AAPQBrA0AAPQBuAssAfQBuAssAegDuAssAegDrA0sAegDrA0AAPQBuAssAfQBrA0AAPQBrA0AAAAAuAssAfQBrA0AAAAAuAssAQAAoA8AAPQBrA0AAPQBrA0sAegDoA8AAPQBrA0sAegDoA8sAegDlBEAAOgDlBEAAPQBoA8AAPQBoA8sAegDlBEAAOgDoA8AAPQBiBMAAOgDiBMAAPQBlBEAAPQBiBMAAOgDlBEAAPQBlBEAAOgDiBMsAQAAlBEsAQAAlBEAAPQBiBMsAQAAlBEAAPQBiBMAAPQBlBEAAPQBlBEsAQAAoA8sAQAAlBEAAPQBoA8sAQAAoA8AAPQBiBMAAOgDlBEAAOgDlBEAANAHiBMAAOgDlBEAANAHiBMAANAHlBEAANAHlBEAAOgDoA8sAegDlBEAANAHoA8sAegDoA8sAdAHlBEAAMQJoA8sAcQJaBAsAfAKaBAsAfAKlBEsAbgLlBEAAMQJoA8sAcQJlBEAAMQJlBEAANAHoA8sAcQJlBEAANAHoA8sAdAHlBEAANAHlBEAAMQJiBMAAMQJlBEAANAHiBMAAMQJiBMAANAHiBMAAMQJlBEAAMQJlBEsAbgLiBMAAMQJlBEsAbgLiBMsAbgLcBcAAOgDcBcAAPQBiBMAAPQBcBcAAOgDiBMAAPQBiBMAAOgDiBMAAPQBcBcAAPQBcBcsAQAAiBMAAPQBcBcsAQAAiBMsAQAA+BYAALoEiBOo/fYEPhcAAAgHiBOo/fYEiBOo/cIGPhcAAAgHiBMAANAH4BUAAPQGwxQAAOEFiBMAANAHcBcAANAHPhcAAAgHiBMAANAHPhcAAAgH4BUAAPQGwxQAAOEF+BYAALoEcBcAAOgDwxQAAOEFcBcAAOgDiBMAAOgD+BYAALoEPhcAAAgHcBcAANAH+BYAALoEcBcAANAHcBcAAOgDiBMAANAHwxQAAOEFiBMAAOgDiBMAANAHiBMAAMQJcBcAAMQJiBMAANAHcBcAAMQJcBcAANAHcBcAAMQJiBMAAMQJiBMsAbgLcBcAAMQJiBMsAbgLcBcsAbgLZBkAAPQBWBssAfQBkBosAcgAkBosAcgAZBksAQAAZBkAAPQBWBssAfQBZBkAAPQBZBkAAOgDWBssAfQBZBkAAOgDWBssAegDZBkAAOgDZBkAAPQBcBcAAPQBZBkAAOgDcBcAAPQBcBcAAOgDcBcAAPQBZBkAAPQBZBksAQAAcBcAAPQBZBksAQAAcBcsAQAAcBcAANAHZBkAANAHZBkAAOgDcBcAANAHZBkAAOgDcBcAAOgDZBkAAOgDZBkAANAHWBssAdAHZBkAAOgDWBssAdAHWBssAegDZBkAAMQJZBksAbgLkBosAfAKkBosAfAKWBssAcQJZBkAAMQJZBksAbgLZBkAAMQJcBcAAMQJZBksAbgLcBcAAMQJcBcsAbgLcBcAAMQJZBkAAMQJZBkAANAHcBcAAMQJZBkAANAHcBcAANAHZBkAANAHZBkAAMQJWBssAcQJZBkAANAHWBssAcQJWBssAdAH","wall":"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ZgjK+XEU0Ack+pIU0AfK+XEUxAn4+JYUZgjK+XEUcgj4+JYUoA8k+pQRoA8k+ogToA9Q+4gToA8k+pQRoA9Q+4gT2A5Q+2gQ2A4k+mgQoA8k+pQR2A5Q+2gQ2A5Q+2gQuAtQ+6APrA0k+qAPrA0k+qAP2A4k+mgQ2A5Q+2gQuAsk+qAPrA0k+qAPuAtQ+6APuAsk+mQZuAsk+nAXuAtQ+3AXuAsk+mQZuAtQ+3AXgAxQ+5AagAwk+pAauAsk+mQZgAxQ+5AagAxQ+5AaoA9Q+1gbrA0k+lgbrA0k+lgbgAwk+pAagAxQ+5AaoA8k+lgbrA0k+lgboA9Q+1gboA8k+ogTiBMk+ogTiBNQ+4gToA8k+ogTiBNQ+4gToA9Q+4gTiBMk+ogTiBMk+nAXiBNQ+3AXiBMk+ogTiBNQ+3AXiBNQ+4gTlBEk+lgboA8k+lgboA9Q+1gblBEk+lgboA9Q+1gbwBJQ+5AawBIk+pAalBEk+lgbwBJQ+5AawBJQ+5AaiBNQ+3AXiBMk+mQZiBMk+mQZwBIk+pAawBJQ+5AaiBMk+nAXiBMk+mQZiBNQ+3AX0Aeo/egD6ANQ++gD6AMk+ugD0Aeo/egD6AMk+ugD0Ad8/OgD6ANQ++gD0Aeo/egD6AOo/egD6AMk+rgL6ANQ+7gL0Aeo/bgL6AMk+rgL0Aeo/bgL0Ad8/LgL0Aeo/bgL6ANQ+7gL6AOo/bgLxAl8/AAAuAt8/AAAuAuo/QAAxAl8/AAAuAuo/QAAmAio/cgAmAh8/MgAxAl8/AAAmAio/cgAmAio/cgA0Aeo/egD0Ad8/PQB0Ad8/PQBmAh8/MgAmAio/cgA0Ad8/OgD0Ad8/PQB0Aeo/egDuAt8/LgL0Ad8/LgL0Aeo/bgLuAt8/LgL0Aeo/bgLuAuo/bgLoA98/PQBoA98/OgDoA+o/egDoA98/PQBoA+o/egD2A6o/cgA2A58/MgAoA98/PQB2A6o/cgA2A6o/cgAuAuo/QAArA18/AAArA18/AAA2A58/MgA2A6o/cgAuAt8/AAArA18/AAAuAuo/QAAoA98/OgDoA98/PIEoA+G/PYEoA98/OgDoA+G/PYEoA/H/EsFoA98/OgDoA/H/EsFoA+o/dAHoA98/OgDoA+o/dAHoA+o/egDoA/H/EsFoA/H/G0GoA+o/dAHoA/H/G0GoA+G/MIGoA+o/dAHoA+G/MIGoA98/MYGoA98/NAHoA+G/MIGoA98/NAHoA+o/dAH/g5Q+8IGCg8i/OcGoA8i/OcG/g5Q+8IGoA8i/OcGoA9Q+8IGCg8i/NEE/g5Q+/YEoA9Q+/YECg8i/NEEoA9Q+/YEoA8i/NEErA1Q+8IGCg8i/OcG/g5Q+8IGCg8i/OcGoA98/MYGoA8i/OcGoA98/PIECg8i/NEEoA8i/NEECg8i/NEErA1Q+/YE/g5Q+/YEoA98/LgLuAt8/LgLuAuo/bgLoA98/LgLuAuo/bgLoA+o/bgLoA98/NAHoA98/LgLoA+o/bgLoA98/NAHoA+o/bgLoA+o/dAHaAGY/twFAAB8/NwFAABQ++gDmwKo/egDaAGY/twFAABQ++gDaAGY/twFAAB8/NAHAAB8/NwF6ANQ++gD6AOo/egDmwKo/egD6ANQ++gDmwKo/egDAABQ++gDAAB8/MQJaAGY/sQJAABQ+7gLaAGY/sQJmwKo/bgLAABQ+7gLAAB8/NAHaAGY/sQJAAB8/MQJmwKo/bgL6AOo/bgL6ANQ+7gLmwKo/bgL6ANQ+7gLAABQ+7gLiBPe/vYEjhJI/vYEjhLk/dEEiBPe/vYEjhLk/dEEiBN6/tEElBGy/fYElBFO/dEEjhLk/dEElBGy/fYEjhLk/dEEjhJI/vYElBGy/fYEmhAc/fYEmhC4/NEElBGy/fYEmhC4/NEElBFO/dEEmhC4/NEEmhAc/fYEoA+G/PYEmhC4/NEEoA+G/PYEoA8i/NEEiBN6/tEEjhLk/dEEjhIS/fYEiBN6/tEEjhIS/fYEiBOo/fYElBFO/dEElBF8/PYEjhIS/fYElBFO/dEEjhIS/fYEjhLk/dEEmhC4/NEEmhDm+/YElBF8/PYEmhC4/NEElBF8/PYElBFO/dEEmhDm+/YEmhC4/NEEoA8i/NEEmhDm+/YEoA8i/NEEoA9Q+/YEjhLk/ecGjhJI/sIGiBPe/sIGjhLk/ecGiBPe/sIGiBN6/ucGjhLk/ecGlBFO/ecGlBGy/cIGjhLk/ecGlBGy/cIGjhJI/sIGmhC4/OcGmhAc/cIGlBGy/cIGmhC4/OcGlBGy/cIGlBFO/ecGoA+G/MIGmhAc/cIGmhC4/OcGoA+G/MIGmhC4/OcGoA8i/OcGjhIS/cIGjhLk/ecGiBN6/ucGjhIS/cIGiBN6/ucGiBOo/cIGjhIS/cIGlBF8/MIGlBFO/ecGjhIS/cIGlBFO/ecGjhLk/ecGlBF8/MIGmhDm+8IGmhC4/OcGlBF8/MIGmhC4/OcGlBFO/ecGoA8i/OcGmhC4/OcGmhDm+8IGoA8i/OcGmhDm+8IGoA9Q+8IGoufSAKfnkOjSAKfnkOgAAILnoufSAKfnkOgAAILnoucAAILnouc2AbbloufSAJHlkOjSAJHlouc2AbblkOjSAJHlkOg2AbblkOjSAKfnoufSAKfnouc2AYLnkOjSAKfnouc2AYLnkOg2AYLnoufSAJHloucAALblkOgAALbloufSAJHlkOgAALblkOjSAJHlAOfIAJzmouc2AYLnoufSAKfnAOfIAJzmoud3AS3nouc2AYLnoucAAILnAOfIAJzmoufSAKfnoufSAJHlouc2AbblAOfIAJzmouc2Abbloud3AQvmAOfIAJzmAOfIAJzmoucAALbloufSAJHleenSALrjeenSAKjknukAAKjkeenSALrjnukAAKjknukAALrjaus2Abrjj+vSALrjj+vSAKjkaus2Abrjj+vSAKjkaus2AajkeenSAKjkeenSALrjnuk2AbrjeenSAKjknuk2Abrjnuk2Aajkj+vSALrjausAALrjausAAKjkj+vSALrjausAAKjkj+vSAKjkhOrIABjjnuk2AbrjeenSALrjhOrIABjj8+l3Abrjnuk2AbrjnukAALrjhOrIABjjeenSALrjj+vSALrjaus2AbrjhOrIABjjaus2AbrjFet3AbrjhOrIABjjhOrIABjjausAALrjj+vSALrjNuzSAJHlNuw2Abblaus2AerkNuzSAJHlaus2Aerkj+vSAOrkNuwAALblNuzSAJHlj+vSAOrkNuwAALblj+vSAOrkausAAOrknuk2Aerk0ug2Abbl0ujSAJHlnuk2Aerk0ujSAJHleenSAOrkeenSAOrk0ujSAJHl0ugAALbleenSAOrk0ugAALblnukAAOrkaus2AU7oNuw2AYLnNuzSAKfnaus2AU7oNuzSAKfnj+vSAE7oj+vSAE7oNuzSAKfnNuwAAILnj+vSAE7oNuwAAILnausAAE7o0ujSAKfn0ug2AYLnnuk2AU7o0ujSAKfnnuk2AU7oeenSAE7o0ugAAILn0ujSAKfneenSAE7o0ugAAILneenSAE7onukAAE7oaus2AZDoaus2AU7oj+vSAE7oaus2AZDoj+vSAE7oj+vSAJDoj+vSAJDoj+vSAE7oausAAE7oj+vSAJDoausAAE7oausAAJDoeenSAE7onuk2AU7onuk2AZDoeenSAE7onuk2AZDoeenSAJDonukAAE7oeenSAE7oeenSAJDonukAAE7oeenSAJDonukAAJDoeOw2AbblNuw2AbblNuzSAJHleOw2AbblNuzSAJHleOzSAJHleOzSAJHlNuzSAJHlNuwAALbleOzSAJHlNuwAALbleOwAALblNuzSAKfnNuw2AYLneOw2AYLnNuzSAKfneOw2AYLneOzSAKfnNuwAAILnNuzSAKfneOzSAKfnNuwAAILneOzSAKfneOwAAILnj+vSAOrkaus2Aerkaus2Aajkj+vSAOrkaus2Aajkj+vSAKjkausAAOrkj+vSAOrkj+vSAKjkausAAOrkj+vSAKjkausAAKjknuk2Aajknuk2AerkeenSAOrknuk2AajkeenSAOrkeenSAKjkeenSAKjkeenSAOrknukAAOrkeenSAKjknukAAOrknukAAKjk0ujSAJHl0ug2AbblkOg2Abbl0ujSAJHlkOg2AbblkOjSAJHl0ugAALbl0ujSAJHlkOjSAJHl0ugAALblkOjSAJHlkOgAALblkOg2AYLn0ug2AYLn0ujSAKfnkOg2AYLn0ujSAKfnkOjSAKfnkOjSAKfn0ujSAKfn0ugAAILnkOjSAKfn0ugAAILnkOgAAILnj+vSAH7pj+vSAJDoausAAJDoj+vSAH7pausAAJDoausAAH7pnuk2AX7peenSAH7peenSAJDonuk2AX7peenSAJDonuk2AZDoj+vSAJDoj+vSAH7paus2AX7pj+vSAJDoaus2AX7paus2AZDoeenSAH7pnukAAH7pnukAAJDoeenSAH7pnukAAJDoeenSAJDohOrIACDqaus2AX7pj+vSAH7phOrIACDqFet3AX7paus2AX7pausAAH7phOrIACDqj+vSAH7peenSAH7pnuk2AX7phOrIACDqnuk2AX7p8+l3AX7phOrIACDqhOrIACDqnukAAH7peenSAH7pHvA2AbblbO42AbblbO7SAJHlHvA2AbblbO7SAJHlHvDSAJHlbO7SAJHlbO42Abbluuw2AbblbO7SAJHluuw2AbbluuzSAJHlbO7SAJHluuzSAJHluuwAALblbO7SAJHluuwAALblbO4AALblHvDSAJHlbO7SAJHlbO4AALblHvDSAJHlbO4AALblHvAAALblYe3SAE7ohu0AAE7ouuwAAILnYe3SAE7ouuwAAILnuuzSAKfnuuw2AYLnhu02AU7oYe3SAE7ouuw2AYLnYe3SAE7ouuzSAKfnHvDSAKfnHvAAAILnUu8AAE7oHvDSAKfnUu8AAE7od+/SAE7oUu82AU7oHvA2AYLnHvDSAKfnUu82AU7oHvDSAKfnd+/SAE7oYPA2AbblHvA2AbblHvDSAJHlYPA2AbblHvDSAJHlYPDSAJHlHvDSAKfnHvA2AYLnYPA2AYLnHvDSAKfnYPA2AYLnYPDSAKfnYPDSAJHlHvDSAJHlHvAAALblYPDSAJHlHvAAALblYPAAALblHvAAAILnHvDSAKfnYPDSAKfnHvAAAILnYPDSAKfnYPAAAILnuuzSAJHluuw2AbbleOw2AbbluuzSAJHleOw2AbbleOzSAJHleOw2AYLnuuw2AYLnuuzSAKfneOw2AYLnuuzSAKfneOzSAKfnuuwAALbluuzSAJHleOzSAJHluuwAALbleOzSAJHleOwAALbleOzSAKfnuuzSAKfnuuwAAILneOzSAKfnuuwAAILneOwAAILnUu82AZDoUu82AU7od+/SAE7oUu82AZDod+/SAE7od+/SAJDoYe3SAE7ohu02AU7ohu02AZDoYe3SAE7ohu02AZDoYe3SAJDod+/SAJDod+/SAE7oUu8AAE7od+/SAJDoUu8AAE7oUu8AAJDohu0AAE7oYe3SAE7oYe3SAJDohu0AAE7oYe3SAJDohu0AAJDoIe4AAM/qCu7SAOXqmu/SAI/rIe4AAM/qhu0AAFbpYe3SAFbpXe53AZPqmu82AWrrCu7SAOXqhu02AVbpXe53AZPqCu7SAOXqmu82AWrrmu/SAI/rCu7SAOXqmu/SAHnpd+/SAFbpUu8AAFbpmu/SAHnpUu8AAFbpmu8AAJ7pmu82AZ7pUu82AVbpd+/SAFbpmu82AZ7pd+/SAFbpmu/SAHnpYe3SAFbphu02AVbpCu7SAOXqmu8AAGrrIe4AAM/qmu/SAI/rIe4AAM/qYe3SAFbpCu7SAOXqmu/SAHnpmu8AAJ7pYPAAAJ7pmu/SAHnpYPAAAJ7pYPDSAHnpmu/SAHnpYPDSAHnpYPA2AZ7pmu/SAHnpYPA2AZ7pmu82AZ7pmu82AWrrYPA2AWrrYPDSAI/rmu82AWrrYPDSAI/rmu/SAI/rmu8AAGrrmu/SAI/rYPDSAI/rmu8AAGrrYPDSAI/rYPAAAGrrd+/SAFbpd+/SAJDoUu8AAJDod+/SAFbpUu8AAJDoUu8AAFbphu02AVbpYe3SAFbpYe3SAJDohu02AVbpYe3SAJDohu02AZDod+/SAJDod+/SAFbpUu82AVbpd+/SAJDoUu82AVbpUu82AZDoYe3SAFbphu0AAFbphu0AAJDoYe3SAFbphu0AAJDoYe3SAJDon/IAAFHmtvLSADrmJvHSAJHln/IAAFHmOvMAAMrnX/PSAMrnY/J3AY3mJvE2AbbltvLSADrmOvM2AcrnY/J3AY3mtvLSADrmJvE2AbblJvHSAJHltvLSADrmJvHSAKfnSfHSAMrnbvEAAMrnJvHSAKfnbvEAAMrnJvEAAILnJvE2AYLnbvE2AcrnSfHSAMrnJvE2AYLnSfHSAMrnJvHSAKfnX/PSAMrnOvM2AcrntvLSADrmJvEAALbln/IAAFHmJvHSAJHln/IAAFHmX/PSAMrntvLSADrmJvHSAKfnJvEAAILnYPAAAILnJvHSAKfnYPAAAILnYPDSAKfnJvHSAKfnYPDSAKfnYPA2AYLnJvHSAKfnYPA2AYLnJvE2AYLnJvE2AbblYPA2AbblYPDSAJHlJvE2AbblYPDSAJHlJvHSAJHlJvEAALblJvHSAJHlYPDSAJHlJvEAALblYPDSAJHlYPAAALblSfHSAMrnSfHSAJDobvEAAJDoSfHSAMrnbvEAAJDobvEAAMrnOvM2AcrnX/PSAMrnX/PSAJDoOvM2AcrnX/PSAJDoOvM2AZDoSfHSAJDoSfHSAMrnbvE2AcrnSfHSAJDobvE2AcrnbvE2AZDoX/PSAMrnOvMAAMrnOvMAAJDoX/PSAMrnOvMAAJDoX/PSAJDoOvM2ATbsOvM2AYTqX/PSAITqOvM2ATbsX/PSAITqX/PSADbsX/PSAITqOvM2AYTqOvM2AdLoX/PSAITqOvM2AdLoX/PSANLoX/PSAITqX/PSANLoOvMAANLoX/PSAITqOvMAANLoOvMAAITqX/PSADbsX/PSAITqOvMAAITqX/PSADbsOvMAAITqOvMAADbsovDSAHnpovAAAJ7pbvEAANLoovDSAHnpbvEAANLoSfHSANLobvE2AdLoovA2AZ7povDSAHnpbvE2AdLoovDSAHnpSfHSANLoSfHSADbsbvEAADbsovAAAGrrSfHSADbsovAAAGrrovDSAI/rovA2AWrrbvE2ATbsSfHSADbsovA2AWrrSfHSADbsovDSAI/rOvM2AXjsOvM2ATbsX/PSADbsOvM2AXjsX/PSADbsX/PSAHjsSfHSADbsbvE2ATbsbvE2AXjsSfHSADbsbvE2AXjsSfHSAHjsX/PSAHjsX/PSADbsOvMAADbsX/PSAHjsOvMAADbsOvMAAHjsbvEAADbsSfHSADbsSfHSAHjsbvEAADbsSfHSAHjsbvEAAHjsX/PSANLoOvM2AdLoOvM2AZDoX/PSANLoOvM2AZDoX/PSAJDobvE2AZDobvE2AdLoSfHSANLobvE2AZDoSfHSANLoSfHSAJDoOvMAANLoX/PSANLoX/PSAJDoOvMAANLoX/PSAJDoOvMAAJDoSfHSAJDoSfHSANLobvEAANLoSfHSAJDobvEAANLobvEAAJDoYPA2AWrrovA2AWrrovDSAI/rYPA2AWrrovDSAI/rYPDSAI/rovDSAHnpovA2AZ7pYPA2AZ7povDSAHnpYPA2AZ7pYPDSAHnpYPDSAI/rovDSAI/rovAAAGrrYPDSAI/rovAAAGrrYPAAAGrrovAAAJ7povDSAHnpYPDSAHnpovAAAJ7pYPDSAHnpYPAAAJ7pCfIAALfu8vHSAM3ugvPSAHfvCfIAALfubvEAAD7tSfHSAD7tRfJ3AXvugvM2AVLv8vHSAM3ubvE2AT7tRfJ3AXvu8vHSAM3ugvM2AVLvgvPSAHfv8vHSAM3ugvPSAGHtX/PSAD7tOvMAAD7tgvPSAGHtOvMAAD7tgvMAAIbtgvM2AYbtOvM2AT7tX/PSAD7tgvM2AYbtX/PSAD7tgvPSAGHtSfHSAD7tbvE2AT7t8vHSAM3ugvMAAFLvCfIAALfugvPSAHfvCfIAALfuSfHSAD7t8vHSAM3ugvPSAGHtgvMAAIbtSPQAAIbtgvPSAGHtSPQAAIbtSPTSAGHtgvPSAGHtSPTSAGHtSPQ2AYbtgvPSAGHtSPQ2AYbtgvM2AYbtgvM2AVLvSPQ2AVLvSPTSAHfvgvM2AVLvSPTSAHfvgvPSAHfvgvMAAFLvgvPSAHfvSPTSAHfvgvMAAFLvSPTSAHfvSPQAAFLvX/PSAD7tX/PSAHjsOvMAAHjsX/PSAD7tOvMAAHjsOvMAAD7tbvE2AT7tSfHSAD7tSfHSAHjsbvE2AT7tSfHSAHjsbvE2AXjsX/PSAHjsX/PSAD7tOvM2AT7tX/PSAHjsOvM2AT7tOvM2AXjsSfHSAD7tbvEAAD7tbvEAAHjsSfHSAD7tbvEAAHjsSfHSAHjsSPQsAXjsSPQsAZDoSPRYApDoSPQsAXjsSPRYApDoSPRYAnjsSPQsAZDoMPgsAZDoMPhYApDoSPQsAZDoMPhYApDoSPRYApDoMPgsAWDwSPQsAWDwSPRYAmDwMPgsAWDwSPRYAmDwMPhYAmDwSPRYAmDwSPQsAWDwSPR3Af3uSPRYAmDwSPR3Af3uSPRYAnjsSPQsAWDwSPQsAVbvSPQ2AVLvSPQsAWDwSPQ2AVLvSPR3Af3uSPR3Af3uSPR3AdvtSPRYAnjsSPR3AdvtSPQ2AYbtSPRYAnjsSPQ2AYbtSPQsAYLtSPQsAXjsSPQ2AYbtSPQsAXjsSPRYAnjsSPTSAHfv3vTSAHfv6vQAAFLvSPTSAHfv6vQAAFLvSPQAAFLvSPQAAIbt6vQAAIbt3vTSAGHtSPQAAIbt3vTSAGHtSPTSAGHt3vTSAHfvPPYAAFLv6vQAAFLvSPQsAVbv3vTSAHfvSPTSAHfv3vTSAGHtSPQsAYLtSPTSAGHtPPYAAIbt3vTSAGHt6vQAAIbtGPwsAYTqGPwsAXjsGPxYAnjsGPwsAYTqGPxYAnjsUPtYAljpUPssAVjpGPwsAYTqUPtYAljpUPtYAljpMPhYApDoJPosAZDoJPosAZDoUPssAVjpUPtYAljpMPgsAZDoJPosAZDoMPhYApDoGPwsAXjsGPwsAWDwGPxYAmDwGPwsAXjsGPxYAmDwGPxYAnjsGPxYAmDwGPwsAWDwtfp3AWDwGPxYAmDwtfp3AWDwMPhYAmDwGPwsAWDwDvssAWDwCvs2AWDwGPwsAWDwCvs2AWDwtfp3AWDwtfp3AWDwk/l3AWDwMPhYAmDwk/l3AWDwPvk2AWDwMPhYAmDwPvk2AWDwOvksAWDwMPgsAWDwPvk2AWDwMPgsAWDwMPhYAmDwL/vSAGDwL/vSAMrvCvsAAL7vL/vSAGDwCvsAAL7vCvsAAGDwPvkAAGDwPvkAAL7vGfnSAMrvPvkAAGDwGfnSAMrvGfnSAGDwL/vSAMrvCvsAAGzuCvsAAL7vDvssAWDwL/vSAMrvL/vSAGDwGfnSAMrvOvksAWDwGfnSAGDwPvkAAGzuGfnSAMrvPvkAAL7v2fkAAJ/ywvnSALXyUvvSAF/z2fkAAJ/yPvkAACbxGfnSACbxFfp3AWPyUvs2ATrzwvnSALXyPvk2ASbxFfp3AWPywvnSALXyUvs2ATrzUvvSAF/zwvnSALXyUvvSAEnxL/vSACbxCvsAACbxUvvSAEnxCvsAACbxUvsAAG7xUvs2AW7xCvs2ASbxL/vSACbxUvs2AW7xL/vSACbxUvvSAEnxGfnSACbxPvk2ASbxwvnSALXyUvsAADrz2fkAAJ/yUvvSAF/z2fkAAJ/yGfnSACbxwvnSALXyUvvSAEnxUvsAAG7xGPwAAG7xUvvSAEnxGPwAAG7xGPzSAEnxUvvSAEnxGPzSAEnxGPw2AW7xUvvSAEnxGPw2AW7xUvs2AW7xUvs2ATrzGPw2ATrzGPzSAF/zUvs2ATrzGPzSAF/zUvvSAF/zUvsAADrzUvvSAF/zGPzSAF/zUvsAADrzGPzSAF/zGPwAADrzL/vSACbxL/vSAGDwCvsAAGDwL/vSACbxCvsAAGDwCvsAACbxPvk2ASbxGfnSACbxGfnSAGDwPvk2ASbxGfnSAGDwPvk2AWDwL/vSAGDwL/vSACbxCvs2ASbxL/vSAGDwCvs2ASbxCvs2AWDwGfnSACbxPvkAACbxPvkAAGDwGfnSACbxPvkAAGDwGfnSAGDwKvvSAEf3GPzSAEf3GPwAACL3KvvSAEf3GPwAACL3KvsAACL3Kvs2AVb1KvvSADH1GPzSADH1Kvs2AVb1GPzSADH1GPw2AVb1GPzSAEf3KvvSAEf3Kvs2ASL3GPzSAEf3Kvs2ASL3GPw2ASL3KvvSADH1KvsAAFb1GPwAAFb1KvvSADH1GPwAAFb1GPzSADH1iPrIADz2Kvs2ASL3KvvSAEf3iPrIADz2Kvt3Ac32Kvs2ASL3KvsAACL3iPrIADz2KvvSAEf3KvvSADH1Kvs2AVb1iPrIADz2Kvs2AVb1Kvt3Aav1iPrIADz2iPrIADz2KvsAAFb1KvvSADH1vv82AW7xDP42AW7xDP7SAEnxvv82AW7xDP7SAEnxvv/SAEnxDP7SAEnxDP42AW7xWvw2AW7xDP7SAEnxWvw2AW7xWvzSAEnxDP7SAEnxWvzSAEnxWvwAAG7xDP7SAEnxWvwAAG7xDP4AAG7xvv/SAEnxDP7SAEnxDP4AAG7xvv/SAEnxDP4AAG7xvv8AAG7xAf3SAAb0Jv0AAAb0WvwAADrzAf3SAAb0WvwAADrzWvzSAF/zWvw2ATrzJv02AQb0Af3SAAb0Wvw2ATrzAf3SAAb0WvzSAF/zvv/SAF/zvv8AADrz8v4AAAb0vv/SAF/z8v4AAAb0F//SAAb08v42AQb0vv82ATrzvv/SAF/z8v42AQb0vv/SAF/zF//SAAb0AAA2AW7xvv82AW7xvv/SAEnxAAA2AW7xvv/SAEnxAADSAEnxvv/SAF/zvv82ATrzAAA2ATrzvv/SAF/zAAA2ATrzAADSAF/zAADSAEnxvv/SAEnxvv8AAG7xAADSAEnxvv8AAG7xAAAAAG7xvv8AADrzvv/SAF/zAADSAF/zvv8AADrzAADSAF/zAAAAADrzWvzSAEnxWvw2AW7xGPw2AW7xWvzSAEnxGPw2AW7xGPzSAEnxGPw2ATrzWvw2ATrzWvzSAF/zGPw2ATrzWvzSAF/zGPzSAF/zWvwAAG7xWvzSAEnxGPzSAEnxWvwAAG7xGPzSAEnxGPwAAG7xGPzSAF/zWvzSAF/zWvwAADrzGPzSAF/zWvwAADrzGPwAADrz8v42AUj08v42AQb0F//SAAb08v42AUj0F//SAAb0F//SAEj0Af3SAAb0Jv02AQb0Jv02AUj0Af3SAAb0Jv02AUj0Af3SAEj0F//SAEj0F//SAAb08v4AAAb0F//SAEj08v4AAAb08v4AAEj0Jv0AAAb0Af3SAAb0Af3SAEj0Jv0AAAb0Af3SAEj0Jv0AAEj08v42Ae738v42ATz2F//SADz28v42Ae73F//SADz2F//SAO73F//SADz28v42ATz28v42AYr0F//SADz28v42AYr0F//SAIr0F//SADz2F//SAIr08v4AAIr0F//SADz28v4AAIr08v4AADz2F//SAO73F//SADz28v4AADz2F//SAO738v4AADz28v4AAO73WvzSADH1WvwAAFb1Jv0AAIr0WvzSADH1Jv0AAIr0Af3SAIr0Jv02AYr0Wvw2AVb1WvzSADH1Jv02AYr0WvzSADH1Af3SAIr0Af3SAO73Jv0AAO73WvwAACL3Af3SAO73WvwAACL3WvzSAEf3Wvw2ASL3Jv02Ae73Af3SAO73Wvw2ASL3Af3SAO73WvzSAEf38v42ATD48v42Ae73F//SAO738v42ATD4F//SAO73F//SADD4Af3SAO73Jv02Ae73Jv02ATD4Af3SAO73Jv02ATD4Af3SADD4F//SADD4F//SAO738v4AAO73F//SADD48v4AAO738v4AADD4Jv0AAO73Af3SAO73Af3SADD4Jv0AAO73Af3SADD4Jv0AADD4F//SAIr08v42AYr08v42AUj0F//SAIr08v42AUj0F//SAEj0Jv02AUj0Jv02AYr0Af3SAIr0Jv02AUj0Af3SAIr0Af3SAEj08v4AAIr0F//SAIr0F//SAEj08v4AAIr0F//SAEj08v4AAEj0Af3SAEj0Af3SAIr0Jv0AAIr0Af3SAEj0Jv0AAIr0Jv0AAEj0GPw2ASL3Wvw2ASL3WvzSAEf3GPw2ASL3WvzSAEf3GPzSAEf3WvzSADH1Wvw2AVb1GPw2AVb1WvzSADH1GPw2AVb1GPzSADH1GPzSAEf3WvzSAEf3WvwAACL3GPzSAEf3WvwAACL3GPwAACL3WvwAAFb1WvzSADH1GPzSADH1WvwAAFb1GPzSADH1GPwAAFb1wf0AAG/6qv3SAIX6Ov/SAC/7wf0AAG/6Jv0AAPb4Af3SAPb4/f13ATP6Ov82AQr7qv3SAIX6Jv02Afb4/f13ATP6qv3SAIX6Ov82AQr7Ov/SAC/7qv3SAIX6Ov/SABn5F//SAPb48v4AAPb4Ov/SABn58v4AAPb4Ov8AAD75Ov82AT758v42Afb4F//SAPb4Ov82AT75F//SAPb4Ov/SABn5Af3SAPb4Jv02Afb4qv3SAIX6Ov8AAAr7wf0AAG/6Ov/SAC/7wf0AAG/6Af3SAPb4qv3SAIX6Ov/SABn5Ov8AAD75AAAAAD75Ov/SABn5AAAAAD75AADSABn5Ov/SABn5AADSABn5AAA2AT75Ov/SABn5AAA2AT75Ov82AT75Ov82AQr7AAA2AQr7AADSAC/7Ov82AQr7AADSAC/7Ov/SAC/7Ov8AAAr7Ov/SAC/7AADSAC/7Ov8AAAr7AADSAC/7AAAAAAr7F//SAPb4F//SADD48v4AADD4F//SAPb48v4AADD48v4AAPb4Jv02Afb4Af3SAPb4Af3SADD4Jv02Afb4Af3SADD4Jv02ATD4F//SADD4F//SAPb48v42Afb4F//SADD48v42Afb48v42ATD4Af3SAPb4Jv0AAPb4Jv0AADD4Af3SAPb4Jv0AADD4Af3SADD4PwIAAAnyVgLSAPLxxgDSAEnxPwIAAAny2gIAAILz/wLSAILzAwJ3AUXyxgA2AW7xVgLSAPLx2gI2AYLzAwJ3AUXyVgLSAPLxxgA2AW7xxgDSAEnxVgLSAPLxxgDSAF/z6QDSAILzDgEAAILzxgDSAF/zDgEAAILzxgAAADrzxgA2ATrzDgE2AYLz6QDSAILzxgA2ATrz6QDSAILzxgDSAF/z/wLSAILz2gI2AYLzVgLSAPLxxgAAAG7xPwIAAAnyxgDSAEnxPwIAAAny/wLSAILzVgLSAPLxxgDSAF/zxgAAADrzAAAAADrzxgDSAF/zAAAAADrzAADSAF/zxgDSAF/zAADSAF/zAAA2ATrzxgDSAF/zAAA2ATrzxgA2ATrzxgA2AW7xAAA2AW7xAADSAEnxxgA2AW7xAADSAEnxxgDSAEnxxgAAAG7xxgDSAEnxAADSAEnxxgAAAG7xAADSAEnxAAAAAG7x6QDSAILz6QDSAEj0DgEAAEj06QDSAILzDgEAAEj0DgEAAILz2gI2AYLz/wLSAILz/wLSAEj02gI2AYLz/wLSAEj02gI2AUj06QDSAEj06QDSAILzDgE2AYLz6QDSAEj0DgE2AYLzDgE2AUj0/wLSAILz2gIAAILz2gIAAEj0/wLSAILz2gIAAEj0/wLSAEj0DgE2AYr0DgE2ATz26QDSADz2DgE2AYr06QDSADz26QDSAIr06QDSADz2DgE2ATz2DgE2Ae736QDSADz2DgE2Ae736QDSAO736QDSADz26QDSAO73DgEAAO736QDSADz2DgEAAO73DgEAADz26QDSAIr06QDSADz2DgEAADz26QDSAIr0DgEAADz2DgEAAIr0pgPSAEf3pgMAACL32gIAAO73pgPSAEf32gIAAO73/wLSAO732gI2Ae73pgM2ASL3pgPSAEf32gI2Ae73pgPSAEf3/wLSAO73/wLSAIr02gIAAIr0pgMAAFb1/wLSAIr0pgMAAFb1pgPSADH1pgM2AVb12gI2AYr0/wLSAIr0pgM2AVb1/wLSAIr0pgPSADH1DgE2AUj0DgE2AYr06QDSAIr0DgE2AUj06QDSAIr06QDSAEj0/wLSAIr02gI2AYr02gI2AUj0/wLSAIr02gI2AUj0/wLSAEj06QDSAEj06QDSAIr0DgEAAIr06QDSAEj0DgEAAIr0DgEAAEj02gIAAIr0/wLSAIr0/wLSAEj02gIAAIr0/wLSAEj02gIAAEj06QDSAO73DgE2Ae73DgE2ATD46QDSAO73DgE2ATD46QDSADD42gI2ATD42gI2Ae73/wLSAO732gI2ATD4/wLSAO73/wLSADD4DgEAAO736QDSAO736QDSADD4DgEAAO736QDSADD4DgEAADD4/wLSADD4/wLSAO732gIAAO73/wLSADD42gIAAO732gIAADD46AM2AVb1pgM2AVb1pgPSADH16AM2AVb1pgPSADH16APSADH1pgPSAEf3pgM2ASL36AM2ASL3pgPSAEf36AM2ASL36APSAEf36APSADH1pgPSADH1pgMAAFb16APSADH1pgMAAFb16AMAAFb1pgMAACL3pgPSAEf36APSAEf3pgMAACL36APSAEf36AMAACL3pgPSABn5pgM2AT752gI2AXL4pgPSABn52gI2AXL4/wLSAHL4pgMAAD75pgPSABn5/wLSAHL4pgMAAD75/wLSAHL42gIAAHL4DgE2AXL4QgA2AT75QgDSABn5DgE2AXL4QgDSABn56QDSAHL46QDSAHL4QgDSABn5QgAAAD756QDSAHL4QgAAAD75DgEAAHL42gI2Adb7pgM2AQr7pgPSAC/72gI2Adb7pgPSAC/7/wLSANb7/wLSANb7pgPSAC/7pgMAAAr7/wLSANb7pgMAAAr72gIAANb7QgDSAC/7QgA2AQr7DgE2Adb7QgDSAC/7DgE2Adb76QDSANb7QgAAAAr7QgDSAC/76QDSANb7QgAAAAr76QDSANb7DgEAANb72gI2ARj82gI2Adb7/wLSANb72gI2ARj8/wLSANb7/wLSABj8/wLSABj8/wLSANb72gIAANb7/wLSABj82gIAANb72gIAABj86QDSANb7DgE2Adb7DgE2ARj86QDSANb7DgE2ARj86QDSABj8DgEAANb76QDSANb76QDSABj8DgEAANb76QDSABj8DgEAABj86AM2AT75pgM2AT75pgPSABn56AM2AT75pgPSABn56APSABn56APSABn5pgPSABn5pgMAAD756APSABn5pgMAAD756AMAAD75pgPSAC/7pgM2AQr76AM2AQr7pgPSAC/76AM2AQr76APSAC/7pgMAAAr7pgPSAC/76APSAC/7pgMAAAr76APSAC/76AMAAAr7/wLSAHL42gI2AXL42gI2ATD4/wLSAHL42gI2ATD4/wLSADD42gIAAHL4/wLSAHL4/wLSADD42gIAAHL4/wLSADD42gIAADD4DgE2ATD4DgE2AXL46QDSAHL4DgE2ATD46QDSAHL46QDSADD46QDSADD46QDSAHL4DgEAAHL46QDSADD4DgEAAHL4DgEAADD4QgDSABn5QgA2AT75AAA2AT75QgDSABn5AAA2AT75AADSABn5QgAAAD75QgDSABn5AADSABn5QgAAAD75AADSABn5AAAAAD75AAA2AQr7QgA2AQr7QgDSAC/7AAA2AQr7QgDSAC/7AADSAC/7AADSAC/7QgDSAC/7QgAAAAr7AADSAC/7QgAAAAr7AAAAAAr7qQEAAFf+kgHSAG3+IgPSABf/qQEAAFf+DgEAAN786QDSAN785QF3ARv+IgM2AfL+kgHSAG3+DgE2Ad785QF3ARv+kgHSAG3+IgM2AfL+IgPSABf/kgHSAG3+IgPSAAH9/wLSAN782gIAAN78IgPSAAH92gIAAN78IgMAACb9IgM2ASb92gI2Ad78/wLSAN78IgM2ASb9/wLSAN78IgPSAAH96QDSAN78DgE2Ad78kgHSAG3+IgMAAPL+qQEAAFf+IgPSABf/qQEAAFf+6QDSAN78kgHSAG3+IgPSAAH9IgMAACb96AMAACb9IgPSAAH96AMAACb96APSAAH9IgPSAAH96APSAAH96AM2ASb9IgPSAAH96AM2ASb9IgM2ASb9IgM2AfL+6AM2AfL+6APSABf/IgM2AfL+6APSABf/IgPSABf/IgMAAPL+IgPSABf/6APSABf/IgMAAPL+6APSABf/6AMAAPL+/wLSAN78/wLSABj82gIAABj8/wLSAN782gIAABj82gIAAN78DgE2Ad786QDSAN786QDSABj8DgE2Ad786QDSABj8DgE2ARj8/wLSABj8/wLSAN782gI2Ad78/wLSABj82gI2Ad782gI2ARj86QDSAN78DgEAAN78DgEAABj86QDSAN78DgEAABj86QDSABj8JwYAAPH1PgbSANr1rgTSADH1JwYAAPH1wgYAAGr35wbSAGr36wV3AS32rgQ2AVb1PgbSANr1wgY2AWr36wV3AS32PgbSANr1rgQ2AVb1rgTSADH1PgbSANr1rgTSAEf30QTSAGr39gQAAGr3rgTSAEf39gQAAGr3rgQAACL3rgQ2ASL39gQ2AWr30QTSAGr3rgQ2ASL30QTSAGr3rgTSAEf35wbSAGr3wgY2AWr3PgbSANr1rgQAAFb1JwYAAPH1rgTSADH1JwYAAPH15wbSAGr3PgbSANr1rgTSAEf3rgQAACL36AMAACL3rgTSAEf36AMAACL36APSAEf3rgTSAEf36APSAEf36AM2ASL3rgTSAEf36AM2ASL3rgQ2ASL3rgQ2AVb16AM2AVb16APSADH1rgQ2AVb16APSADH1rgTSADH1rgQAAFb1rgTSADH16APSADH1rgQAAFb16APSADH16AMAAFb10QTSAGr30QTSADD49gQAADD40QTSAGr39gQAADD49gQAAGr3wgY2AWr35wbSAGr35wbSADD4wgY2AWr35wbSADD4wgY2ATD40QTSADD40QTSAGr39gQ2AWr30QTSADD49gQ2AWr39gQ2ATD45wbSAGr3wgYAAGr3wgYAADD45wbSAGr3wgYAADD45wbSADD4jgfSABn5jgc2AT75wgY2AXL4jgfSABn5wgY2AXL45wbSAHL4jgcAAD75jgfSABn55wbSAHL4jgcAAD755wbSAHL4wgYAAHL49gQ2AXL4KgQ2AT75KgTSABn59gQ2AXL4KgTSABn50QTSAHL40QTSAHL4KgTSABn5KgQAAD750QTSAHL4KgQAAD759gQAAHL4wgY2Adb7jgc2AQr7jgfSAC/7wgY2Adb7jgfSAC/75wbSANb75wbSANb7jgfSAC/7jgcAAAr75wbSANb7jgcAAAr7wgYAANb7KgTSAC/7KgQ2AQr79gQ2Adb7KgTSAC/79gQ2Adb70QTSANb7KgQAAAr7KgTSAC/70QTSANb7KgQAAAr70QTSANb79gQAANb7wgY2ARj8wgY2Adb75wbSANb7wgY2ARj85wbSANb75wbSABj85wbSABj85wbSANb7wgYAANb75wbSABj8wgYAANb7wgYAABj80QTSANb79gQ2Adb79gQ2ARj80QTSANb79gQ2ARj80QTSABj89gQAANb70QTSANb70QTSABj89gQAANb70QTSABj89gQAABj80Ac2AT75jgc2AT75jgfSABn50Ac2AT75jgfSABn50AfSABn50AfSABn5jgfSABn5jgcAAD750AfSABn5jgcAAD750AcAAD75jgfSAC/7jgc2AQr70Ac2AQr7jgfSAC/70Ac2AQr70AfSAC/7jgcAAAr7jgfSAC/70AfSAC/7jgcAAAr70AfSAC/70AcAAAr75wbSAHL4wgY2AXL4wgY2ATD45wbSAHL4wgY2ATD45wbSADD4wgYAAHL45wbSAHL45wbSADD4wgYAAHL45wbSADD4wgYAADD49gQ2ATD49gQ2AXL40QTSAHL49gQ2ATD40QTSAHL40QTSADD40QTSADD40QTSAHL49gQAAHL40QTSADD49gQAAHL49gQAADD4KgTSABn5KgQ2AT756AM2AT75KgTSABn56AM2AT756APSABn5KgQAAD75KgTSABn56APSABn5KgQAAD756APSABn56AMAAD756AM2AQr7KgQ2AQr7KgTSAC/76AM2AQr7KgTSAC/76APSAC/76APSAC/7KgTSAC/7KgQAAAr76APSAC/7KgQAAAr76AMAAAr7JwYAAFf+PgbSAG7+5wbSAN78JwYAAFf+rgQAAPL+rgTSABf/6wV3ARv+wgY2Ad78PgbSAG7+rgQ2AfL+6wV3ARv+PgbSAG7+wgY2Ad785wbSAN78PgbSAG7+0QTSAN78rgTSAAH9rgQAACb90QTSAN78rgQAACb99gQAAN789gQ2Ad78rgQ2ASb9rgTSAAH99gQ2Ad78rgTSAAH90QTSAN78rgTSABf/rgQ2AfL+PgbSAG7+wgYAAN78JwYAAFf+5wbSAN78JwYAAFf+rgTSABf/PgbSAG7+0QTSAN789gQAAN789gQAABj80QTSAN789gQAABj80QTSABj80QTSAN780QTSABj89gQ2ARj80QTSAN789gQ2ARj89gQ2Ad78wgY2Ad78wgY2ARj85wbSABj8wgY2Ad785wbSABj85wbSAN78wgYAAN785wbSAN785wbSABj8wgYAAN785wbSABj8wgYAABj8rgTSAAH96APSAAH96AMAACb9rgTSAAH96AMAACb9rgQAACb9rgQ2AfL+rgTSABf/6APSABf/rgQ2AfL+6APSABf/6AM2AfL+6APSAAH9rgTSAAH9rgQ2ASb96APSAAH9rgQ2ASb96AM2ASb9rgTSABf/rgQAAPL+6AMAAPL+rgTSABf/6AMAAPL+6APSABf/cggAAD75ZgjSABn50AfSABn5cggAAD750AfSABn50AcAAD75ZgjSAC/7cggAAAr70AcAAAr7ZgjSAC/70AcAAAr70AfSAC/7xAkAAD75ZgjSABn5cggAAD75ZgjSABn50AcsATr50AfSABn50AcsAQ77ZgjSAC/70AfSAC/7ZgjSAC/7xAkAAAr7cggAAAr70AcsATD4uAssATD4uAtYAjD40AcsATD4uAtYAjD40AdYAjD40AcsARj80AcsAQ770Ac2AQr70AcsARj80Ac2AQr70Ad3AbX60AcsARj80Ad3AbX60AdYAjD40AcsARj80AdYAjD40AdYAhj80Ad3AbX60Ad3AZP50AdYAjD40Ad3AZP50Ac2AT750AdYAjD40Ac2AT750AcsATr50AcsATD40Ac2AT750AcsATD40AdYAjD4uAssAQAA0AcsAQAA0AdYAgAAuAssAQAA0AdYAgAAuAtYAgAA0AcsAQAA0AcsARj80AdYAhj80AcsAQAA0AdYAhj80AdYAgAAoA8sAST6oA8sARj8oA9YAhj8oA8sAST6oA9YAhj82A5YAvj42A4sAfj4oA8sAST62A5YAvj42A5YAvj4uAtYAjD4rA0sATD4rA0sATD42A4sAfj42A5YAvj4uAssATD4rA0sATD4uAtYAjD4oA8sARj8oA8sAQAAoA9YAgAAoA8sARj8oA9YAgAAoA9YAhj8uAssAegDuAssAQAAuAtYAgAAuAssAegDuAtYAgAAuAtYAugDoA8sAegDuAssAegDuAtYAugDoA8sAegDuAtYAugDoA9YAugDoA8sAQAAiBMsAQAAiBNYAgAAoA8sAQAAiBNYAgAAoA9YAgAAoA8sAdAHoA8sAegDoA9YAugDoA8sAdAHoA9YAugDoA9YAtAHoA8sAcQJoA8sAdAHoA9YAtAHoA8sAcQJoA9YAtAHaBBYAvAKaBAsAfAKoA8sAcQJaBBYAvAKaBBYAvAKiBNYArgLlBEsAbgLlBEsAbgLaBAsAfAKaBBYAvAKiBMsAbgLlBEsAbgLiBNYArgLiBMsAQAAcBcsAQAAcBdYAgAAiBMsAQAAcBdYAgAAiBNYAgAAiBOo/cIGiBN6/ucGPhcAAAgHiBPe/sIG4BUAAPQGiBN6/ucGiBN6/ucG4BUAAPQGPhcAAAgHiBN6/tEEiBOo/fYE+BYAALoEiBPe/vYEiBN6/tEE+BYAALoEcBcsAbgLiBMsAbgLiBNYArgLcBcsAbgLiBNYArgLcBdYArgLWBssAfQBWBssAegDWBtYAugDWBssAfQBWBtYAugDkBpYAsgAkBosAcgAWBssAfQBkBpYAsgAkBpYAsgAcBdYAgAAZBksAQAAZBksAQAAkBosAcgAkBpYAsgAcBcsAQAAZBksAQAAcBdYAgAAWBssAegDWBssAdAHWBtYAtAHWBssAegDWBtYAtAHWBtYAugDZBksAbgLcBcsAbgLcBdYArgLZBksAbgLcBdYArgLkBpYAvAKkBosAfAKZBksAbgLkBpYAvAKkBpYAvAKWBtYAtAHWBssAcQJWBssAcQJkBosAfAKkBpYAvAKWBssAdAHWBssAcQJWBtYAtAH","routes":[{"name":"To the far Surface Exit","color":"route","len":312,"pts":[[[-54.8,0.0,-71.2],[-55.0,0.3,-70.0],[-55.0,0.3,-69.34],[-50.66,0.3,-65.0],[-50.0,0.3,-65.0],[-49.34,0.3,-65.0],[-45.0,0.3,-60.66],[-45.0,0.3,-60.0],[-45.0,0.3,-58.02],[-41.98,0.3,-55.0],[-40.0,0.3,-55.0],[-39.34,0.3,-55.0],[-35.0,0.3,-50.66],[-35.0,0.3,-50.0],[-35.0,0.3,-48.02],[-31.98,0.3,-45.0],[-30.0,0.3,-45.0],[-20.0,0.3,-45.0],[-15.0,3.3,-40.0],[-15.0,0.3,-38.02],[-11.98,0.3,-35.0],[-10.0,0.3,-35.0],[-9.34,0.3,-35.0],[-0.66,0.3,-35.0],[0.0,0.3,-35.0],[1.98,0.3,-35.0],[5.0,0.3,-31.98],[5.0,0.3,-30.0],[5.0,0.3,-29.34],[9.34,0.3,-25.0],[10.0,0.3,-25.0],[11.98,0.3,-25.0],[15.0,0.3,-21.98],[15.0,0.3,-20.0],[15.0,0.3,-19.34],[19.34,0.3,-15.0],[20.0,0.3,-15.0],[25.0,0.3,-10.0],[30.0,0.3,-5.0],[35.0,0.3,-0.0],[40.0,0.3,5.0],[50.0,0.3,5.0],[55.0,0.3,10.0],[58.51,0.3,12.65],[50.0,-5.7,15.0],[40.0,-11.7,15.0],[30.0,-11.7,15.0],[25.0,-11.7,20.0],[20.0,-11.7,25.0],[5.0,-17.7,25.0],[-0.0,-17.7,25.0],[-5.0,-17.7,30.0],[0.0,-14.7,35.0],[1.98,-17.7,35.0],[5.0,-17.7,38.02],[5.0,-17.7,40.0],[5.0,-17.7,41.98],[8.02,-17.7,45.0],[10.0,-17.7,45.0],[11.98,-17.7,45.0],[15.0,-17.7,48.02],[15.0,-17.7,50.0],[15.0,-17.7,50.66],[10.66,-17.7,55.0],[10.0,-17.7,55.0],[9.34,-17.7,55.0],[0.66,-17.7,55.0],[0.0,-17.7,55.0],[-1.98,-17.7,55.0],[-5.0,-17.7,51.98],[-5.0,-17.7,50.0],[-5.0,-17.7,48.02],[-8.02,-17.7,45.0],[-10.0,-17.7,45.0],[-15.0,-17.7,50.0],[-16.15,-18.0,53.41]]],"steps":[{"z":-0.0,"start":0,"text":"Walk 159 m south-east to the way down","a":[-54.8,0.0,-71.2],"drop":false},{"z":-6.0,"start":159,"text":"Walk 11 m to the way down","a":[58.51,0.3,12.65],"drop":false},{"z":-12.0,"start":169,"text":"Walk 36 m west to the way down","a":[50.0,-5.7,15.0],"drop":false},{"z":-18.0,"start":205,"text":"Walk 107 m south-west to Surface Exit","a":[20.0,-11.7,25.0],"drop":false}],"drops":[[20.0,-11.7,25.0,5.0,-17.7,25.0]],"jumps":[],"levels":4},{"name":"Gardener sweep","color":"alt","len":456,"pts":[[[-54.8,0.0,-71.2],[-55.0,0.3,-70.0],[-55.0,0.3,-69.34],[-50.66,0.3,-65.0],[-50.0,0.3,-65.0],[-49.34,0.3,-65.0],[-45.0,0.3,-60.66],[-45.0,0.3,-60.0],[-45.0,0.3,-58.02],[-41.98,0.3,-55.0],[-40.0,0.3,-55.0],[-39.34,0.3,-55.0],[-35.0,0.3,-50.66],[-35.0,0.3,-50.0],[-35.0,0.3,-48.02],[-31.98,0.3,-45.0],[-30.0,0.3,-45.0],[-20.0,0.3,-45.0],[-15.0,3.3,-40.0],[-15.0,0.3,-38.02],[-11.98,0.3,-35.0],[-10.0,0.3,-35.0],[-9.34,0.3,-35.0],[-6.89,0.01,-32.57]],[[-6.89,0.01,-32.57],[-5.0,0.3,-30.66],[-5.0,0.3,-30.0],[-5.0,0.3,-29.34],[-5.0,0.3,-20.66],[-5.0,0.3,-20.0],[-5.0,0.3,-18.02],[-1.98,0.3,-15.0],[0.0,0.3,-15.0],[0.66,0.3,-15.0],[3.13,0.01,-16.08]],[[3.13,0.01,-16.08],[9.34,0.3,-15.0],[10.0,0.3,-15.0],[10.66,0.3,-15.0],[19.34,0.3,-15.0],[20.0,0.3,-15.0],[25.0,0.3,-10.0],[30.0,0.3,-5.0],[35.0,0.3,-0.0],[37.64,0.41,2.3]],[[37.64,0.41,2.3],[40.0,0.3,5.0],[45.0,0.3,10.0],[48.09,0.01,11.9]],[[48.09,0.01,11.9],[50.0,0.3,15.0],[60.0,0.3,15.0],[62.31,0.01,13.64]],[[62.31,0.01,13.64],[60.0,0.3,15.0],[58.51,0.3,12.65],[50.0,-5.7,15.0],[40.0,-11.7,15.0],[32.28,-11.99,15.16]],[[32.28,-11.99,15.16],[30.0,-11.7,15.0],[25.0,-11.7,20.0],[20.0,-11.7,25.0],[5.0,-17.7,25.0],[-0.0,-17.7,25.0],[-5.0,-17.7,30.0],[-8.85,-18.0,31.52]],[[-8.85,-18.0,31.52],[0.0,-14.7,35.0],[1.98,-17.7,35.0],[5.0,-17.7,38.02],[5.92,-18.0,39.63]],[[5.92,-18.0,39.63],[5.0,-17.7,40.0],[5.0,-17.7,41.98],[8.02,-17.7,45.0],[10.0,-17.7,45.0],[11.98,-17.7,45.0],[15.0,-17.7,48.02],[15.0,-17.7,50.0],[15.0,-17.7,50.66],[10.66,-17.7,55.0],[10.0,-17.7,55.0],[9.34,-17.7,55.0],[5.0,-18.0,55.0]],[[5.0,-18.0,55.0],[5.0,-17.7,59.34],[5.0,-17.7,60.0],[5.0,-17.7,61.98],[8.02,-17.7,65.0],[10.0,-17.7,65.0],[10.66,-17.7,65.0],[15.0,-17.7,69.34],[15.0,-17.7,70.0],[14.46,-18.0,71.91]],[[14.46,-18.0,71.91],[15.0,-17.7,70.0],[15.0,-17.7,69.34],[15.0,-17.7,60.66],[15.0,-17.7,60.0],[15.0,-17.7,59.34],[19.34,-17.7,55.0],[20.0,-17.7,55.0],[30.0,-17.7,55.0],[31.72,-18.0,54.06]],[[31.72,-18.0,54.06],[40.0,-17.7,55.0],[45.18,-18.0,58.73]],[[45.18,-18.0,58.73],[40.0,-17.7,55.0],[30.0,-17.7,55.0],[20.0,-14.7,55.0],[19.34,-17.7,55.0],[10.66,-17.7,55.0],[10.0,-17.7,55.0],[9.34,-17.7,55.0],[0.66,-17.7,55.0],[0.0,-17.7,55.0],[-1.98,-17.7,55.0],[-5.0,-17.7,51.98],[-5.0,-17.7,50.0],[-5.0,-17.7,48.02],[-8.02,-17.7,45.0],[-10.0,-17.7,45.0],[-15.0,-17.7,50.0],[-20.0,-17.7,55.0],[-23.01,-18.0,52.81]]],"steps":[{"z":-0.0,"start":0,"text":"Walk 72 m south-east to group 1 (1 Olthoi Gardener)","a":[-54.8,0.0,-71.2],"drop":false},{"z":-0.0,"start":72,"text":"Walk 25 m south-east to group 2 (2 Olthoi Gardener)","a":[-6.89,0.01,-32.57],"drop":false},{"z":-0.0,"start":97,"text":"Walk 42 m south-east to group 3 (1 Olthoi Gardener)","a":[3.13,0.01,-16.08],"drop":false},{"z":-0.0,"start":138,"text":"Walk 14 m south-east to group 4 (1 Olthoi Gardener)","a":[37.64,0.41,2.3],"drop":false},{"z":-0.0,"start":153,"text":"Walk 16 m east to group 5 (1 Olthoi Gardener)","a":[48.09,0.01,11.9],"drop":false},{"z":-0.0,"start":169,"text":"Walk 5 m to the way down","a":[62.31,0.01,13.64],"drop":false},{"z":-6.0,"start":174,"text":"Walk 11 m to the way down","a":[58.51,0.3,12.65],"drop":false},{"z":-12.0,"start":185,"text":"Walk 19 m west to group 6 (1 Olthoi Gardener)","a":[50.0,-5.7,15.0],"drop":false},{"z":-12.0,"start":205,"text":"Walk 16 m south-west to the way down","a":[32.28,-11.99,15.16],"drop":false},{"z":-18.0,"start":221,"text":"Walk 32 m west to group 7 (1 Olthoi Gardener)","a":[20.0,-11.7,25.0],"drop":false},{"z":-18.0,"start":253,"text":"Walk 20 m south-east to group 8 (1 Olthoi Gardener)","a":[-8.85,-18.0,31.52],"drop":false},{"z":-18.0,"start":273,"text":"Walk 30 m south to group 9 (1 Olthoi Gardener)","a":[5.92,-18.0,39.63],"drop":false},{"z":-18.0,"start":303,"text":"Walk 23 m south-east to group 10 (1 Olthoi Gardener)","a":[5.0,-18.0,55.0],"drop":false},{"z":-18.0,"start":326,"text":"Walk 31 m north-east to group 11 (3 Olthoi Gardener)","a":[14.46,-18.0,71.91],"drop":false},{"z":-18.0,"start":357,"text":"Walk 15 m east to group 12 (2 Olthoi Gardener)","a":[31.72,-18.0,54.06],"drop":false},{"z":-18.0,"start":372,"text":"Walk 84 m west to group 13 (1 Olthoi Gardener)","a":[45.18,-18.0,58.73],"drop":false}],"drops":[],"levels":4,"sweep":true,"groups":13}],"mons":[{"name":"Olthoi Gardener","level":30,"n":17,"res":{"slash":0.75,"pierce":1.0,"bludgeon":1.0,"fire":0.75,"cold":0.75,"acid":0.25,"electric":0.4},"target":true},{"name":"Olthoi Harvester","level":20,"n":6,"res":{"slash":0.75,"pierce":1.0,"bludgeon":1.0,"fire":0.75,"cold":0.75,"acid":0.25,"electric":0.4},"target":true}],"spawns":[[-23.01,-18.0,52.81,1],[-8.85,-18.0,31.52,1],[5.92,-18.0,39.63,1],[14.46,-18.0,71.91,1],[26.47,-18.0,48.24,1],[29.55,-18.0,53.38,1],[31.72,-18.0,54.06,1],[42.48,-18.0,55.52,1],[45.18,-18.0,58.73,1],[43.74,-18.0,61.37,1],[32.28,-11.99,15.16,1],[-36.64,0.01,-55.06,1],[-26.43,0.01,-43.71,1],[-10.91,0.01,-24.76,1],[-6.12,0.01,-35.47,1],[-6.89,0.01,-32.57,1],[3.13,0.01,-16.08,1],[13.16,0.01,-14.82,1],[37.64,0.41,2.3,1],[48.09,0.01,11.9,1],[62.31,0.01,13.64,1],[5.0,-18.0,55.0,1],[34.62,-18.0,45.22,1]],"objs":[{"k":"exit","n":"Surface Exit","p":[-16.15,-18.0,53.41],"z":-18.0,"c":42139910},{"k":"door","n":"Door","p":[14.99,-18.0,70.47],"z":-18.0,"c":42139948},{"k":"exit","n":"Surface Exit","p":[-60.6,0.01,-64.92],"z":0.0,"c":42139993},{"k":"door","n":"Door","p":[-10.4,0.01,-25.0],"z":0.0,"c":42140027}],"named":[{"n":"Surface Exit","p":[-16.15,-18.0,53.41],"k":"goal","c":42139910}],"ents":[{"n":"Entrance","p":[-54.8,0.0,-71.2],"c":42139994}],"traps":[{"p":[-15.0,-12.0,55.0],"z":-12,"land":-18}]}</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById('data').textContent);
+  const M = D.meta;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const col = n => new THREE.Color(css(n) || '#888');
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const fmtZ = z => { z = Math.round(z); return (z > 0 ? '+' : z < 0 ? '−' : '') + Math.abs(z); };
+  const fmtM = n => n.toLocaleString('en-GB') + ' m';
+
+  // ---------- panel text
+  document.getElementById('title').textContent = M.title;
+  document.getElementById('subtitle').textContent = M.subtitle;
+  const R0 = D.routes[0];
+  const stats = [];
+  if (R0) {
+    stats.push([fmtM(R0.len), R0.sweep ? 'sweep length' : 'route length']);
+    stats.push([String(R0.levels), R0.levels === 1 ? 'floor' : 'floors on route']);
+    const nj = (R0.jumps || []).length;
+    stats.push(R0.sweep ? [String(R0.groups), 'spawn groups'] : nj ? [R0.drops.length + ' + ' + nj, 'drops + jumps'] : [String(R0.drops.length), R0.drops.length === 1 ? 'drop needed' : 'drops needed']);
+  }
+  (M.facts || []).forEach(f => stats.push([f[1], f[0]]));
+  document.getElementById('stats').innerHTML = stats.slice(0, 6).map(s => '<div class="stat"><b>' + esc(s[0]) + '</b><span>' + esc(s[1]) + '</span></div>').join('');
+  const notes = (M.notes || []).slice();
+  if (D.traps.length && !notes.some(n => /shaft|portal out|kicks you out/i.test(n.body + n.title)))
+    notes.unshift({ kind: 'warn', title: 'Shaft trap', body: 'Dropping down the marked shaft lands you on a portal out of the dungeon. The route avoids it.' });
+  const nJumps = D.routes.reduce((a, r) => a + (r.jumps || []).length, 0);
+  if (nJumps) notes.unshift({ kind: 'warn', title: 'Jumps on the route', body: 'The route crosses ' + (nJumps === 1 ? 'an open gap' : nJumps + ' open gaps') + ' with a running jump (marked "Jump the gap"). The game files don\'t say whether your Jump skill clears it, so if you fall short, look for another way round.' });
+  const nLocked = D.objs.filter(o => o.k === 'locked').length;
+  if (nLocked && !notes.some(n => /locked/i.test(n.title + n.body)))
+    notes.push({ kind: 'info', title: 'Locked doors', body: nLocked + (nLocked === 1 ? ' door here is' : ' doors here are') + ' locked (dark red boxes). The route may need a key or a lever.' });
+  document.getElementById('notes').innerHTML = notes.map(n => '<p class="note ' + esc(n.kind || 'info') + '"><strong>' + esc(n.title) + '</strong>' + esc(n.body) + '</p>').join('');
+  if (M.steps && M.steps.length) { document.getElementById('qwrap').hidden = false; document.getElementById('qsteps').innerHTML = M.steps.map(s => '<li>' + esc(s) + '</li>').join(''); }
+  document.getElementById('srcline').textContent = 'Built from the AC client files (client_cell_1.dat, landblock 0x' + M.lb + ') and the ACE-World-16PY spawn data. Routes follow the room connections, with falls checked so no drop lands on a portal. Spawn counts are maximums.';
+
+  const ELS = [['slash', 'Slash'], ['pierce', 'Pierce'], ['bludgeon', 'Bludgeon'], ['fire', 'Fire'], ['cold', 'Cold'], ['acid', 'Acid'], ['electric', 'Lightning']];
+  const pct = v => Math.round(v * 100) + '%';
+  const mons = D.mons.slice().sort((a, b) => (b.target - a.target) || (b.n - a.n));
+  let mh = '<thead><tr><th>Monster</th><th>Level</th><th>Spawns</th><th>Best</th><th>Worst</th></tr></thead><tbody>';
+  mons.forEach(m => {
+    const r = ELS.filter(e => m.res && m.res[e[0]] != null).map(e => [e[1], m.res[e[0]]]);
+    let best = '', worst = '';
+    if (r.length) {
+      const hi = Math.max(...r.map(x => x[1])), lo = Math.min(...r.map(x => x[1]));
+      best = r.filter(x => x[1] === hi).map(x => x[0]).join(', ') + ' ' + pct(hi);
+      worst = r.filter(x => x[1] === lo).map(x => x[0]).join(', ') + ' ' + pct(lo);
+      if (hi === lo) { best = 'All ' + pct(hi); worst = ''; }
+    }
+    mh += '<tr class="' + (m.target ? 'tgt' : '') + '"><td>' + esc(m.name) + '</td><td class="n">' + (m.level ?? '') + '</td><td class="n">' + m.n + '</td><td>' + esc(best) + '</td><td>' + esc(worst) + '</td></tr>';
+  });
+  document.getElementById('mon').innerHTML = mh + '</tbody>';
+
+  // ---------- three
+  const view = document.getElementById('view');
+  const canvas = document.getElementById('gl');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.localClippingEnabled = true;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.5, 4000);
+  const controls = new THREE.OrbitControls(camera, canvas);
+  controls.enableDamping = true; controls.dampingFactor = 0.08; controls.screenSpacePanning = true;
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x445066, 0.85));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.55); sun.position.set(60, 200, 90); scene.add(sun);
+
+  let K = parseFloat(document.getElementById('spread').value);
+  const clipTop = new THREE.Plane(new THREE.Vector3(0, -1, 0), 1e5);
+  const clipBot = new THREE.Plane(new THREE.Vector3(0, 1, 0), 1e5);
+  const clips = [clipTop, clipBot];
+  const ZMIN = D.zmin, ZMAX = D.zmax;
+  const midY = (ZMIN + ZMAX) / 2;
+
+  function decode(b64) {
+    const s = atob(b64), u = new Uint8Array(s.length);
+    for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i);
+    const a = new Int16Array(u.buffer), f = new Float32Array(a.length);
+    for (let i = 0; i < a.length; i++) f[i] = a[i] / 100;
+    return f;
+  }
+  const baseFloor = decode(D.floor), baseWall = decode(D.wall);
+  function makeGeo(base) {
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(base.length), 3));
+    g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(base.length), 3));
+    return g;
+  }
+  const floorGeo = makeGeo(baseFloor), wallGeo = makeGeo(baseWall);
+  const floorMat = new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide, clippingPlanes: clips });
+  const wallMat = new THREE.MeshLambertMaterial({ vertexColors: true, side: THREE.DoubleSide, transparent: true, opacity: 0.28, depthWrite: false, clippingPlanes: clips });
+  const ghostMat = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide, transparent: true, opacity: 0.07, depthWrite: false });
+  const floorMesh = new THREE.Mesh(floorGeo, floorMat), wallMesh = new THREE.Mesh(wallGeo, wallMat), ghost = new THREE.Mesh(floorGeo, ghostMat);
+  ghost.visible = false; wallMesh.renderOrder = 2;
+  scene.add(floorMesh, wallMesh, ghost);
+  function fillGeo(g, base, wallTint) {
+    const p = g.attributes.position.array, c = g.attributes.color.array;
+    const hi = col('--high'), lo = col('--deep'), tmp = new THREE.Color(), white = new THREE.Color(1, 1, 1);
+    const span = Math.max(6, ZMAX - ZMIN);
+    for (let i = 0; i < base.length; i += 3) {
+      p[i] = base[i]; p[i + 1] = base[i + 1] * K; p[i + 2] = base[i + 2];
+      const t = Math.min(1, Math.max(0, (base[i + 1] - ZMIN) / span));
+      tmp.copy(lo).lerp(hi, t); if (wallTint) tmp.lerp(white, 0.15);
+      c[i] = tmp.r; c[i + 1] = tmp.g; c[i + 2] = tmp.b;
+    }
+    g.attributes.position.needsUpdate = true; g.attributes.color.needsUpdate = true;
+    g.computeVertexNormals(); g.computeBoundingSphere();
+  }
+  const V = p => new THREE.Vector3(p[0], p[1] * K, p[2]);
+
+  // routes
+  const routeObjs = [];
+  let current = 0;
+  const vis = { route0: true, spawns: true, targets: true, portals: true, doors: true, chests: true, walls: true };
+  D.routes.forEach((r, i) => { vis['route' + i] = i === 0; });
+  function buildRoutes() {
+    routeObjs.forEach(o => {
+      o.group.children.forEach(m => m.geometry.dispose());
+      o.mat.dispose(); o.lineMat.dispose();
+      scene.remove(o.group);
+    });
+    routeObjs.length = 0;
+    D.routes.forEach((r, ri) => {
+      const group = new THREE.Group();
+      const mat = new THREE.MeshBasicMaterial({ color: col('--' + r.color), clippingPlanes: clips });
+      const lineMat = new THREE.LineBasicMaterial({ color: col('--' + r.color), transparent: true, opacity: 0.3 });
+      const runs = [];
+      r.pts.forEach(leg => { let run = []; leg.forEach(p => { if (p === null) { if (run.length > 1) runs.push(run); run = []; } else run.push(new THREE.Vector3(p[0], p[1] * K + 0.5, p[2])); }); if (run.length > 1) runs.push(run); });
+      const flat = [], cum = [0];
+      runs.forEach(run => {
+        const path = new THREE.CurvePath();
+        for (let i = 1; i < run.length; i++) if (run[i].distanceTo(run[i - 1]) > 0.01) path.add(new THREE.LineCurve3(run[i - 1], run[i]));
+        if (!path.curves.length) return;
+        const tube = new THREE.Mesh(new THREE.TubeGeometry(path, Math.max(16, path.curves.length * 4), ri === 0 ? 0.55 : 0.42, 6, false), mat);
+        tube.renderOrder = 3; group.add(tube);
+        const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(run), lineMat); line.userData.ghost = true; group.add(line);
+        run.forEach((p, i) => {
+          if (flat.length) cum.push(cum[cum.length - 1] + (i ? p.distanceTo(run[i - 1]) : 0));
+          flat.push(p);
+        });
+      });
+      scene.add(group);
+      routeObjs.push({ group, mat, lineMat, pts: flat, cum, len: cum[cum.length - 1] || 1 });
+    });
+    applyVis();
+  }
+
+  // markers
+  const sphere = new THREE.SphereGeometry(0.7, 10, 8);
+  const spawnMat = new THREE.MeshLambertMaterial({ clippingPlanes: clips });
+  const targetMat = new THREE.MeshLambertMaterial({ clippingPlanes: clips });
+  const plain = D.spawns.filter(s => !s[3]), tg = D.spawns.filter(s => s[3]);
+  const spawnMesh = new THREE.InstancedMesh(sphere, spawnMat, Math.max(1, plain.length)); spawnMesh.count = plain.length;
+  const targetMesh = new THREE.InstancedMesh(new THREE.SphereGeometry(1.0, 12, 8), targetMat, Math.max(1, tg.length)); targetMesh.count = tg.length;
+  scene.add(spawnMesh, targetMesh);
+  const kinds = { door: ['--door', 'box'], locked: ['--locked', 'box'], lever: ['--lever', 'cyl'], chest: ['--chest', 'chest'], trap: ['--trap', 'tri'], exit: ['--exit', 'ring'], tele: ['--tele', 'ring'] };
+  const geos = { box: new THREE.BoxGeometry(1.4, 2.4, 1.4), cyl: new THREE.CylinderGeometry(0.25, 0.25, 1.8, 8), chest: new THREE.BoxGeometry(1.6, 1.0, 1.0), tri: new THREE.TetrahedronGeometry(0.9), ring: new THREE.TorusGeometry(1.6, 0.35, 8, 24) };
+  const objMats = {}, objMeshes = [];
+  Object.keys(kinds).forEach(k => { objMats[k] = new THREE.MeshLambertMaterial({ clippingPlanes: clips, side: THREE.DoubleSide }); });
+  D.objs.forEach(o => { const m = new THREE.Mesh(geos[kinds[o.k][1]], objMats[o.k]); if (kinds[o.k][1] === 'ring') m.rotation.x = Math.PI / 2; m.userData = o; scene.add(m); objMeshes.push(m); });
+  const goalMat = new THREE.MeshBasicMaterial({ clippingPlanes: clips }), startMat = new THREE.MeshBasicMaterial({ clippingPlanes: clips }), trapShaftMat = new THREE.MeshBasicMaterial({ clippingPlanes: clips, transparent: true, opacity: 0.8 });
+  const goals = D.named.map(n => { const m = new THREE.Mesh(new THREE.OctahedronGeometry(1.5), goalMat); scene.add(m); return m; });
+  const starts = D.ents.map(e => { const m = new THREE.Mesh(new THREE.ConeGeometry(1.2, 2.6, 4), startMat); m.rotation.x = Math.PI; scene.add(m); return m; });
+  const shafts = D.traps.map(t => { const m = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 2.2, 0.3, 24), trapShaftMat); scene.add(m); return m; });
+  const runner = new THREE.Mesh(new THREE.SphereGeometry(1.0, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+  scene.add(runner);
+
+  const labelsEl = document.getElementById('labels');
+  const labels = [];
+  function addLabel(text, cls, getPos, group) { const el = document.createElement('div'); el.className = 'lab ' + cls; el.textContent = text; labelsEl.appendChild(el); labels.push({ el, getPos, group }); }
+  D.ents.forEach(e => addLabel(e.n === 'Entrance' ? 'Start' : 'Start: ' + e.n, 'start', () => V(e.p).add(new THREE.Vector3(0, 2.2, 0)), 'always'));
+  D.named.forEach(n => addLabel(n.n, 'goal', () => V(n.p).add(new THREE.Vector3(0, 2.4, 0)), 'always'));
+  D.traps.forEach(t => addLabel('Shaft trap: portal out', 'trap', () => V(t.p).add(new THREE.Vector3(0, 1.2, 0)), 'always'));
+  const exits = D.objs.filter(o => o.k === 'exit' || o.k === 'tele');
+  if (exits.length <= 10) exits.forEach(o => addLabel(o.k === 'tele' ? o.n : (/surface/i.test(o.n) ? 'Exit portal' : o.n), o.k, () => V(o.p).add(new THREE.Vector3(0, 1.6, 0)), 'portals'));
+  D.routes.forEach((r, ri) => r.drops.forEach(d => addLabel('Drop down here', 'drop', () => V(d.slice(0, 3)).add(new THREE.Vector3(0, 2, 0)), 'route' + ri)));
+  D.routes.forEach((r, ri) => (r.jumps || []).forEach(d => addLabel('Jump the gap', 'drop', () => V(d.slice(0, 3)).add(new THREE.Vector3(0, 2, 0)), 'route' + ri)));
+
+  function placeMarkers() {
+    const m = new THREE.Matrix4();
+    plain.forEach((p, i) => { m.makeTranslation(p[0], p[1] * K + 1, p[2]); spawnMesh.setMatrixAt(i, m); });
+    tg.forEach((p, i) => { m.makeTranslation(p[0], p[1] * K + 1.3, p[2]); targetMesh.setMatrixAt(i, m); });
+    spawnMesh.instanceMatrix.needsUpdate = true; targetMesh.instanceMatrix.needsUpdate = true;
+    objMeshes.forEach(o => { const p = o.userData.p; const h = { box: 1.2, cyl: 0.9, chest: 0.5, tri: 0.6, ring: 0.4 }[kinds[o.userData.k][1]]; o.position.set(p[0], p[1] * K + h, p[2]); });
+    goals.forEach((g, i) => g.position.copy(V(D.named[i].p)).add(new THREE.Vector3(0, 1.4, 0)));
+    starts.forEach((s, i) => s.position.copy(V(D.ents[i].p)).add(new THREE.Vector3(0, 1.6, 0)));
+    shafts.forEach((s, i) => s.position.copy(V(D.traps[i].p)).add(new THREE.Vector3(0, 0.2, 0)));
+  }
+  function applyColors() {
+    scene.background = col('--scene');
+    fillGeo(floorGeo, baseFloor, false); fillGeo(wallGeo, baseWall, true);
+    spawnMat.color = col('--spawn'); targetMat.color = col('--target');
+    Object.keys(kinds).forEach(k => objMats[k].color = col(kinds[k][0]));
+    goalMat.color = col('--route'); startMat.color = col('--start'); trapShaftMat.color = col('--trap');
+    buildRoutes();
+  }
+
+  // toggles
+  const tdefs = [];
+  D.routes.forEach((r, i) => tdefs.push(['route' + i, r.name, '--' + r.color]));
+  if (plain.length) tdefs.push(['spawns', 'Monster spawns', '--spawn']);
+  if (tg.length) tdefs.push(['targets', 'Task targets', '--target']);
+  if (exits.length) tdefs.push(['portals', 'Portals', '--exit']);
+  if (D.objs.some(o => /door|locked|lever|trap/.test(o.k))) tdefs.push(['doors', 'Doors, levers, traps', '--door']);
+  if (D.objs.some(o => o.k === 'chest')) tdefs.push(['chests', 'Chests', '--chest']);
+  tdefs.push(['walls', 'Walls', '--high']);
+  const tg_el = document.getElementById('toggles');
+  tg_el.innerHTML = tdefs.map(t => '<button class="chip" type="button" aria-pressed="' + vis[t[0]] + '" data-k="' + t[0] + '"><i style="background:var(' + t[2] + ')"></i>' + esc(t[1]) + '</button>').join('');
+  tg_el.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => { const k = b.dataset.k; vis[k] = !vis[k]; b.setAttribute('aria-pressed', vis[k]); applyVis(); }));
+  function setChip(k, v) { vis[k] = v; const b = tg_el.querySelector('[data-k="' + k + '"]'); if (b) b.setAttribute('aria-pressed', v); }
+
+  let focus = null;
+  function applyVis() {
+    routeObjs.forEach((o, i) => { o.group.visible = !!vis['route' + i]; o.group.children.forEach(c => { if (c.userData.ghost) c.visible = focus !== null; }); });
+    spawnMesh.visible = vis.spawns; targetMesh.visible = vis.targets; wallMesh.visible = vis.walls;
+    objMeshes.forEach(o => { const k = o.userData.k; o.visible = (k === 'exit' || k === 'tele') ? vis.portals : k === 'chest' ? vis.chests : vis.doors; });
+    runner.visible = !!vis['route' + current] && !!routeObjs[current]?.pts.length;
+  }
+
+  // focus
+  const pill = document.getElementById('focusPill');
+  const levels = D.levels;
+  function bandTop(z) { const above = levels.filter(l => l > z + 0.5); return above.length ? Math.min(...above) - 0.4 : z + 7; }
+  function setFocus(z, at) {
+    focus = z;
+    if (z === null) { clipTop.constant = 1e5; clipBot.constant = 1e5; ghost.visible = false; pill.innerHTML = 'Showing <b>all levels</b>'; }
+    else { clipTop.constant = Math.max(bandTop(z), z + 4.5) * K; clipBot.constant = -(z - 0.6) * K; ghost.visible = true; pill.innerHTML = 'Showing level <b>' + fmtZ(z) + '</b>'; }
+    applyVis();
+    document.querySelectorAll('.lvl').forEach(r => r.setAttribute('aria-current', String(focus !== null && Number(r.dataset.z) === focus)));
+    if (at) flyTo(V(at), z === null ? homeDist : Math.max(50, Math.min(110, homeDist * 0.4)));
+  }
+  document.getElementById('allBtn').addEventListener('click', () => setFocus(null, [0, midY, 0]));
+
+  let fly = null;
+  const homeDist = Math.max(80, Math.max(D.ext[0], D.ext[1], (ZMAX - ZMIN) * 1.6) * 1.25);
+  function flyTo(target, dist) {
+    const dir = camera.position.clone().sub(controls.target).normalize();
+    if (dir.y < 0.45) { dir.y = 0.45; dir.normalize(); }
+    fly = { t0: performance.now(), fromT: controls.target.clone(), toT: target.clone(), fromP: camera.position.clone(), toP: target.clone().add(dir.multiplyScalar(dist)) };
+    if (reduce) { controls.target.copy(fly.toT); camera.position.copy(fly.toP); fly = null; }
+  }
+  function resetView() { fly = null; controls.target.set(0, midY * K, 0); camera.position.set(homeDist * 0.6, midY * K + homeDist * 0.55, homeDist * 0.7); }
+  document.getElementById('resetBtn').addEventListener('click', () => { setFocus(null); resetView(); });
+
+  document.getElementById('spread').addEventListener('input', e => {
+    const old = K; K = parseFloat(e.target.value);
+    controls.target.y *= K / old; camera.position.y *= K / old;
+    fillGeo(floorGeo, baseFloor, false); fillGeo(wallGeo, baseWall, true);
+    placeMarkers(); buildRoutes();
+    if (focus !== null) setFocus(focus);
+  });
+
+  // route steps
+  const tabs = document.getElementById('tabs');
+  if (!D.routes.length) document.getElementById('rwrap').hidden = true;
+  tabs.innerHTML = D.routes.map((r, i) => '<button type="button" role="tab" aria-selected="' + (i === 0) + '" data-i="' + i + '">' + esc(r.name) + ' · ' + fmtM(r.len) + '</button>').join('');
+  if (D.routes.length < 2) tabs.hidden = true;
+  tabs.querySelectorAll('button').forEach(t => t.addEventListener('click', () => {
+    current = Number(t.dataset.i);
+    tabs.querySelectorAll('button').forEach(x => x.setAttribute('aria-selected', String(x === t)));
+    setChip('route' + current, true); applyVis(); renderSteps();
+  }));
+  function renderSteps() {
+    const box = document.getElementById('levels'); box.innerHTML = '';
+    (D.routes[current] || { steps: [] }).steps.forEach(s => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'lvl' + (s.drop ? ' drop' : ''); b.dataset.z = s.z;
+      b.innerHTML = '<span class="z">' + fmtZ(s.z) + '</span><span class="d">' + esc(s.text) + '</span><span class="m">' + fmtM(s.start) + '</span>';
+      b.addEventListener('click', () => setFocus(focus === s.z ? null : s.z, focus === s.z ? [0, midY, 0] : s.a));
+      box.appendChild(b);
+    });
+    setFocus(focus);
+  }
+
+  function resize() { const w = view.clientWidth, h = view.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / Math.max(1, h); camera.updateProjectionMatrix(); }
+  new ResizeObserver(resize).observe(view);
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyColors);
+  new MutationObserver(applyColors).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  const needle = document.getElementById('needle');
+  const tmpV = new THREE.Vector3();
+  let runT = 0, last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (fly) {
+      const t = Math.min(1, (now - fly.t0) / 700), e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      controls.target.lerpVectors(fly.fromT, fly.toT, e); camera.position.lerpVectors(fly.fromP, fly.toP, e);
+      if (t >= 1) fly = null;
+    }
+    controls.update();
+    const r = routeObjs[current];
+    if (r && r.pts.length > 1) {
+      if (!reduce) runT = (runT + dt * 30 / r.len) % 1;
+      const d = runT * r.len; let i = 1;
+      while (i < r.cum.length - 1 && r.cum[i] < d) i++;
+      const seg = r.cum[i] - r.cum[i - 1] || 1;
+      runner.position.lerpVectors(r.pts[i - 1], r.pts[i], Math.min(1, Math.max(0, (d - r.cum[i - 1]) / seg)));
+    }
+    goals.forEach(g => g.rotation.y += reduce ? 0 : dt * 1.2);
+    needle.parentElement.style.transform = 'rotate(' + (controls.getAzimuthalAngle() * 180 / Math.PI) + 'deg)';
+    renderer.render(scene, camera);
+    const w = view.clientWidth, h = view.clientHeight;
+    labels.forEach(L => {
+      const p = L.getPos(); const yRaw = p.y / K;
+      const hiddenByFocus = focus !== null && (yRaw > Math.max(bandTop(focus), focus + 4.5) + 2.5 || yRaw < focus - 0.6);
+      const hiddenByToggle = L.group !== 'always' && !vis[L.group];
+      tmpV.copy(p).project(camera);
+      const off = tmpV.z < -1 || tmpV.z > 1 || hiddenByFocus || hiddenByToggle || Math.abs(tmpV.x) > 1.1 || Math.abs(tmpV.y) > 1.1;
+      L.el.hidden = off;
+      if (!off) L.el.style.transform = 'translate(' + ((tmpV.x + 1) / 2 * w) + 'px,' + ((1 - tmpV.y) / 2 * h) + 'px) translate(-50%, calc(-100% - 6px))';
+    });
+    requestAnimationFrame(frame);
+  }
+  applyColors(); placeMarkers(); resetView(); renderSteps(); resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+<script src="nav.js"></script>
+</body></html>

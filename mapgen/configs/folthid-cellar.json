@@ -1,0 +1,77 @@
+{
+ "landblock": "013B",
+ "slug": "folthid-cellar",
+ "title": "Folthid Cellar",
+ "group": "Facility Hub 10-15",
+ "subtitle": "Take the Dull Dagger from the deep chest or the Dagger of Tikola from Aste Sclavus",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Folthid Cellar Portal"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the Large Chest (Dull Dagger)",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Large Chest",
+     "index": 0
+    }
+   ]
+  },
+  {
+   "name": "To Aste Sclavus (Dagger of Tikola)",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Aste Sclavus"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Aste Sclavus",
+  "Se Sclavus"
+ ],
+ "steps": [
+  "In the Facility Hub, take the Folthid Warden's portal to the Folthid estate (about 8.8S, 53.7E, near Yanshi).",
+  "Talk to Raxanza Folthid. She sends you down into the cellar.",
+  "Get the Dull Dagger from the Large Chest at the bottom, or the Dagger of Tikola from Aste Sclavus.",
+  "Bring either dagger back to the Warden."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Where the daggers are",
+   "body": "One Large Chest on the lowest level (127, -13, -78) refills with a Dull Dagger. Aste Sclavus carries the Dagger of Tikola. Either dagger completes the quest."
+  },
+  {
+   "kind": "warn",
+   "title": "Locked doors",
+   "body": "The Cellar Door at the entrance needs the Folthid Cellar key, and the door next to the lowest chest needs the Folthid Exit key. The data does not say who hands these out, so Raxanza probably does. There are four levers on the way down."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Slash and fire work on most things here. Liches take full slash and fire but only 0.2 cold. Sclavus take full slash and cold, 0.75 fire, and only 0.46 bludgeon. Limestone Golems take full bludgeon and acid but 0.3 fire."
+  },
+  {
+   "kind": "info",
+   "title": "Leaving",
+   "body": "Surface Portals on three levels take you back outside: beside the entrance, at the -18 level and next to the lowest chest."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 10+"
+  ],
+  [
+   "Quest",
+   "fachubfolthid"
+  ]
+ ],
+ "climb_up": true
+}

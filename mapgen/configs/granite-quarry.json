@@ -1,0 +1,21 @@
+{
+  "landblock": "B070", "slug": "granite-quarry", "group": "Repugnant Eater task",
+  "title": "Granite Quarry", "subtitle": "West of Yanshi, Underminer Leader and the Lower Undermine portal",
+  "entrances": [{"name": "Quarry entrance", "cell": "0xb0700100", "pos": [36, 133, 22.3]}],
+  "routes": [
+    {"name": "To the Underminer Leader", "from": "Quarry entrance", "to": [{"instance": "Underminer Leader"}]},
+    {"name": "To the Lower Undermine portal", "from": "Quarry entrance", "to": [{"instance": "Yanshi Lower Undermine"}]}
+  ],
+  "targets": ["Underminer Leader"],
+  "steps": [
+    "Run west of Yanshi to the Granite Quarry (11.8S 39.0E). It's an open entrance with no portal.",
+    "Keep left to the Underminer Leader and loot the Underminer Notes.",
+    "Give the notes to Royal Guard Adrana in Yanshi.",
+    "Back in the quarry, keep right to the Yanshi Lower Undermine portal."
+  ],
+  "notes": [
+    {"kind": "info", "title": "Underminer Leader", "body": "Level 160, guarded by five level 135 Underminers. He carries the Underminer Notes."},
+    {"kind": "info", "title": "Nothing locked", "body": "There are no locked doors or levers on either route."},
+    {"kind": "tip", "title": "Portal onward", "body": "The Yanshi Lower Undermine portal leads to the Repugnant Eaters. Take the Eater task from Xun Yu in Eastwatch before you come."}
+  ]
+}

@@ -1,0 +1,81 @@
+{
+ "landblock": "01E3",
+ "slug": "glenden-wood-dungeon",
+ "title": "Glenden Wood Dungeon",
+ "group": "Facility Hub 10-15",
+ "subtitle": "Kill the Oversized Banderling Ogre and take its Platemail Hauberk",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Glenden Wood Dungeon"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the Oversized Banderling Ogre",
+   "from": "Entrance",
+   "to": [
+    {
+     "cell": "0x01E30349",
+     "pos": [
+      20,
+      -110,
+      6
+     ],
+     "label": "Oversized Banderling Ogre"
+    }
+   ]
+  }
+ ],
+ "sweeps": [
+  {
+   "name": "Banderling Ogre sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Banderling Ogre"
+   ]
+  }
+ ],
+ "targets": [
+  "Banderling Ogre",
+  "Banderling Blade"
+ ],
+ "steps": [
+  "In the Facility Hub, find the Warden for the Glenden Wood quest and take her portal to Glenden Wood, outside the dungeon.",
+  "Enter the dungeon and fight through to the Oversized Banderling Ogre at the far west end.",
+  "Kill it and take the Platemail Hauberk of the Ogre.",
+  "Bring the Hauberk back to the same Warden."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Which ogre",
+   "body": "The Oversized Banderling Ogre is a single placed spawn at the far west end of the dungeon (20, -110, 6). The other six ogres are ordinary Banderling Ogres."
+  },
+  {
+   "kind": "warn",
+   "title": "Locked doors",
+   "body": "Prison cells and several doors need keys: keyglendendoor, keyglendenprison, keyglendenprison2 and the chest key. Creatures in the dungeon carry them, or pick the locks. The warden says to expect this."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Ogres and Blades take 0.5 bludgeon, 0.65 pierce and acid, 0.76 slash and cold, and 1.08 fire and 1.32 electric. Use electric if you can."
+  },
+  {
+   "kind": "info",
+   "title": "Getting in",
+   "body": "Hub portal needs level 10. The drop spot is outside near the dungeon, and the Surface portal inside leads back out."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 10+"
+  ],
+  [
+   "Quest",
+   "fachubglendenwood"
+  ]
+ ]
+}

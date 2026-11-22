@@ -1,0 +1,73 @@
+{
+  "landblock": "5651",
+  "title": "Haunted Mansion Dungeon",
+  "subtitle": "Frest Greelving's three belongings, Dark Sarcophagus at the bottom",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Mansion Dungeon Portal"
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the Dark Sarcophagus",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Dark Sarcophagus"
+        }
+      ]
+    },
+    {
+      "name": "To the locked chests",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Storage",
+          "pick": "nearest"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    "Dark Sarcophagus",
+    "Lich",
+    "Skeleton Wraith"
+  ],
+  "steps": [
+    "In the Facility Hub, ask the Warden about the Haunted Mansion (level 30+).",
+    "Take the Mansion Dungeon portal.",
+    "Recover Frest Greelving's three belongings: an Ornate Nekode, a Silver Atlatl and a Tetsubo Slugger.",
+    "Show them to the Warden for the reward."
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 30+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "warn",
+      "title": "Item source",
+      "body": "The data does not place the three belongings. They probably drop from the Dark Sarcophagus or sit in the locked Storage chests near the entrance. Inferred, not read."
+    },
+    {
+      "kind": "warn",
+      "title": "Dark Sarcophagus",
+      "body": "Level 666 with 0.0 resistance to slash, pierce, bludgeon, cold, acid and electric, 0.5 fire. Treat it as an object to open, not a fight."
+    },
+    {
+      "kind": "tip",
+      "title": "Best damage",
+      "body": "Liches (level 20) and Revenants take cold best (0.2), then pierce (0.52). Skeleton Captains and Wraiths take bludgeon at 1.0 and cold at 0.3-0.4, but resist pierce."
+    },
+    {
+      "kind": "info",
+      "title": "Locked chests",
+      "body": "Five Storage chests sit in the first room off the entrance and are locked."
+    }
+  ],
+  "slug": "haunted-mansion-dungeon",
+  "group": "Facility Hub 30-45"
+}

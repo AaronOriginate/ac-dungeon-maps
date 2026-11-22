@@ -1,0 +1,61 @@
+{
+ "landblock": "0283",
+ "slug": "the-dark-lair",
+ "group": "Facility Hub 20-25",
+ "title": "The Dark Lair",
+ "subtitle": "Olthoi Gardeners and Harvesters, no quest",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "The Dark Lair"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the far Surface Exit",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Surface Exit",
+     "pick": "south"
+    }
+   ]
+  }
+ ],
+ "sweeps": [
+  {
+   "name": "Gardener sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Olthoi Gardener"
+   ]
+  }
+ ],
+ "targets": [
+  "Olthoi Gardener",
+  "Olthoi Harvester"
+ ],
+ "notes": [
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Olthoi take 0.25 acid, 0.4 lightning and 0.75 fire, cold and slash. Pierce and bludgeon do full damage."
+  },
+  {
+   "kind": "info",
+   "title": "Numbers",
+   "body": "17 Gardeners (level 30) and 6 Harvesters (level 20)."
+  },
+  {
+   "kind": "info",
+   "title": "Exits",
+   "body": "A second Surface Exit sits at the bottom, with a trap drop near it."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 20+"
+  ]
+ ]
+}

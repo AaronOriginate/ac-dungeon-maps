@@ -1,0 +1,58 @@
+{
+  "landblock": "01D4",
+  "title": "Bellig Tower Base",
+  "subtitle": "Revenant and the Hammer of Lightning at the top of the tower",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Bellig Tower Base"
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the Revenant",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Revenant"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    "Revenant"
+  ],
+  "steps": [
+    "In the Facility Hub, ask the Warden about Bellig Tower (level 40+).",
+    "Take the Bellig Tower Base portal. Expect attackers on arrival.",
+    "Climb to the library at the top.",
+    "Kill the Revenant and take the Hammer of Lightning.",
+    "Show it to the Warden for the reward."
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 40+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "warn",
+      "title": "Item source",
+      "body": "The data does not place the Hammer of Lightning. The Warden text says the Revenant has it, so it drops from him (inferred)."
+    },
+    {
+      "kind": "tip",
+      "title": "Best damage",
+      "body": "The Revenant takes cold at 0.1 and pierce at 0.52. Granite Golems on the way also take cold at 0.1 and fire at 0.4."
+    },
+    {
+      "kind": "info",
+      "title": "Top portal",
+      "body": "The Bellig Top portal, at the very top of the base (114 m up), leads into the upper tower."
+    }
+  ],
+  "slug": "bellig-tower-base",
+  "group": "Facility Hub 30-45",
+  "climb_up": true
+}

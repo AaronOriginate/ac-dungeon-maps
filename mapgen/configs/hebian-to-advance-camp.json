@@ -1,0 +1,47 @@
+{
+ "landblock": "0279",
+ "slug": "hebian-to-advance-camp",
+ "group": "Guruk task",
+ "title": "Hebian-To Advance Camp",
+ "subtitle": "Guruk Colossus spawns for Brogosh's kill task",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Hebian-To Advance Camp Portal"
+  }
+ ],
+ "targets": [
+  "Guruk Colossus"
+ ],
+ "sweeps": [
+  {
+   "name": "Colossus sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Guruk Colossus"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Colossus count and respawn",
+   "body": "9 Colossi are placed here, each from a 5-minute generator, so one pass gives 9 and you need about four passes for 30 kills."
+  },
+  {
+   "kind": "tip",
+   "title": "Best element",
+   "body": "Frost and piercing weapons do the most damage to Guruk Colossi (cold 70%, pierce 75%). Avoid acid (10%) and lightning (20%)."
+  },
+  {
+   "kind": "warn",
+   "title": "Corrosive Cloud",
+   "body": "139 Corrosive Cloud patches (40 pierce damage every 2 seconds) fill the corridors on the lower levels, so keep moving."
+  },
+  {
+   "kind": "info",
+   "title": "Route coverage",
+   "body": "The route only reaches the Colossi nearest the entrance. The rest are spread over levels -30 to -54, with 67 level 5 Burun Eggs around."
+  }
+ ]
+}

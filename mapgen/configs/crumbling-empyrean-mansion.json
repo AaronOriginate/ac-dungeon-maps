@@ -1,0 +1,49 @@
+{
+  "landblock": "6679",
+  "title": "Crumbling Empyrean Mansion",
+  "subtitle": "Olthoi Worker hunting ground, no quest",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Crumbling Empyrean Mansion"
+    }
+  ],
+  "sweeps": [
+    {
+      "name": "Olthoi Worker sweep",
+      "from": "Entrance",
+      "creatures": [
+        "Olthoi Worker"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the Surface Exit",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Surface Exit"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    "Olthoi Worker"
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 30+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "info",
+      "title": "Layout",
+      "body": "62 Olthoi Workers (level 50) on eight levels. 26 doors, none locked."
+    }
+  ],
+  "slug": "crumbling-empyrean-mansion",
+  "group": "Facility Hub 30-45"
+}

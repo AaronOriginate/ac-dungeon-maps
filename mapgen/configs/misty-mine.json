@@ -1,0 +1,17 @@
+{
+  "landblock": "5648", "slug": "misty-mine", "group": "Crystal Minds",
+  "title": "Misty Mine", "subtitle": "Crystal Minds and Shattered Souls, Ancient Chest with the unknown crystal at the bottom",
+  "entrances": [{"name": "Entrance", "cell": "0x5648014B", "pos": [0, -50, 0.005]}],
+  "routes": [{"name": "To the Ancient Chests", "from": "Entrance", "to": [{"instance": "Ancient Chest", "pick": "nearest"}]}],
+  "steps": [
+    "In the Warehouse, take the Surface portal to the Misty Mine.",
+    "At the bottom, take an unknown crystal from an Ancient Chest.",
+    "Give it to the Student in Glenden Wood."
+  ],
+  "notes": [
+    {"kind": "warn", "title": "Flashing lights", "body": "The Misty Mine has a strong flashing light effect. Be careful if you are sensitive to flashing images."},
+    {"kind": "info", "title": "Which chest", "body": "All seven Ancient Chests at the bottom hold an unknown crystal, so take whichever is free. They refill 30 seconds after being emptied."},
+    {"kind": "tip", "title": "Best damage", "body": "Haze Golems take full cold (1.0) and 0.85 electric, but only 0.1 physical damage. Voltaic Golems take full electric and 0.85 cold, and are immune to fire."},
+    {"kind": "info", "title": "Getting in", "body": "The entrance portals are in the Warehouse (the Surface and Warehouse Annex Mine portals there both lead here). You need to be level 40."}
+  ]
+}

@@ -1,0 +1,63 @@
+{
+ "landblock": "5749",
+ "slug": "tusker-lodge",
+ "title": "Tusker Lodge",
+ "group": "Facility Hub 10-15",
+ "subtitle": "Kill Male Tusker (level 20), no quest",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Tusker Lodge"
+  }
+ ],
+ "sweeps": [
+  {
+   "name": "Male Tusker sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Male Tusker"
+   ]
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the far Surface exit",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Surface",
+     "pick": "north"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Male Tusker"
+ ],
+ "steps": [
+  "In the Facility Hub, take the level 15 portal to Tusker Lodge.",
+  "Kill Male Tusker in the dungeon."
+ ],
+ "notes": [
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Tuskers take 0.25 to 0.4 electric, 0.5 slash, 0.75 bludgeon, cold and acid, and full pierce (1.0) and fire (1.0). Use pierce or fire."
+  },
+  {
+   "kind": "info",
+   "title": "Leaving",
+   "body": "The entrance is at the bottom. The only Surface exit is at the top of the dungeon."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 15+"
+  ],
+  [
+   "Creature level",
+   "20"
+  ]
+ ]
+}

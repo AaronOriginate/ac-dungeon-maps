@@ -1,0 +1,76 @@
+{
+ "landblock": "01FD",
+ "slug": "trothyrs-rest",
+ "group": "Facility Hub 20-25",
+ "title": "Trothyr's Rest",
+ "subtitle": "Quest: Trothyr's War Hammer or Shield, in the locked rooms",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Trothyr's Rest"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To Trothyr's War Hammer",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Trothyr's War Hammer"
+    }
+   ]
+  },
+  {
+   "name": "To Trothyr's Shield",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Trothyr's Shield"
+    }
+   ]
+  },
+  {
+   "name": "To the Lich Lord",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Lich Lord"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Lich Lord",
+  "Lich"
+ ],
+ "steps": [
+  "In the Facility Hub, talk to the Warden about Trothyr.",
+  "Get a key from the merchant at 13.6N 50.7E (portal behind the Warden), or bring a lockpick.",
+  "Return and go to 10.3N 54.9E for the portal into Trothyr's Rest.",
+  "Take Trothyr's War Hammer (or his Shield).",
+  "Show it to the Warden for the reward."
+ ],
+ "notes": [
+  {
+   "kind": "warn",
+   "title": "Locked doors",
+   "body": "The door at the upper hall needs the Trothyr's Rest key. Four other doors need a master key or lockpicking."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Liches take 0.2 cold, 0.52 pierce, 0.75 bludgeon and acid, 0.86 lightning. Slash and fire do full damage."
+  },
+  {
+   "kind": "info",
+   "title": "Items",
+   "body": "Both the Hammer and the Shield are placed in the data. Either counts for the Warden's reward text."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 20+"
+  ]
+ ]
+}

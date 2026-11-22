@@ -1,0 +1,67 @@
+{
+ "landblock": "01C6",
+ "slug": "hunters-leap",
+ "group": "Facility Hub 20-25",
+ "title": "Hunter's Leap",
+ "subtitle": "Quest: Lilitha's Broken Bow, then have Eldrista fix it",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Hunter's Leap"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To Lilitha's Broken Bow",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Lilitha's Broken Bow"
+    }
+   ]
+  },
+  {
+   "name": "To the Lich Lord",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Lich Lord"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Lich Lord"
+ ],
+ "steps": [
+  "In the Facility Hub, talk to the Warden about Lilitha's bow.",
+  "Take the level 20 portal to Hunter's Leap.",
+  "Find Lilitha's Broken Bow.",
+  "Take it to Eldrista the Adventurer (portal in the hub) to have it fixed.",
+  "Show the working bow to the Warden for the reward."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Quest item",
+   "body": "The bow is placed in the data, so the route goes straight to it."
+  },
+  {
+   "kind": "warn",
+   "title": "Locked door",
+   "body": "One door on the upper level (level 6) is locked and needs a master key or lockpicking."
+  },
+  {
+   "kind": "tip",
+   "title": "Hazards",
+   "body": "Cutthroats (level 40) and Highwaymen (level 50) are tough for this hub level. A Lich Lord (level 60) is also in here."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 20+"
+  ]
+ ],
+ "climb_up": true
+}

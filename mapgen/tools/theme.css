@@ -1,0 +1,38 @@
+/* Remaster UI theme (from Asheron's Call Remaster src/style.css): dark leather panels, gilt edging, engraved headings. */
+:root {
+  --ink: #0d0805; --panel: #1b130d; --bg: #0c1118;
+  --text: #eadfc6; --fg: #eadfc6; --dim: #a8997c; --muted: #a8997c;
+  --accent: #e6bd6c; --gold: #c9a25a; --gold-hi: #f4dc9c; --gold-lo: #6b4f24;
+  --line: rgba(201, 162, 90, 0.26); --warn: #ff8f7d;
+  --display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --frame: radial-gradient(120% 70% at 50% 0%, rgba(150, 104, 48, 0.2), transparent 62%), linear-gradient(180deg, rgba(43, 31, 21, 0.96), rgba(21, 15, 10, 0.96));
+  --edge: inset 0 0 0 1px var(--gold-lo), inset 0 0 0 2px rgba(0, 0, 0, 0.65), inset 0 0 0 3px rgba(201, 162, 90, 0.2), 0 8px 26px rgba(0, 0, 0, 0.55);
+  --c1: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/svg%3E");
+  --c2: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(90 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --c3: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(180 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --c4: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(270 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --corners: var(--c1) top left no-repeat, var(--c2) top right no-repeat, var(--c3) bottom right no-repeat, var(--c4) bottom left no-repeat;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgba(201, 162, 90, 0.45) transparent; }
+body { margin: 0; background: radial-gradient(ellipse at top, #1f2a38, #0c1118 70%) fixed, #0c1118; color: var(--text); font-family: var(--body); font-size: 15px; line-height: 1.4; }
+a { color: var(--gold-hi); }
+[hidden] { display: none !important; }
+.gilt { font-family: var(--display); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold) 60%, #9a7434); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rule { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px; }
+.rule::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-lo), transparent); }
+.btn, .leather {
+  font-family: var(--display); font-size: 11.5px; font-weight: 500; letter-spacing: 0.04em; color: #f1e2bd; text-decoration: none;
+  background: linear-gradient(180deg, #4d3923, #2a1e12); border: 1px solid #8c6c38; border-radius: 3px; padding: 5px 10px; cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 230, 170, 0.16), 0 1px 2px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 1px #000;
+}
+.btn:hover, .leather:hover { background: linear-gradient(180deg, #634a2c, #37281a); border-color: var(--gold-hi); }
+.btn:active, .leather:active { transform: translateY(1px); }
+.btn.on, .leather.on, .leather[aria-selected="true"] { background: linear-gradient(180deg, #f3d48b, #b98a3c); border-color: #f6e2ac; color: #24170a; text-shadow: 0 1px 0 rgba(255, 240, 200, 0.5); }
+kbd { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; color: var(--dim); border: 1px solid rgba(201, 162, 90, 0.35); background: rgba(0, 0, 0, 0.3); border-radius: 3px; padding: 0 4px; }
+.field { font: inherit; font-size: 15px; color: var(--text); background: rgba(18, 13, 9, 0.88); border: 1px solid var(--gold-lo); border-radius: 3px; padding: 6px 10px; outline: none; }
+.field:focus { border-color: var(--accent); }
+.field::placeholder { color: rgba(234, 223, 198, 0.4); font-style: italic; }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }

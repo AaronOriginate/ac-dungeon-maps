@@ -1,0 +1,68 @@
+{
+ "landblock": "02C8",
+ "slug": "banderling-conquest-dungeon",
+ "group": "Facility Hub 20-25",
+ "title": "Banderling Conquest Dungeon",
+ "subtitle": "Eastham Warden quest: the Banderling Mace Shaft (one part of the mace)",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Banderling Conquest Dungeon"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the Mace Shaft",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Banderling Mace Shaft"
+    }
+   ]
+  },
+  {
+   "name": "To the Chief",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Banderling Chief"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Banderling Chief",
+  "Banderling Captain"
+ ],
+ "steps": [
+  "In the Facility Hub, talk to the Warden for the Mace of the Explorer.",
+  "Take the level 25 portal to the Banderling Conquest Dungeon and take the Banderling Mace Shaft.",
+  "Return to the hub and take the Mosswart Maze portal for the Mace Head.",
+  "Combine both parts into the Banderling Ceremonial Weapon.",
+  "Take it to Olivier Rognath in the middle of Eastham.",
+  "Bring the Mace of the Explorer he gives you back to the Warden."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Quest item",
+   "body": "The Mace Shaft is placed in the data. A battered leather journal is also in here."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Banderlings take 0.5 bludgeon, 0.65 pierce and acid. Raiders and Guards are level 15, the Chief level 20."
+  },
+  {
+   "kind": "info",
+   "title": "Other part",
+   "body": "The Mace Head is in the Mosswart Maze."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 25+"
+  ]
+ ]
+}

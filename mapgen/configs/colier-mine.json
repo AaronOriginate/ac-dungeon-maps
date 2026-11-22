@@ -1,0 +1,92 @@
+{
+ "landblock": "01AE",
+ "slug": "colier-mine",
+ "title": "Colier Mine",
+ "group": "Facility Hub 10-15",
+ "subtitle": "Take the Baron's Amulet of Life Giving from the Treasure Chest",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Colier Mine"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the Baron of Colier",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Baron of Colier"
+    }
+   ]
+  },
+  {
+   "name": "To the Scratched Key chest",
+   "from": "Entrance",
+   "to": [
+    {
+     "cell": "0x01AE0273",
+     "pos": [
+      183.9,
+      -30.1,
+      -12
+     ],
+     "label": "Chest (Scratched Key)"
+    }
+   ]
+  },
+  {
+   "name": "To the Treasure Chest",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Treasure Chest"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Baron of Colier",
+  "Undead Miner",
+  "Banderling Guard"
+ ],
+ "steps": [
+  "In the Facility Hub, take the Colier Warden's portal to the town of Colier, outside the mine.",
+  "In town, kill a Banderling Raider Guardian and a Heavy Drudge Prowler for two keys.",
+  "Go into the mine. Keys for the deeper doors come from undead and from a chest.",
+  "Open the Treasure Chest and take the Baron's Amulet of Life Giving.",
+  "Bring the amulet back to the Warden."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Amulet chest",
+   "body": "The data puts the Baron's Amulet of Life Giving in the Treasure Chest at (143, 3, -12). It needs the Treasure Chest Key, which is in a chest at (184, -30, -12) that needs the Scratched Key. The Baron of Colier is also in the mine, deepest of the undead, and the Warden says to take the necklace from him, so check both."
+  },
+  {
+   "kind": "warn",
+   "title": "Locked doors",
+   "body": "Cell Key doors on the top levels, the Small Rusted Key door at the mine door (80, -85, 0), and the Baron's Key doors (95, -70, -24) and (100, -85, -6) lead deeper. The Warden says two keys come from the town and the rest from undead and a chest."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "The Baron and Undead Miners take full slash and fire, but only 0.2 to 0.4 cold. Banderling Guards take 0.5 bludgeon and 0.65 pierce, so use fire or electric on them."
+  },
+  {
+   "kind": "warn",
+   "title": "Traps",
+   "body": "A pressure plate and magic trap guard the chest at (140, 3, -6), and a pressure plate sits at (140, -94, 0)."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 15+"
+  ],
+  [
+   "Quest",
+   "fachubcolier"
+  ]
+ ]
+}

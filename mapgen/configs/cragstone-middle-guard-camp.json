@@ -1,0 +1,47 @@
+{
+ "landblock": "0278",
+ "slug": "cragstone-middle-guard-camp",
+ "group": "Guruk task",
+ "title": "Cragstone Middle Guard Camp",
+ "subtitle": "Guruk Colossus spawns for Brogosh's kill task",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Cragstone Middle Guard Camp Portal"
+  }
+ ],
+ "targets": [
+  "Guruk Colossus"
+ ],
+ "sweeps": [
+  {
+   "name": "Colossus sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Guruk Colossus"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Colossus count and respawn",
+   "body": "14 Colossi are placed here, each from a 5-minute generator, so you need about three passes for 30 kills. The Guruk generator near the boss end also spawns random Guruks every 30 seconds, and Colossus is one of them."
+  },
+  {
+   "kind": "tip",
+   "title": "Best element",
+   "body": "Frost and piercing weapons do the most damage to Guruk Colossi (cold 70%, pierce 75%). Avoid acid (10%) and lightning (20%)."
+  },
+  {
+   "kind": "warn",
+   "title": "Fumes and spores",
+   "body": "98 Noxious Fumes clouds (30 pierce damage every 2 seconds) and some Spores (20 damage a second) cover the corridors. They hurt but you can walk through."
+  },
+  {
+   "kind": "info",
+   "title": "Morgluuk bosses",
+   "body": "Two level 200 Morgluuks spawn at the bottom near the Portal to Burun Fortress (15 minutes between respawns). The portal leads out of the camp."
+  }
+ ]
+}

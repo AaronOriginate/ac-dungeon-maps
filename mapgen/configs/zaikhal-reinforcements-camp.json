@@ -1,0 +1,47 @@
+{
+ "landblock": "0274",
+ "slug": "zaikhal-reinforcements-camp",
+ "group": "Guruk task",
+ "title": "Zaikhal Reinforcements Camp",
+ "subtitle": "Guruk Smasher spawns for Kushuk's kill task",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Zaikhal Reinforcements Camp Portal"
+  }
+ ],
+ "targets": [
+  "Guruk Smasher"
+ ],
+ "sweeps": [
+  {
+   "name": "Smasher sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Guruk Smasher"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Smasher count and respawn",
+   "body": "10 Smashers are placed here, each from a 3-minute generator, so you need four passes for 40 kills. Zaikhal Advance Camp has 19."
+  },
+  {
+   "kind": "tip",
+   "title": "Best element",
+   "body": "Frost and piercing weapons do the most damage to Guruk Smashers (cold 90%, pierce 95%). Avoid acid (10%) and lightning (40%)."
+  },
+  {
+   "kind": "warn",
+   "title": "Levers and Guardian doors",
+   "body": "Two Guardian doors at the north edge of the Smasher area (52, -70) and (108, -70) are opened by levers. Each door has a lever beside it and a second one in the middle room at (80, -45). Pull any lever for each door."
+  },
+  {
+   "kind": "warn",
+   "title": "Traps and hazards",
+   "body": "Dispel All Traps strip your buffs and Blade, Piercing and Bludgeon Vulnerability Traps weaken your defences. Corroding Bile (75 acid) and Virulent Air (45 fire) burn every few seconds. Wailing Statues, Eyes of the Watcher and the Strange Device cast spells at you."
+  }
+ ]
+}

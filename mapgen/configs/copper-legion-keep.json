@@ -1,0 +1,42 @@
+{
+ "landblock": "0018",
+ "slug": "copper-legion-keep",
+ "group": "Man-at-Arms task",
+ "title": "Copper Legion Keep",
+ "subtitle": "Zaikhal keep, 35 Viamontian Man-at-Arms for the kill task",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Copper Legion Keep"
+  }
+ ],
+ "targets": [
+  "Viamontian Man-at-Arms"
+ ],
+ "sweeps": [
+  {
+   "name": "Man-at-Arms sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Viamontian Man-at-Arms"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Legion Door not needed",
+   "body": "The locked Legion Door (key dropped by the Doorkeeper) leads past every Man-at-Arms spawn, so you can ignore it and the lever."
+  },
+  {
+   "kind": "tip",
+   "title": "Use fire or lightning",
+   "body": "Man-at-Arms take 120% from fire and lightning, 90% from bludgeon and cold, and only 80% from slash and pierce."
+  },
+  {
+   "kind": "info",
+   "title": "Respawn",
+   "body": "35 Man-at-Arms here, and they come back about every 2 minutes. One clear gets you 35, so wait for the respawn or add Silver Legion Keep to reach 50."
+  }
+ ]
+}

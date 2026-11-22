@@ -1,0 +1,48 @@
+{
+ "landblock": "001B",
+ "slug": "silver-legion-keep",
+ "group": "Man-at-Arms task",
+ "title": "Silver Legion Keep",
+ "subtitle": "Zaikhal keep, 16 Viamontian Man-at-Arms for the kill task",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Silver Legion Keep"
+  }
+ ],
+ "targets": [
+  "Viamontian Man-at-Arms"
+ ],
+ "sweeps": [
+  {
+   "name": "Man-at-Arms sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Viamontian Man-at-Arms"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Legion Door not needed",
+   "body": "The locked Legion Door (key dropped by the Doorkeeper) leads past every Man-at-Arms spawn, so you can ignore it and the lever."
+  },
+  {
+   "kind": "tip",
+   "title": "Use fire or lightning",
+   "body": "Man-at-Arms take 120% from fire and lightning, 90% from bludgeon and cold, and only 80% from slash and pierce."
+  },
+  {
+   "kind": "info",
+   "title": "Respawn",
+   "body": "Only 16 Man-at-Arms here, back about every 2 minutes. Pair it with Copper Legion Keep (35) to reach 50."
+  },
+  {
+   "kind": "info",
+   "title": "Stairs",
+   "body": "Some stairs here are separate objects the map can't draw, so the sweep assumes you can climb where it goes up a level."
+  }
+ ],
+ "climb_up": true
+}

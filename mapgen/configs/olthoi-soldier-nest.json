@@ -1,0 +1,55 @@
+{
+  "landblock": "0282",
+  "title": "An Olthoi Soldier Nest",
+  "subtitle": "Olthoi Soldier hunting ground, no quest",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "An Olthoi Soldier Nest"
+    }
+  ],
+  "sweeps": [
+    {
+      "name": "Olthoi Soldier sweep",
+      "from": "Entrance",
+      "creatures": [
+        "Olthoi Soldier"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the far Surface Exit",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Surface Exit",
+          "pick": "southwest"
+        }
+      ]
+    }
+  ],
+  "targets": [
+    "Olthoi Soldier"
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 35+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "tip",
+      "title": "Best damage",
+      "body": "Olthoi Soldiers (level 60) take electric (0.25) or acid (0.42) best. Pierce and bludgeon are 1.0."
+    },
+    {
+      "kind": "warn",
+      "title": "Acid",
+      "body": "Eleven acid hot spots lie in the lower rooms. Avoid standing in them."
+    }
+  ],
+  "slug": "olthoi-soldier-nest",
+  "group": "Facility Hub 30-45"
+}

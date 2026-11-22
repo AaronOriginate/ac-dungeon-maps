@@ -1,0 +1,64 @@
+{
+  "landblock": "0117",
+  "slug": "frost-vault",
+  "group": "Elemental vaults",
+  "title": "Frost Vault",
+  "subtitle": "Serac Vault, entrance to the Major Shivering Stone",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Serac Vault Portal"
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the stone",
+      "from": "Entrance",
+      "to": [
+        {
+          "cell": "0x01170319",
+          "pos": [
+            184.4,
+            -87.1,
+            -4.5
+          ],
+          "label": "the first lever"
+        },
+        {
+          "cell": "0x01170340",
+          "pos": [
+            101.5,
+            -28.45,
+            1.5
+          ],
+          "label": "the second lever"
+        },
+        {
+          "instance": "Major Shivering Stone"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "kind": "warn",
+      "title": "Two levers to pull",
+      "body": "The route passes two doors that only open by lever. Pull the first lever (east end) to open the door at the end of the long corridor, then the second lever (in the small room west of the stone corridor) to open the door into the stone corridor."
+    },
+    {
+      "kind": "warn",
+      "title": "Pit before the stone",
+      "body": "The corridor into the stone room is open to a pit with a Surface Portal at the bottom. Falling in kicks you out of the dungeon."
+    },
+    {
+      "kind": "tip",
+      "title": "Use fire or lightning",
+      "body": "The undead take 85-100% from fire and 86% from lightning. Avoid frost (10%) and pierce (52%)."
+    },
+    {
+      "kind": "info",
+      "title": "What the stone is for",
+      "body": "Give the Major Shivering Stone to Zahir in Stonehold (68.7N 21.5W) for a Writ of Refuge. The stone respawns 25 seconds after it's taken."
+    }
+  ]
+}

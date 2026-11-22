@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>AcDungeonMaps</AssemblyName>
+    <RootNamespace>AcDungeonMaps</RootNamespace>
+    <OpenAcRoot Condition="'$(OpenAcRoot)' == ''">$(MSBuildThisFileDirectory)../../clients/OpenAC/</OpenAcRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- The only OpenAC dependency a plugin may have. The host ships it, so it is not copied. -->
+    <ProjectReference Include="$(OpenAcRoot)src/AcDream.Plugin.Abstractions/AcDream.Plugin.Abstractions.csproj">
+      <Private>false</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="plugin.json;data/**;art/**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

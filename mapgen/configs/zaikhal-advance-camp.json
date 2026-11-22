@@ -1,0 +1,47 @@
+{
+ "landblock": "027A",
+ "slug": "zaikhal-advance-camp",
+ "group": "Guruk task",
+ "title": "Zaikhal Advance Camp",
+ "subtitle": "Guruk Smasher spawns for Kushuk's kill task",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Zaikhal Advance Camp Portal"
+  }
+ ],
+ "targets": [
+  "Guruk Smasher"
+ ],
+ "sweeps": [
+  {
+   "name": "Smasher sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Guruk Smasher"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Smasher count and respawn",
+   "body": "19 Smashers are placed here, each from a 5-minute generator, so one pass gives 19 and you need about two passes for 40 kills."
+  },
+  {
+   "kind": "tip",
+   "title": "Best element",
+   "body": "Frost and piercing weapons do the most damage to Guruk Smashers (cold 90%, pierce 95%). Avoid acid (10%) and lightning (40%)."
+  },
+  {
+   "kind": "warn",
+   "title": "Spores",
+   "body": "58 Spores patches (20 slash and bludgeon damage a second) are spread over the middle levels. Mild, but they add up in long fights."
+  },
+  {
+   "kind": "info",
+   "title": "Boss and exit",
+   "body": "A Morgluuk warrior boss spawns near the bottom at (19, -121). The Portal to Burun Fortress on the lowest level leads out of the camp."
+  }
+ ]
+}

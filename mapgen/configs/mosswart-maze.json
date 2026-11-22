@@ -1,0 +1,66 @@
+{
+ "landblock": "02CA",
+ "slug": "mosswart-maze",
+ "group": "Facility Hub 20-25",
+ "title": "Mosswart Maze",
+ "subtitle": "Eastham Warden quest: the Banderling Mace Head (one part of the mace)",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Mosswart Maze Portal"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the Mace Head",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Banderling Mace Head"
+    }
+   ]
+  },
+  {
+   "name": "To the Mosswart Chief",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Mosswart Chief"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Mosswart Chief"
+ ],
+ "steps": [
+  "In the Facility Hub, talk to the Warden for the Mace of the Explorer.",
+  "Take the level 25 portal to the Mosswart Maze and take the Banderling Mace Head.",
+  "Combine it with the Mace Shaft from the Banderling Conquest Dungeon.",
+  "Take the Banderling Ceremonial Weapon to Olivier Rognath in the middle of Eastham.",
+  "Bring the Mace of the Explorer back to the Warden."
+ ],
+ "notes": [
+  {
+   "kind": "warn",
+   "title": "Traps",
+   "body": "Five Whirling Blade Traps with Pressure Plates sit in the corridors. Watch the floor plates."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Mosswarts take 0.3 acid and 0.38 cold on the Chief, 0.55 slash. Fire and lightning do full damage."
+  },
+  {
+   "kind": "info",
+   "title": "Locked chest",
+   "body": "One chest at the north end is locked with no key. It is not needed for the quest."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 25+"
+  ]
+ ]
+}

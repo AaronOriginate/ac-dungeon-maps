@@ -1,0 +1,401 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AC Dungeon Maps</title>
+<meta name="description" content="3D dungeon maps for Asheron's Call, built from the game files, with routes to quest goals and kill task sweeps.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 1l5 7-5 7-5-7z' fill='%23e0b25a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap">
+<style>/* Remaster UI theme (from Asheron's Call Remaster src/style.css): dark leather panels, gilt edging, engraved headings. */
+:root {
+  --ink: #0d0805; --panel: #1b130d; --bg: #0c1118;
+  --text: #eadfc6; --fg: #eadfc6; --dim: #a8997c; --muted: #a8997c;
+  --accent: #e6bd6c; --gold: #c9a25a; --gold-hi: #f4dc9c; --gold-lo: #6b4f24;
+  --line: rgba(201, 162, 90, 0.26); --warn: #ff8f7d;
+  --display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --frame: radial-gradient(120% 70% at 50% 0%, rgba(150, 104, 48, 0.2), transparent 62%), linear-gradient(180deg, rgba(43, 31, 21, 0.96), rgba(21, 15, 10, 0.96));
+  --edge: inset 0 0 0 1px var(--gold-lo), inset 0 0 0 2px rgba(0, 0, 0, 0.65), inset 0 0 0 3px rgba(201, 162, 90, 0.2), 0 8px 26px rgba(0, 0, 0, 0.55);
+  --c1: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/svg%3E");
+  --c2: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(90 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --c3: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(180 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --c4: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cg transform='rotate(270 13 13)'%3E%3Cg fill='none' stroke='%23dcb96f' stroke-width='1.3'%3E%3Cpath d='M5.5 25V9.5L9.5 5.5H25'/%3E%3C/g%3E%3Cpath d='M9 12.5l3.5-3.5 3.5 3.5-3.5 3.5z' fill='%23dcb96f'/%3E%3C/g%3E%3C/svg%3E");
+  --corners: var(--c1) top left no-repeat, var(--c2) top right no-repeat, var(--c3) bottom right no-repeat, var(--c4) bottom left no-repeat;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: rgba(201, 162, 90, 0.45) transparent; }
+body { margin: 0; background: radial-gradient(ellipse at top, #1f2a38, #0c1118 70%) fixed, #0c1118; color: var(--text); font-family: var(--body); font-size: 15px; line-height: 1.4; }
+a { color: var(--gold-hi); }
+[hidden] { display: none !important; }
+.gilt { font-family: var(--display); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold) 60%, #9a7434); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rule { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 11.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin: 0 0 8px; }
+.rule::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-lo), transparent); }
+.btn, .leather {
+  font-family: var(--display); font-size: 11.5px; font-weight: 500; letter-spacing: 0.04em; color: #f1e2bd; text-decoration: none;
+  background: linear-gradient(180deg, #4d3923, #2a1e12); border: 1px solid #8c6c38; border-radius: 3px; padding: 5px 10px; cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 230, 170, 0.16), 0 1px 2px rgba(0, 0, 0, 0.5); text-shadow: 0 1px 1px #000;
+}
+.btn:hover, .leather:hover { background: linear-gradient(180deg, #634a2c, #37281a); border-color: var(--gold-hi); }
+.btn:active, .leather:active { transform: translateY(1px); }
+.btn.on, .leather.on, .leather[aria-selected="true"] { background: linear-gradient(180deg, #f3d48b, #b98a3c); border-color: #f6e2ac; color: #24170a; text-shadow: 0 1px 0 rgba(255, 240, 200, 0.5); }
+kbd { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 10px; color: var(--dim); border: 1px solid rgba(201, 162, 90, 0.35); background: rgba(0, 0, 0, 0.3); border-radius: 3px; padding: 0 4px; }
+.field { font: inherit; font-size: 15px; color: var(--text); background: rgba(18, 13, 9, 0.88); border: 1px solid var(--gold-lo); border-radius: 3px; padding: 6px 10px; outline: none; }
+.field:focus { border-color: var(--accent); }
+.field::placeholder { color: rgba(234, 223, 198, 0.4); font-style: italic; }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+
+html { scroll-padding-top: 150px; }
+.wrap { max-width: 1140px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, rgba(43, 31, 21, 0.97), rgba(21, 15, 10, 0.97)); border-bottom: 1px solid var(--ink);
+  box-shadow: inset 0 -1px 0 var(--gold-lo), 0 8px 26px rgba(0, 0, 0, 0.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.top .wrap { display: flex; flex-direction: column; gap: 10px; padding-block: 14px 12px; }
+.bar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { margin: 0; flex: 1 1 auto; display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand .gilt { font-size: 24px; letter-spacing: 0.08em; line-height: 1.1; }
+.brand svg { flex: none; filter: drop-shadow(0 1px 2px #000); }
+.brand small { font-family: var(--body); font-size: 14px; font-style: italic; color: var(--dim); white-space: nowrap; }
+.search { position: relative; flex: 0 1 340px; min-width: 0; width: 100%; max-width: 340px; }
+.search .field { width: 100%; padding-right: 34px; }
+.search kbd { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); }
+.jumps { display: flex; gap: 5px; flex-wrap: wrap; }
+.jump { display: inline-flex; align-items: center; gap: 7px; padding: 4px 6px 4px 10px; }
+.jump span { font-family: var(--body); font-size: 12px; letter-spacing: 0; color: var(--dim); background: rgba(0, 0, 0, 0.35); border-radius: 2px; padding: 0 5px; text-shadow: none; }
+.jump.on span { color: #3a280e; background: rgba(255, 255, 255, 0.25); }
+main.wrap { padding-block: 26px 60px; display: flex; flex-direction: column; gap: 38px; }
+.lead { color: var(--dim); font-style: italic; margin: 0; max-width: 72ch; font-size: 16px; }
+.sec { display: flex; align-items: baseline; gap: 12px; margin: 0; font-size: 19px; }
+.sec::after { content: ''; flex: 1; height: 1px; align-self: center; background: linear-gradient(90deg, var(--gold-lo), transparent); }
+.sec small { font-family: var(--body); font-size: 14px; font-style: italic; letter-spacing: 0; text-transform: none; color: var(--dim); font-weight: 400; order: 2; }
+.sec::after { order: 3; }
+.blurb { color: var(--dim); margin: 4px 0 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(262px, 1fr)); gap: 12px; }
+.card { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 15px; color: inherit; text-decoration: none; min-width: 0;
+  background: var(--corners), var(--frame); border: 1px solid var(--ink); border-radius: 3px; box-shadow: var(--edge); transition: box-shadow .15s, transform .15s; }
+.card:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1px var(--gold-hi), inset 0 0 0 2px rgba(0, 0, 0, 0.65), inset 0 0 18px rgba(244, 220, 156, 0.14), 0 10px 28px rgba(0, 0, 0, 0.6); }
+.card h3 { font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: 0.05em; color: var(--gold-hi); margin: 0; }
+.card .sub { color: var(--dim); margin: 0; font-size: 14px; font-style: italic; line-height: 1.3; }
+.routes { list-style: none; margin: 4px 0 0; padding: 6px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
+.routes li { display: flex; justify-content: space-between; gap: 12px; font-size: 14.5px; }
+.routes b { font-weight: 600; color: var(--gold-hi); font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+.tg { margin: 0; font-size: 14px; }
+.flags { margin: 2px 0 0; display: flex; gap: 5px; flex-wrap: wrap; }
+.tag { font-family: var(--display); font-size: 9.5px; letter-spacing: 0.06em; border-radius: 2px; padding: 1px 6px; border: 1px solid var(--line); color: var(--dim); }
+.tag.warn { color: #ffb4a3; border-color: rgba(255, 90, 61, 0.6); }
+.empty { color: var(--dim); font-style: italic; padding: 24px 0; }
+@media (max-width: 640px) { .search { max-width: none; flex-basis: 100%; } .brand small { display: none; } html { scroll-padding-top: 200px; } }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style></head><body>
+<header class="top"><div class="wrap">
+  <div class="bar">
+    <h1 class="brand"><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1l5 7-5 7-5-7z" fill="#e6bd6c"/></svg><span class="gilt">AC Dungeon Maps</span><small>46 maps</small></h1>
+    <label class="search"><input class="field" id="q" type="search" placeholder="Search maps, monsters, items" aria-label="Search maps" autocomplete="off"><kbd>/</kbd></label>
+  </div>
+  <nav class="jumps" aria-label="Map groups"><a class="leather jump" href="#g-elemental-vaults">Vaults<span>4</span></a><a class="leather jump" href="#g-repugnant-eater-task">Eater task<span>2</span></a><a class="leather jump" href="#g-guruk-task">Guruk task<span>5</span></a><a class="leather jump" href="#g-man-at-arms-task">Man-at-Arms<span>2</span></a><a class="leather jump" href="#g-elemental-task">Elemental task<span>1</span></a><a class="leather jump" href="#g-crystal-minds">Crystal Minds<span>3</span></a><a class="leather jump" href="#g-facility-hub-10-15">Hub 10-15<span>10</span></a><a class="leather jump" href="#g-facility-hub-20-25">Hub 20-25<span>9</span></a><a class="leather jump" href="#g-facility-hub-30-45">Hub 30-45<span>10</span></a></nav>
+</div></header>
+<main class="wrap">
+<p class="lead">3D maps built from the game files, with routes to quest goals and sweeps for kill tasks. Drag to rotate a map. On any map, press M to jump to another, or [ and ] to step through them.</p>
+<section id="g-elemental-vaults" data-group><h2 class="sec"><span class="gilt">Elemental vaults</span><small>4 maps</small></h2><p class="blurb">Route from the entrance to each Major stone. Each stone hands in to Zahir in Stonehold for a Writ of Refuge.</p><div class="grid"><a class="card" href="acid-vault.html" data-q="acid vault incunabula vault, entrance to the major stinging stone elemental vaults to the stone">
+  <h3>Acid Vault</h3>
+  <p class="sub">Incunabula Vault, entrance to the Major Stinging Stone</p>
+  <ul class="routes"><li><span>To the stone</span><b>888 m</b></li></ul>
+  
+  
+</a><a class="card" href="fire-vault.html" data-q="fire vault jahannan vault, entrance to the major smoldering stone elemental vaults to the stone">
+  <h3>Fire Vault</h3>
+  <p class="sub">Jahannan Vault, entrance to the Major Smoldering Stone</p>
+  <ul class="routes"><li><span>To the stone</span><b>632 m</b></li></ul>
+  
+  
+</a><a class="card" href="frost-vault.html" data-q="frost vault serac vault, entrance to the major shivering stone elemental vaults to the stone">
+  <h3>Frost Vault</h3>
+  <p class="sub">Serac Vault, entrance to the Major Shivering Stone</p>
+  <ul class="routes"><li><span>To the stone</span><b>460 m</b></li></ul>
+  
+  
+</a><a class="card" href="lightning-vault.html" data-q="lightning vault amperehelion vault, entrance to the major sparking stone elemental vaults to the stone">
+  <h3>Lightning Vault</h3>
+  <p class="sub">Amperehelion Vault, entrance to the Major Sparking Stone</p>
+  <ul class="routes"><li><span>To the stone</span><b>785 m</b></li></ul>
+  
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a></div></section><section id="g-repugnant-eater-task" data-group><h2 class="sec"><span class="gilt">Repugnant Eater task</span><small>2 maps</small></h2><p class="blurb">Shield of Yanshi run plus the 50 Eaters for Xun Yu.</p><div class="grid"><a class="card" href="granite-quarry.html" data-q="granite quarry west of yanshi, underminer leader and the lower undermine portal repugnant eater task underminer leader to the underminer leader to the lower undermine portal">
+  <h3>Granite Quarry</h3>
+  <p class="sub">West of Yanshi, Underminer Leader and the Lower Undermine portal</p>
+  <ul class="routes"><li><span>To the Underminer Leader</span><b>169 m</b></li><li><span>To the Lower Undermine portal</span><b>153 m</b></li></ul>
+  <p class="tg">Targets: Underminer Leader (1)</p>
+  
+</a><a class="card" href="yanshi-undermine.html" data-q="yanshi undermine lower and upper undermine, repugnant eaters and the yanshi swarm matron repugnant eater task repugnant eater to the yanshi swarm matron eater sweep">
+  <h3>Yanshi Undermine</h3>
+  <p class="sub">Lower and Upper Undermine, Repugnant Eaters and the Yanshi Swarm Matron</p>
+  <ul class="routes"><li><span>To the Yanshi Swarm Matron</span><b>1,136 m</b></li><li><span>Eater sweep</span><b>490 m</b></li></ul>
+  <p class="tg">Targets: Repugnant Eater (17)</p>
+  
+</a></div></section><section id="g-guruk-task" data-group><h2 class="sec"><span class="gilt">Guruk task</span><small>5 maps</small></h2><p class="blurb">Colossus (30) and Smasher (40) camps for Brogosh and Kushuk in Kor-Gursha.</p><div class="grid"><a class="card" href="cragstone-middle-guard-camp.html" data-q="cragstone middle guard camp guruk colossus spawns for brogosh&#x27;s kill task guruk task guruk colossus colossus sweep">
+  <h3>Cragstone Middle Guard Camp</h3>
+  <p class="sub">Guruk Colossus spawns for Brogosh&#x27;s kill task</p>
+  <ul class="routes"><li><span>Colossus sweep</span><b>2,168 m</b></li></ul>
+  <p class="tg">Targets: Guruk Colossus (15)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="cragstone-reinforcements-camp.html" data-q="cragstone reinforcements camp guruk colossus spawns for brogosh&#x27;s kill task guruk task guruk colossus colossus sweep">
+  <h3>Cragstone Reinforcements Camp</h3>
+  <p class="sub">Guruk Colossus spawns for Brogosh&#x27;s kill task</p>
+  <ul class="routes"><li><span>Colossus sweep</span><b>1,465 m</b></li></ul>
+  <p class="tg">Targets: Guruk Colossus (20)</p>
+  
+</a><a class="card" href="hebian-to-advance-camp.html" data-q="hebian-to advance camp guruk colossus spawns for brogosh&#x27;s kill task guruk task guruk colossus colossus sweep">
+  <h3>Hebian-To Advance Camp</h3>
+  <p class="sub">Guruk Colossus spawns for Brogosh&#x27;s kill task</p>
+  <ul class="routes"><li><span>Colossus sweep</span><b>664 m</b></li></ul>
+  <p class="tg">Targets: Guruk Colossus (9)</p>
+  
+</a><a class="card" href="zaikhal-advance-camp.html" data-q="zaikhal advance camp guruk smasher spawns for kushuk&#x27;s kill task guruk task guruk smasher smasher sweep">
+  <h3>Zaikhal Advance Camp</h3>
+  <p class="sub">Guruk Smasher spawns for Kushuk&#x27;s kill task</p>
+  <ul class="routes"><li><span>Smasher sweep</span><b>1,551 m</b></li></ul>
+  <p class="tg">Targets: Guruk Smasher (19)</p>
+  
+</a><a class="card" href="zaikhal-reinforcements-camp.html" data-q="zaikhal reinforcements camp guruk smasher spawns for kushuk&#x27;s kill task guruk task guruk smasher smasher sweep">
+  <h3>Zaikhal Reinforcements Camp</h3>
+  <p class="sub">Guruk Smasher spawns for Kushuk&#x27;s kill task</p>
+  <ul class="routes"><li><span>Smasher sweep</span><b>1,299 m</b></li></ul>
+  <p class="tg">Targets: Guruk Smasher (10)</p>
+  
+</a></div></section><section id="g-man-at-arms-task" data-group><h2 class="sec"><span class="gilt">Man-at-Arms task</span><small>2 maps</small></h2><p class="blurb">Viamontian Man-at-Arms (50) for Robert Gutsmasher.</p><div class="grid"><a class="card" href="copper-legion-keep.html" data-q="copper legion keep zaikhal keep, 35 viamontian man-at-arms for the kill task man-at-arms task viamontian man-at-arms man-at-arms sweep">
+  <h3>Copper Legion Keep</h3>
+  <p class="sub">Zaikhal keep, 35 Viamontian Man-at-Arms for the kill task</p>
+  <ul class="routes"><li><span>Man-at-Arms sweep</span><b>1,564 m</b></li></ul>
+  <p class="tg">Targets: Viamontian Man-at-Arms (35)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span><span class="tag">1 locked door</span></p>
+</a><a class="card" href="silver-legion-keep.html" data-q="silver legion keep zaikhal keep, 16 viamontian man-at-arms for the kill task man-at-arms task viamontian man-at-arms man-at-arms sweep">
+  <h3>Silver Legion Keep</h3>
+  <p class="sub">Zaikhal keep, 16 Viamontian Man-at-Arms for the kill task</p>
+  <ul class="routes"><li><span>Man-at-Arms sweep</span><b>2,433 m</b></li></ul>
+  <p class="tg">Targets: Viamontian Man-at-Arms (16)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span><span class="tag">1 locked door</span></p>
+</a></div></section><section id="g-elemental-task" data-group><h2 class="sec"><span class="gilt">Elemental task</span><small>1 maps</small></h2><p class="blurb">Elementals (25) for Zahir in Stonehold.</p><div class="grid"><a class="card" href="malignant-tabernacle.html" data-q="malignant tabernacle elemental kill task: caustics, hyems and infernos elemental task caustic inferno hyem elemental sweep">
+  <h3>Malignant Tabernacle</h3>
+  <p class="sub">Elemental kill task: Caustics, Hyems and Infernos</p>
+  <ul class="routes"><li><span>Elemental sweep</span><b>885 m</b></li></ul>
+  <p class="tg">Targets: Caustic (6), Inferno (6), Hyem (6)</p>
+  
+</a></div></section><section id="g-crystal-minds" data-group><h2 class="sec"><span class="gilt">Crystal Minds</span><small>3 maps</small></h2><p class="blurb">Crystal Minds and Shattered Souls dungeons, in quest order.</p><div class="grid"><a class="card" href="dark-tree-crystal-mine.html" data-q="dark tree crystal mine crystal minds and shattered souls, mining storage chest in the south-east corner crystal minds to the south-east chest">
+  <h3>Dark Tree Crystal Mine</h3>
+  <p class="sub">Crystal Minds and Shattered Souls, Mining Storage Chest in the south-east corner</p>
+  <ul class="routes"><li><span>To the south-east chest</span><b>193 m</b></li></ul>
+  
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="misty-mine.html" data-q="misty mine crystal minds and shattered souls, ancient chest with the unknown crystal at the bottom crystal minds to the ancient chests">
+  <h3>Misty Mine</h3>
+  <p class="sub">Crystal Minds and Shattered Souls, Ancient Chest with the unknown crystal at the bottom</p>
+  <ul class="routes"><li><span>To the Ancient Chests</span><b>468 m</b></li></ul>
+  
+  
+</a><a class="card" href="warehouse-annex-mine.html" data-q="warehouse annex mine crystal minds and shattered souls, obsidian excavation golems at the bottom crystal minds obsidian excavation golem to the deepest golem and portal">
+  <h3>Warehouse Annex Mine</h3>
+  <p class="sub">Crystal Minds and Shattered Souls, Obsidian Excavation Golems at the bottom</p>
+  <ul class="routes"><li><span>To the deepest golem and portal</span><b>1,341 m</b></li></ul>
+  <p class="tg">Targets: Obsidian Excavation Golem (14)</p>
+  
+</a></div></section><section id="g-facility-hub-10-15" data-group><h2 class="sec"><span class="gilt">Facility Hub 10-15</span><small>10 maps</small></h2><p class="blurb">Dungeons behind the level 10 and 15 Facility Hub portals. Talk to the Warden by each portal for the quest.</p><div class="grid"><a class="card" href="abandoned-tumerok-site.html" data-q="abandoned tumerok site olthoi harvester grind, level 20, no quest facility hub 10-15 olthoi harvester to the far surface exit olthoi harvester sweep">
+  <h3>Abandoned Tumerok Site</h3>
+  <p class="sub">Olthoi Harvester grind, level 20, no quest</p>
+  <ul class="routes"><li><span>To the far Surface Exit</span><b>218 m</b></li><li><span>Olthoi Harvester sweep</span><b>789 m</b></li></ul>
+  <p class="tg">Targets: Olthoi Harvester (32)</p>
+  
+</a><a class="card" href="colier-mine.html" data-q="colier mine take the baron&#x27;s amulet of life giving from the treasure chest facility hub 10-15 undead miner banderling guard baron of colier to the baron of colier to the scratched key chest to the treasure chest">
+  <h3>Colier Mine</h3>
+  <p class="sub">Take the Baron&#x27;s Amulet of Life Giving from the Treasure Chest</p>
+  <ul class="routes"><li><span>To the Baron of Colier</span><b>264 m</b></li><li><span>To the Scratched Key chest</span><b>238 m</b></li><li><span>To the Treasure Chest</span><b>266 m</b></li></ul>
+  <p class="tg">Targets: Undead Miner (29), Banderling Guard (15), Baron of Colier (1)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span><span class="tag">12 locked doors</span></p>
+</a><a class="card" href="folthid-cellar.html" data-q="folthid cellar take the dull dagger from the deep chest or the dagger of tikola from aste sclavus facility hub 10-15 se sclavus aste sclavus to the large chest (dull dagger) to aste sclavus (dagger of tikola)">
+  <h3>Folthid Cellar</h3>
+  <p class="sub">Take the Dull Dagger from the deep chest or the Dagger of Tikola from Aste Sclavus</p>
+  <ul class="routes"><li><span>To the Large Chest (Dull Dagger)</span><b>347 m</b></li><li><span>To Aste Sclavus (Dagger of Tikola)</span><b>340 m</b></li></ul>
+  <p class="tg">Targets: Se Sclavus (3), Aste Sclavus (1)</p>
+  <p class="flags"><span class="tag">3 locked doors</span></p>
+</a><a class="card" href="glenden-wood-dungeon.html" data-q="glenden wood dungeon kill the oversized banderling ogre and take its platemail hauberk facility hub 10-15 banderling ogre banderling blade to the oversized banderling ogre banderling ogre sweep">
+  <h3>Glenden Wood Dungeon</h3>
+  <p class="sub">Kill the Oversized Banderling Ogre and take its Platemail Hauberk</p>
+  <ul class="routes"><li><span>To the Oversized Banderling Ogre</span><b>609 m</b></li><li><span>Banderling Ogre sweep</span><b>1,107 m</b></li></ul>
+  <p class="tg">Targets: Banderling Ogre (6), Banderling Blade (16)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span><span class="tag">23 locked doors</span></p>
+</a><a class="card" href="green-mire-grave.html" data-q="green mire grave take a green mire yoroi cuirass or green mire yari from a locked chest facility hub 10-15 mosswart overchief drudge slave keyholder mosswart chief to the cuirass chest to the yari chest">
+  <h3>Green Mire Grave</h3>
+  <p class="sub">Take a Green Mire Yoroi Cuirass or Green Mire Yari from a locked chest</p>
+  <ul class="routes"><li><span>To the Cuirass chest</span><b>285 m</b></li><li><span>To the Yari chest</span><b>306 m</b></li></ul>
+  <p class="tg">Targets: Mosswart Overchief (1), Drudge Slave Keyholder (1), Mosswart Chief (1)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span><span class="tag">3 locked doors</span></p>
+</a><a class="card" href="halls-of-helm.html" data-q="halls of the helm kill the guardian of the helm and take the superior helmet or fiery shield facility hub 10-15 undead lich to the guardian of the helm to the coffin">
+  <h3>Halls of the Helm</h3>
+  <p class="sub">Kill the Guardian of the Helm and take the Superior Helmet or Fiery Shield</p>
+  <ul class="routes"><li><span>To the Guardian of the Helm</span><b>275 m</b></li><li><span>To the Coffin</span><b>226 m</b></li></ul>
+  <p class="tg">Targets: Undead (11), Lich (2)</p>
+  <p class="flags"><span class="tag">3 locked doors</span></p>
+</a><a class="card" href="tusker-burrow.html" data-q="tusker burrow kill female tusker (level 15), no quest facility hub 10-15 female tusker to the far surface exit female tusker sweep">
+  <h3>Tusker Burrow</h3>
+  <p class="sub">Kill Female Tusker (level 15), no quest</p>
+  <ul class="routes"><li><span>To the far Surface exit</span><b>218 m</b></li><li><span>Female Tusker sweep</span><b>1,426 m</b></li></ul>
+  <p class="tg">Targets: Female Tusker (42)</p>
+  
+</a><a class="card" href="tusker-cave.html" data-q="tusker cave kill tusker crimsonback (level 30), no quest facility hub 10-15 tusker crimsonback to the far surface exit tusker crimsonback sweep">
+  <h3>Tusker Cave</h3>
+  <p class="sub">Kill Tusker Crimsonback (level 30), no quest</p>
+  <ul class="routes"><li><span>To the far Surface exit</span><b>316 m</b></li><li><span>Tusker Crimsonback sweep</span><b>1,569 m</b></li></ul>
+  <p class="tg">Targets: Tusker Crimsonback (81)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="tusker-cavern.html" data-q="tusker cavern kill goldenback tusker (level 30), no quest facility hub 10-15 goldenback tusker to the far surface exit goldenback tusker sweep">
+  <h3>Tusker Cavern</h3>
+  <p class="sub">Kill Goldenback Tusker (level 30), no quest</p>
+  <ul class="routes"><li><span>To the far Surface exit</span><b>307 m</b></li><li><span>Goldenback Tusker sweep</span><b>1,590 m</b></li></ul>
+  <p class="tg">Targets: Goldenback Tusker (63)</p>
+  
+</a><a class="card" href="tusker-lodge.html" data-q="tusker lodge kill male tusker (level 20), no quest facility hub 10-15 male tusker to the far surface exit male tusker sweep">
+  <h3>Tusker Lodge</h3>
+  <p class="sub">Kill Male Tusker (level 20), no quest</p>
+  <ul class="routes"><li><span>To the far Surface exit</span><b>383 m</b></li><li><span>Male Tusker sweep</span><b>1,327 m</b></li></ul>
+  <p class="tg">Targets: Male Tusker (57)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a></div></section><section id="g-facility-hub-20-25" data-group><h2 class="sec"><span class="gilt">Facility Hub 20-25</span><small>9 maps</small></h2><p class="blurb">Dungeons behind the level 20 and 25 Facility Hub portals.</p><div class="grid"><a class="card" href="banderling-conquest-dungeon.html" data-q="banderling conquest dungeon eastham warden quest: the banderling mace shaft (one part of the mace) facility hub 20-25 banderling captain banderling chief to the mace shaft to the chief">
+  <h3>Banderling Conquest Dungeon</h3>
+  <p class="sub">Eastham Warden quest: the Banderling Mace Shaft (one part of the mace)</p>
+  <ul class="routes"><li><span>To the Mace Shaft</span><b>690 m</b></li><li><span>To the Chief</span><b>690 m</b></li></ul>
+  <p class="tg">Targets: Banderling Captain (1), Banderling Chief (1)</p>
+  
+</a><a class="card" href="catacombs-of-the-forgotten.html" data-q="catacombs of the forgotten quest: mi krau-li&#x27;s jitte, at the bottom with his sarcophagus facility hub 20-25 skeleton wraith skeleton lord to mi krau-li&#x27;s jitte to the sarcophagus">
+  <h3>Catacombs of the Forgotten</h3>
+  <p class="sub">Quest: Mi Krau-Li&#x27;s Jitte, at the bottom with his Sarcophagus</p>
+  <ul class="routes"><li><span>To Mi Krau-Li&#x27;s Jitte</span><b>704 m</b></li><li><span>To the Sarcophagus</span><b>582 m</b></li></ul>
+  <p class="tg">Targets: Skeleton Wraith (3), Skeleton Lord (19)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="dangerous-cave.html" data-q="dangerous cave quest: find tibri&#x27;s fire spear at the bottom of the cave facility hub 20-25 banderling chief tibri the cavedweller to tibri&#x27;s fire spear to tibri">
+  <h3>Dangerous Cave</h3>
+  <p class="sub">Quest: find Tibri&#x27;s Fire Spear at the bottom of the cave</p>
+  <ul class="routes"><li><span>To Tibri&#x27;s Fire Spear</span><b>134 m</b></li><li><span>To Tibri</span><b>88 m</b></li></ul>
+  <p class="tg">Targets: Banderling Chief (1), Tibri the Cavedweller (1)</p>
+  
+</a><a class="card" href="hunters-leap.html" data-q="hunter&#x27;s leap quest: lilitha&#x27;s broken bow, then have eldrista fix it facility hub 20-25 lich lord to lilitha&#x27;s broken bow to the lich lord">
+  <h3>Hunter&#x27;s Leap</h3>
+  <p class="sub">Quest: Lilitha&#x27;s Broken Bow, then have Eldrista fix it</p>
+  <ul class="routes"><li><span>To Lilitha&#x27;s Broken Bow</span><b>106 m</b></li><li><span>To the Lich Lord</span><b>31 m</b></li></ul>
+  <p class="tg">Targets: Lich Lord (1)</p>
+  <p class="flags"><span class="tag">1 locked door</span></p>
+</a><a class="card" href="mosswart-maze.html" data-q="mosswart maze eastham warden quest: the banderling mace head (one part of the mace) facility hub 20-25 mosswart chief to the mace head to the mosswart chief">
+  <h3>Mosswart Maze</h3>
+  <p class="sub">Eastham Warden quest: the Banderling Mace Head (one part of the mace)</p>
+  <ul class="routes"><li><span>To the Mace Head</span><b>303 m</b></li><li><span>To the Mosswart Chief</span><b>206 m</b></li></ul>
+  <p class="tg">Targets: Mosswart Chief (1)</p>
+  
+</a><a class="card" href="the-dark-lair.html" data-q="the dark lair olthoi gardeners and harvesters, no quest facility hub 20-25 olthoi gardener olthoi harvester to the far surface exit gardener sweep">
+  <h3>The Dark Lair</h3>
+  <p class="sub">Olthoi Gardeners and Harvesters, no quest</p>
+  <ul class="routes"><li><span>To the far Surface Exit</span><b>312 m</b></li><li><span>Gardener sweep</span><b>456 m</b></li></ul>
+  <p class="tg">Targets: Olthoi Gardener (17), Olthoi Harvester (6)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="trothyrs-rest.html" data-q="trothyr&#x27;s rest quest: trothyr&#x27;s war hammer or shield, in the locked rooms facility hub 20-25 lich lich lord to trothyr&#x27;s war hammer to trothyr&#x27;s shield to the lich lord">
+  <h3>Trothyr&#x27;s Rest</h3>
+  <p class="sub">Quest: Trothyr&#x27;s War Hammer or Shield, in the locked rooms</p>
+  <ul class="routes"><li><span>To Trothyr&#x27;s War Hammer</span><b>256 m</b></li><li><span>To Trothyr&#x27;s Shield</span><b>258 m</b></li><li><span>To the Lich Lord</span><b>156 m</b></li></ul>
+  <p class="tg">Targets: Lich (26), Lich Lord (1)</p>
+  <p class="flags"><span class="tag">6 locked doors</span></p>
+</a><a class="card" href="tusker-abode.html" data-q="tusker abode tusker redeemers, no quest facility hub 20-25 tusker redeemer to the far surface exit redeemer sweep">
+  <h3>Tusker Abode</h3>
+  <p class="sub">Tusker Redeemers, no quest</p>
+  <ul class="routes"><li><span>To the far Surface Exit</span><b>448 m</b></li><li><span>Redeemer sweep</span><b>3,121 m</b></li></ul>
+  <p class="tg">Targets: Tusker Redeemer (121)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="tusker-habitat.html" data-q="tusker habitat tusker liberators, no quest facility hub 20-25 tusker liberator to the far surface exit liberator sweep">
+  <h3>Tusker Habitat</h3>
+  <p class="sub">Tusker Liberators, no quest</p>
+  <ul class="routes"><li><span>To the far Surface Exit</span><b>303 m</b></li><li><span>Liberator sweep</span><b>982 m</b></li></ul>
+  <p class="tg">Targets: Tusker Liberator (57)</p>
+  
+</a></div></section><section id="g-facility-hub-30-45" data-group><h2 class="sec"><span class="gilt">Facility Hub 30-45</span><small>10 maps</small></h2><p class="blurb">Dungeons behind the level 30 to 45 Facility Hub portals.</p><div class="grid"><a class="card" href="olthoi-soldier-nest.html" data-q="an olthoi soldier nest olthoi soldier hunting ground, no quest facility hub 30-45 olthoi soldier to the far surface exit olthoi soldier sweep">
+  <h3>An Olthoi Soldier Nest</h3>
+  <p class="sub">Olthoi Soldier hunting ground, no quest</p>
+  <ul class="routes"><li><span>To the far Surface Exit</span><b>222 m</b></li><li><span>Olthoi Soldier sweep</span><b>881 m</b></li></ul>
+  <p class="tg">Targets: Olthoi Soldier (42)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="ancient-empyrean-grotto.html" data-q="ancient empyrean grotto olthoi legionary hunting ground, no quest facility hub 30-45 olthoi legionary to the far surface exit olthoi legionary sweep">
+  <h3>Ancient Empyrean Grotto</h3>
+  <p class="sub">Olthoi Legionary hunting ground, no quest</p>
+  <ul class="routes"><li><span>To the far Surface Exit</span><b>499 m</b></li><li><span>Olthoi Legionary sweep</span><b>1,683 m</b></li></ul>
+  <p class="tg">Targets: Olthoi Legionary (40)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="bellig-tower-base.html" data-q="bellig tower base revenant and the hammer of lightning at the top of the tower facility hub 30-45 revenant to the revenant">
+  <h3>Bellig Tower Base</h3>
+  <p class="sub">Revenant and the Hammer of Lightning at the top of the tower</p>
+  <ul class="routes"><li><span>To the Revenant</span><b>351 m</b></li></ul>
+  <p class="tg">Targets: Revenant (1)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span></p>
+</a><a class="card" href="swamp-temple.html" data-q="blackmire swamp temple temple dungeon (sclavus and mosswarts). the burun carry the journal outdoors facility hub 30-45 essa sclavus lich mosswart chief to the swamp temple tome to sho roadside portal sclavus sweep">
+  <h3>Blackmire Swamp Temple</h3>
+  <p class="sub">Temple dungeon (Sclavus and Mosswarts). The Burun carry the journal outdoors</p>
+  <ul class="routes"><li><span>To the Swamp Temple Tome</span><b>24 m</b></li><li><span>To Sho Roadside portal</span><b>467 m</b></li><li><span>Sclavus sweep</span><b>1,174 m</b></li></ul>
+  <p class="tg">Targets: Essa Sclavus (1), Lich (1), Mosswart Chief (1)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span><span class="tag">9 locked doors</span></p>
+</a><a class="card" href="crumbling-empyrean-mansion.html" data-q="crumbling empyrean mansion olthoi worker hunting ground, no quest facility hub 30-45 olthoi worker to the surface exit olthoi worker sweep">
+  <h3>Crumbling Empyrean Mansion</h3>
+  <p class="sub">Olthoi Worker hunting ground, no quest</p>
+  <ul class="routes"><li><span>To the Surface Exit</span><b>9 m</b></li><li><span>Olthoi Worker sweep</span><b>3,046 m</b></li></ul>
+  <p class="tg">Targets: Olthoi Worker (62)</p>
+  
+</a><a class="card" href="haunted-mansion-dungeon.html" data-q="haunted mansion dungeon frest greelving&#x27;s three belongings, dark sarcophagus at the bottom facility hub 30-45 lich skeleton wraith dark sarcophagus to the dark sarcophagus to the locked chests">
+  <h3>Haunted Mansion Dungeon</h3>
+  <p class="sub">Frest Greelving&#x27;s three belongings, Dark Sarcophagus at the bottom</p>
+  <ul class="routes"><li><span>To the Dark Sarcophagus</span><b>958 m</b></li><li><span>To the locked chests</span><b>29 m</b></li></ul>
+  <p class="tg">Targets: Lich (32), Skeleton Wraith (4), Dark Sarcophagus (1)</p>
+  
+</a><a class="card" href="mite-maze.html" data-q="mite maze branith&#x27;s staff and shirt, mite warrior queen facility hub 30-45 royal mite squire royal mite matron mite warrior queen to branith&#x27;s staff to branith&#x27;s shirt to the mite warrior queen royal mite sweep">
+  <h3>Mite Maze</h3>
+  <p class="sub">Branith&#x27;s Staff and Shirt, Mite Warrior Queen</p>
+  <ul class="routes"><li><span>To Branith&#x27;s Staff</span><b>537 m</b></li><li><span>To Branith&#x27;s Shirt</span><b>210 m</b></li><li><span>To the Mite Warrior Queen</span><b>537 m</b></li><li><span>Royal Mite sweep</span><b>1,822 m</b></li></ul>
+  <p class="tg">Targets: Royal Mite Squire (36), Royal Mite Matron (6), Mite Warrior Queen (1)</p>
+  <p class="flags"><span class="tag warn">Shaft trap</span><span class="tag">1 locked door</span></p>
+</a><a class="card" href="mountain-sewer.html" data-q="mountain sewer ancient arbalest near the bottom facility hub 30-45 lich lord zofrit zefir kilif zefir to the ancient arbalest zefir sweep">
+  <h3>Mountain Sewer</h3>
+  <p class="sub">Ancient Arbalest near the bottom</p>
+  <ul class="routes"><li><span>To the Ancient Arbalest</span><b>305 m</b></li><li><span>Zefir sweep</span><b>435 m</b></li></ul>
+  <p class="tg">Targets: Lich Lord (1), Zofrit Zefir (12), Kilif Zefir (19)</p>
+  <p class="flags"><span class="tag">8 locked doors</span></p>
+</a><a class="card" href="tusker-barracks.html" data-q="tusker barracks tusker guard hunting ground, no quest facility hub 30-45 tusker guard to the surface exit tusker guard sweep">
+  <h3>Tusker Barracks</h3>
+  <p class="sub">Tusker Guard hunting ground, no quest</p>
+  <ul class="routes"><li><span>To the Surface Exit</span><b>234 m</b></li><li><span>Tusker Guard sweep</span><b>834 m</b></li></ul>
+  <p class="tg">Targets: Tusker Guard (54)</p>
+  
+</a><a class="card" href="tusker-quarters.html" data-q="tusker quarters tusker slave hunting ground, no quest facility hub 30-45 tusker slave to the surface exit tusker slave sweep">
+  <h3>Tusker Quarters</h3>
+  <p class="sub">Tusker Slave hunting ground, no quest</p>
+  <ul class="routes"><li><span>To the Surface Exit</span><b>218 m</b></li><li><span>Tusker Slave sweep</span><b>1,438 m</b></li></ul>
+  <p class="tg">Targets: Tusker Slave (79)</p>
+  
+</a></div></section>
+<p class="empty" id="empty" hidden>No maps match that search.</p>
+</main>
+<script>
+(() => {
+  const q = document.getElementById('q'), secs = [...document.querySelectorAll('section[data-group]')], empty = document.getElementById('empty');
+  const jumps = [...document.querySelectorAll('.jump')];
+  function filter() {
+    const t = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    secs.forEach(s => {
+      let n = 0;
+      s.querySelectorAll('.card').forEach(c => { const ok = t.every(w => c.dataset.q.includes(w)); c.hidden = !ok; n += ok; });
+      s.hidden = !n; shown += n;
+      const j = jumps.find(a => a.getAttribute('href') === '#' + s.id); if (j) { j.hidden = !n; j.querySelector('span').textContent = n; }
+    });
+    empty.hidden = shown > 0;
+  }
+  q.addEventListener('input', filter);
+  addEventListener('keydown', ev => {
+    if (ev.key === '/' && document.activeElement !== q) { ev.preventDefault(); q.focus(); q.select(); }
+    else if (ev.key === 'Escape' && document.activeElement === q) { q.value = ''; filter(); q.blur(); }
+  });
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) jumps.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+  }), { rootMargin: '-170px 0px -65% 0px' });
+  secs.forEach(s => io.observe(s));
+})();
+</script>
+</body></html>

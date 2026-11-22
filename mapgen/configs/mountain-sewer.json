@@ -1,0 +1,74 @@
+{
+  "landblock": "0191",
+  "title": "Mountain Sewer",
+  "subtitle": "Ancient Arbalest near the bottom",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Mountain Sewer Portal"
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the Ancient Arbalest",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Ancient Arbalest"
+        }
+      ]
+    }
+  ],
+  "sweeps": [
+    {
+      "name": "Zefir sweep",
+      "from": "Entrance",
+      "creatures": [
+        "Kilif Zefir",
+        "Zofrit Zefir"
+      ]
+    }
+  ],
+  "targets": [
+    "Ancient Arbalest",
+    "Kilif Zefir",
+    "Zofrit Zefir",
+    "Lich Lord"
+  ],
+  "steps": [
+    "In the Facility Hub, ask the Warden about the Mountain Sewer (level 30+).",
+    "Take the Mountain Sewer portal (near Tou-Tou).",
+    "Descend and find the Ancient Arbalest.",
+    "Show it to the Warden for the reward."
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 30+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "info",
+      "title": "Quest item",
+      "body": "The Ancient Arbalest is placed in the data, so the route goes straight to it."
+    },
+    {
+      "kind": "warn",
+      "title": "Locked doors",
+      "body": "Several doors on the way down need a master key. The route is built from the open ones, so check it in game."
+    },
+    {
+      "kind": "tip",
+      "title": "Zefirs",
+      "body": "Zefirs cast War Magic. Use the sewer walls to block line of sight. They take slightly less than full damage from fire (0.6) and electric (0.65)."
+    },
+    {
+      "kind": "info",
+      "title": "Lich Lord",
+      "body": "One Lich Lord (level 60) is in the sewer. It takes cold at 0.2."
+    }
+  ],
+  "slug": "mountain-sewer",
+  "group": "Facility Hub 30-45"
+}

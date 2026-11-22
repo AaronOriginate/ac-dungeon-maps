@@ -1,0 +1,20 @@
+{
+  "landblock": "0046", "slug": "yanshi-undermine", "group": "Repugnant Eater task",
+  "title": "Yanshi Undermine", "subtitle": "Lower and Upper Undermine, Repugnant Eaters and the Yanshi Swarm Matron",
+  "entrances": [{"name": "Lower Undermine", "portal": "Yanshi Lower Undermine"}],
+  "routes": [{"name": "To the Yanshi Swarm Matron", "from": "Lower Undermine", "to": [{"instance": "Yanshi Swarm Matron"}]}],
+  "sweeps": [{"name": "Eater sweep", "from": "Lower Undermine", "creatures": ["Repugnant Eater"]}],
+  "targets": ["Repugnant Eater"],
+  "steps": [
+    "Take the Yanshi Lower Undermine portal from the Granite Quarry, then keep right. Kill Repugnant Eaters as you go; you need 50.",
+    "At the end of the lower mine, take the portal to the Upper Undermine.",
+    "Keep left and climb to the top. Kill the Yanshi Swarm Matron and loot her claw.",
+    "Give the claw to Royal Guard Adrana in Yanshi."
+  ],
+  "notes": [
+    {"kind": "warn", "title": "50 Eaters needs a respawn", "body": "17 Repugnant Eaters spawn here, all on one 5 minute generator. Expect about three clears, or fill the gap on the Plains of Ruin or in the Viamontian Royal Prison."},
+    {"kind": "tip", "title": "Eater damage types", "body": "Repugnant Eaters (level 115) take 120% slash and pierce, 60% bludgeon and acid. Six Abhorrent Eaters mixed in do not count."},
+    {"kind": "tip", "title": "Swarm Matron", "body": "Level 135. She takes 80% pierce, bludgeon and cold, 60% slash and fire, 55% lightning, and only 40% acid."},
+    {"kind": "info", "title": "Doors", "body": "The five doors in the upper mine are not locked."}
+  ]
+}

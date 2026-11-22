@@ -1,0 +1,71 @@
+{
+ "landblock": "01CC",
+ "slug": "halls-of-helm",
+ "title": "Halls of the Helm",
+ "group": "Facility Hub 10-15",
+ "subtitle": "Kill the Guardian of the Helm and take the Superior Helmet or Fiery Shield",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Halls of the Helm"
+  }
+ ],
+ "climb_up": true,
+ "routes": [
+  {
+   "name": "To the Guardian of the Helm",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Undead Flaming Helm Generator"
+    }
+   ]
+  },
+  {
+   "name": "To the Coffin",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Coffin"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Lich",
+  "Undead"
+ ],
+ "steps": [
+  "In the Facility Hub, take the Helm Warden's portal to the area near Zaikhal.",
+  "Enter the Halls and go deep to the Guardian.",
+  "Kill the Guardian of the Helm and take the Superior Helmet or the Fiery Shield.",
+  "Show either item to the Warden."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Guardian location",
+   "body": "The route goes to the Undead Flaming Helm Generator, which spawns the Guardian of the Helm (level 30). The data does not place the helmet or shield, so they probably drop from the Guardian."
+  },
+  {
+   "kind": "warn",
+   "title": "Locked doors",
+   "body": "Three doors need a master key: (60, -95, -6), (30, -125, 0) and (45, -120, 0). A lever at (54, -68, 2) opens a door, and a fountain at (70, -90, 30) is a switch on the top level."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "The Guardian, Liches and Undead take full slash and fire, 0.75 bludgeon and 0.52 pierce, and only 0.2 cold."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 15+"
+  ],
+  [
+   "Quest",
+   "fachubhallsofhelm"
+  ]
+ ]
+}

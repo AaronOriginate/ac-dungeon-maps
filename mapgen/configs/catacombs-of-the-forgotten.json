@@ -1,0 +1,66 @@
+{
+ "landblock": "02E6",
+ "slug": "catacombs-of-the-forgotten",
+ "group": "Facility Hub 20-25",
+ "title": "Catacombs of the Forgotten",
+ "subtitle": "Quest: Mi Krau-Li's Jitte, at the bottom with his Sarcophagus",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Catacombs of the Forgotten Portal"
+  }
+ ],
+ "routes": [
+  {
+   "name": "To Mi Krau-Li's Jitte",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Mi Krau-Li's Jitte"
+    }
+   ]
+  },
+  {
+   "name": "To the Sarcophagus",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Mi Krau-Li's Sarcophagus"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Skeleton Wraith",
+  "Skeleton Lord"
+ ],
+ "steps": [
+  "In the Facility Hub, talk to the Warden about Mi Krau-Li.",
+  "Take the level 25 portal to the Catacombs of the Forgotten.",
+  "Go to the bottom and take Mi Krau-Li's Jitte.",
+  "Show it to the Warden for the reward."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Quest item",
+   "body": "The Jitte is placed in the data. His Sarcophagus is in the same area, and the route to it is also given."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Skeletons take full bludgeon, then 0.58 slash. Cold, lightning and pierce are weak (0.25-0.4)."
+  },
+  {
+   "kind": "warn",
+   "title": "Numbers",
+   "body": "65 Skeleton Captains, 19 Skeleton Lords (level 40) and 3 Wraiths (level 50)."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 25+"
+  ]
+ ]
+}

@@ -1,0 +1,90 @@
+{
+ "landblock": "01E5",
+ "slug": "green-mire-grave",
+ "title": "Green Mire Grave",
+ "group": "Facility Hub 10-15",
+ "subtitle": "Take a Green Mire Yoroi Cuirass or Green Mire Yari from a locked chest",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Green Mire Grave"
+  }
+ ],
+ "climb_up": true,
+ "routes": [
+  {
+   "name": "To the Cuirass chest",
+   "from": "Entrance",
+   "to": [
+    {
+     "cell": "0x01E50105",
+     "pos": [
+      79.9,
+      -49.0,
+      -30.0
+     ],
+     "label": "Cuirass chest"
+    }
+   ]
+  },
+  {
+   "name": "To the Yari chest",
+   "from": "Entrance",
+   "to": [
+    {
+     "cell": "0x01E50368",
+     "pos": [
+      102.5,
+      -72.2,
+      30.0
+     ],
+     "label": "Yari chest"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Mosswart Chief",
+  "Mosswart Overchief",
+  "Drudge Slave Keyholder"
+ ],
+ "steps": [
+  "In the Facility Hub, take the Green Mire Warden's portal to the swamp outside Shoushi.",
+  "Enter the grave and collect keys to open the locked doors and chests.",
+  "Open the chest and take a Green Mire Yoroi Cuirass or Green Mire Yari.",
+  "If you took the Cuirass, have Hiro Ishigame repair it first.",
+  "Bring the item to the Warden."
+ ],
+ "notes": [
+  {
+   "kind": "info",
+   "title": "Which chest",
+   "body": "The chest at (80, -49, -30) holds the Cuirass. The chest at (103, -72, 30) holds the Yari, near the Coffin at the top. Either item counts, and the Yari needs no repair, so the top chest is the simpler pick if you can open it."
+  },
+  {
+   "kind": "warn",
+   "title": "Traps",
+   "body": "The Cuirass chest at the bottom sits among pressure plates and six magic traps, and it is locked. Expect damage."
+  },
+  {
+   "kind": "warn",
+   "title": "Locked doors",
+   "body": "Three doors need keys: the prison door (20, -105, -6), the resist-58 door (72, -90, -6) and the resist-54 door (205, -50, 6). The chest at (20, -102, -6) holds the resist-58 key. The Drudge Slave Keyholder carries more keys, and I did not trace the rest."
+  },
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Mosswart Chiefs take 0.3 acid and 0.38 cold, and full fire and electric. Shamans, Barkers and Mudlurks take full fire and electric too. Ghost and Dark Wisps are immune to cold."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 15+"
+  ],
+  [
+   "Quest",
+   "fachubgreenmiregrave"
+  ]
+ ]
+}

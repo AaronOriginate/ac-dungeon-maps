@@ -1,0 +1,63 @@
+{
+ "landblock": "5748",
+ "slug": "tusker-burrow",
+ "title": "Tusker Burrow",
+ "group": "Facility Hub 10-15",
+ "subtitle": "Kill Female Tusker (level 15), no quest",
+ "entrances": [
+  {
+   "name": "Entrance",
+   "portal": "Tusker Burrow"
+  }
+ ],
+ "sweeps": [
+  {
+   "name": "Female Tusker sweep",
+   "from": "Entrance",
+   "creatures": [
+    "Female Tusker"
+   ]
+  }
+ ],
+ "routes": [
+  {
+   "name": "To the far Surface exit",
+   "from": "Entrance",
+   "to": [
+    {
+     "instance": "Surface",
+     "pick": "nearest"
+    }
+   ]
+  }
+ ],
+ "targets": [
+  "Female Tusker"
+ ],
+ "steps": [
+  "In the Facility Hub, take the level 15 portal to Tusker Burrow.",
+  "Kill Female Tusker in the dungeon."
+ ],
+ "notes": [
+  {
+   "kind": "tip",
+   "title": "Best damage",
+   "body": "Tuskers take 0.25 to 0.4 electric, 0.5 slash, 0.75 bludgeon, cold and acid, and full pierce (1.0) and fire (1.0). Use pierce or fire."
+  },
+  {
+   "kind": "info",
+   "title": "Leaving",
+   "body": "The only Surface exit is at the very bottom of the dungeon, 30 units below the entrance."
+  }
+ ],
+ "facts": [
+  [
+   "Hub portal",
+   "level 15+"
+  ],
+  [
+   "Creature level",
+   "15"
+  ]
+ ]
+}

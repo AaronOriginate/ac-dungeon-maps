@@ -1,0 +1,78 @@
+{
+  "landblock": "01A2",
+  "title": "Blackmire Swamp Temple",
+  "subtitle": "Temple dungeon (Sclavus and Mosswarts). The Burun carry the journal outdoors",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Swamp Temple"
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the Swamp Temple Tome",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Swamp Temple Tome"
+        }
+      ]
+    },
+    {
+      "name": "To Sho Roadside portal",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Sho Roadside"
+        }
+      ]
+    }
+  ],
+  "sweeps": [
+    {
+      "name": "Sclavus sweep",
+      "from": "Entrance",
+      "creatures": [
+        "Se Sclavus",
+        "Aste Sclavus",
+        "Essa Sclavus"
+      ]
+    }
+  ],
+  "targets": [
+    "Essa Sclavus",
+    "Mosswart Chief",
+    "Lich"
+  ],
+  "steps": [
+    "In the Facility Hub, ask the Warden about Blackmire (level 45+).",
+    "The Burun Ruuk village is outdoors near 21.7S, 47.7E, by the temple. Kill Burun there for the Marked Fleshy Journal.",
+    "Take the journal to Translator Laokhe, atop the tower in Arwic at 33.5N, 56.8E.",
+    "Bring what Laokhe gives you back to the Warden."
+  ],
+  "facts": [
+    [
+      "Hub portal",
+      "level 45+"
+    ]
+  ],
+  "notes": [
+    {
+      "kind": "warn",
+      "title": "Burun are outside",
+      "body": "No Burun spawn inside the temple dungeon. It holds Sclavus, Mosswarts and Golems. The Burun carrying the texts are in the village outdoors. This map is only for the temple nearby."
+    },
+    {
+      "kind": "info",
+      "title": "Journal",
+      "body": "The data does not place the Marked Fleshy Journal. It drops from the Burun (inferred from the Warden text)."
+    },
+    {
+      "kind": "tip",
+      "title": "Best damage",
+      "body": "Sclavus take bludgeon best (0.46) and are weak to nothing else. Mosswart Chief takes cold 0.38 and acid 0.3."
+    }
+  ],
+  "slug": "swamp-temple",
+  "group": "Facility Hub 30-45"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "ac.dungeon-maps",
+  "displayName": "Dungeon Maps",
+  "version": "0.1.0",
+  "entryDll": "AcDungeonMaps.dll",
+  "apiVersion": 1,
+  "kinds": ["gameplay"],
+  "hosts": ["graphical"]
+}

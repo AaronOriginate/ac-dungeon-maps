@@ -1,0 +1,41 @@
+{
+  "landblock": "011A",
+  "slug": "acid-vault",
+  "group": "Elemental vaults",
+  "title": "Acid Vault",
+  "subtitle": "Incunabula Vault, entrance to the Major Stinging Stone",
+  "entrances": [
+    {
+      "name": "Entrance",
+      "portal": "Incunabula Vault Portal"
+    }
+  ],
+  "routes": [
+    {
+      "name": "To the stone",
+      "from": "Entrance",
+      "to": [
+        {
+          "instance": "Major Stinging Stone"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "kind": "warn",
+      "title": "Surface Portals",
+      "body": "Two Surface Portals kick you out of the dungeon: one just beside where you arrive, and one on the stone level. Don't step on them."
+    },
+    {
+      "kind": "tip",
+      "title": "Use pierce or bludgeon",
+      "body": "The Olthoi Swarm Soldiers take full damage from pierce and bludgeon, and 75% from slash, fire and frost. Avoid acid (42%) and lightning (25%)."
+    },
+    {
+      "kind": "info",
+      "title": "What the stone is for",
+      "body": "Give the Major Stinging Stone to Zahir in Stonehold (68.7N 21.5W) for a Writ of Refuge. The stone respawns 25 seconds after it's taken."
+    }
+  ]
+}
